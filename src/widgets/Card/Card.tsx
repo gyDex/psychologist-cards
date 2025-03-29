@@ -7,32 +7,33 @@ import { useEffect, useState } from "react";
 import { FavoritesButton } from "../FavoritesButton/FavoritesButton";
 import { TimeStage } from "../SessionStages/TimeStage/TimeStage";
 import { ContactStage } from "../SessionStages/ContactStage/ContactStage";
-import useModalStage from "@/features/hooks/useModalStage";
 import { Button } from "@/components/ui/button";
+import { useDispatch, useSelector } from "react-redux";
 
-type Props = {
-    name: string,
-    price: number,
-    additional_approaches: string,
-    basic_approaches: string, 
-    requests: any[],
-    diagnosed_diseases: any[],
-}
+import { open,close,openNext } from '../../redux/slices/modal'
+import { ModalState } from "@/redux/store";
+
+// type Props = {
+//     name: string,
+//     price: number,
+//     additional_approaches: string,
+//     basic_approaches: string, 
+//     requests: any[],
+//     diagnosed_diseases: any[],
+// }
 
 export const Card = () => {
     const [isShow, setShow ] = useState(false);
     const [isShowInfo, setShowInfo ] = useState(false);
 
-    const [bidStage, setBidStage] = useState('Time');
+    const isOpenType = useSelector<ModalState>(state => state.modal.isOpenType)
 
-    const modal = useModalStage();
-
-    const { isOpen, isOpenType, open, close, openNext  } = useModalStage();
+    const dispatch = useDispatch()
 
     useEffect(() => {
 
         const timeOutID = setTimeout(() => {
-            open();
+            dispatch(open());
         },100)
 
         return () => {
@@ -302,18 +303,18 @@ export const Card = () => {
                         
                     </button>
 
-                    <Button onClick={open} className="flex hover:bg-[#116466]  cursor-pointer grow h-full text-[#FFFFFF] font-normal text-[18px] border-[1px] rounded-[50px] bg-[#116466] p-[12px]">
+                    <Button onClick={() => dispatch(open())} className="flex hover:bg-[#116466]  cursor-pointer grow h-full text-[#FFFFFF] font-normal text-[18px] border-[1px] rounded-[50px] bg-[#116466] p-[12px]">
                         Оставить заявку
                     </Button>
 
                     <TimeStage callback={ () => {
-                        close();
-                        openNext('Contact')
+                        dispatch(close());
+                        dispatch(openNext('Contact'));
                     }} />                    
 
                     <ContactStage callback={ () => {
-                        close();
-                        openNext('Contact')
+                        dispatch(close());
+                        dispatch(openNext('Contact'));
                     }} />
                 </div>
             </div>

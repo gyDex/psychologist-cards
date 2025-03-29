@@ -1,26 +1,23 @@
 import { Button } from '@/components/ui/button';
 import { DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import useModalStage from '@/features/hooks/useModalStage';
+import { close, openNext } from '@/redux/slices/modal';
 import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
 import Image from 'next/image';
+import { useDispatch } from 'react-redux';
 
 type Props = {
     callback: () => void;
 }
 export const ContactStage:React.FC<Props> = ({callback}) => {
-    const { isOpen, close, openNext, open, isOpenType } = useModalStage();
-
+    const dispatch = useDispatch();
+    
     return (
-        <ModalWindow type='Contact' button ={
-            <Button className="flex hover:bg-[#116466]  cursor-pointer grow h-full text-[#FFFFFF] font-normal text-[18px] border-[1px] rounded-[50px] bg-[#116466] p-[12px]">
-                Оставить заявку
-            </Button>
-        }>
+        <ModalWindow type='Contact'>
             <DialogHeader className="flex flex-row">
                 <Button className='m-0 p-0 cursor-pointer bg-transparent text-[#151515] shadow-none hover:bg-transparent'
                     onClick={() => {
-                        close();
-                        openNext('Time')
+                        dispatch(close());
+                        dispatch(openNext('Time'))
                     }}>
                     <Image src={'/modal/back_arrow.svg'} alt='back_arrow' height={10} width={30} />
                     Назад

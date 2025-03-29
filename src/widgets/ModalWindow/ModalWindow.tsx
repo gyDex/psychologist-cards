@@ -1,27 +1,22 @@
 'use client'
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import useModalStage from "@/features/hooks/useModalStage";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { close } from "@/redux/slices/modal";
+import { ModalState } from "@/redux/store";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 type Props ={
-    button?: React.ReactNode;
     children: React.ReactNode;
     type: string,
 }
-
-export const ModalWindow:React.FC<Props> = ({button, children, type}) => {
-    const { isOpen, close, open, isOpenType } = useModalStage();
+export const ModalWindow:React.FC<Props> = ({children, type}) => {
+    const isOpenType = useSelector<ModalState>(state => state.modal.isOpenType) as string;
+    const isOpen = useSelector<ModalState>(state => state.modal.isOpen) as boolean;
+    const dispatch = useDispatch();
 
     return (
         <>
-            <Dialog onOpenChange={close} open={isOpen && isOpenType === type} modal>
-                {/* {
-                    button &&   <DialogTrigger asChild>
-                        {button}
-                    </DialogTrigger>
-                } */}
-                
-
+            <Dialog onOpenChange={() => dispatch(close())} open={isOpen && isOpenType === type} modal>
                 <DialogContent className="w-[95%] max-w-[640px]">
                     {children}
                 </DialogContent>

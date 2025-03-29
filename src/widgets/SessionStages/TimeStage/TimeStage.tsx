@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
@@ -8,11 +9,7 @@ type Props = {
 
 export const TimeStage:React.FC<Props> = ({callback}) => {
     return (
-        <ModalWindow type='Time' button ={
-            <Button className="flex hover:bg-[#116466]  cursor-pointer grow h-full text-[#FFFFFF] font-normal text-[18px] border-[1px] rounded-[50px] bg-[#116466] p-[12px]">
-                Оставить заявку
-            </Button>
-        }>
+        <ModalWindow type='Time'>
             <DialogHeader className="flex flex-row">
                 <DialogTitle className="grow font-semibold text-[20px] max-lg:text-[16px]">Выберите время сеанса с хранителем</DialogTitle>
             </DialogHeader>

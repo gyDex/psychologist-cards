@@ -1,6 +1,4 @@
-import { AlertDialogAction, AlertDialogCancel, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
-import { Card, Filter, ModalWindow } from "@/widgets";
+import { Card, Filter } from "@/widgets";
 
 export const Psychologist_cards = () => {
     return (
