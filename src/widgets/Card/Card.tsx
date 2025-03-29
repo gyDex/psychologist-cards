@@ -3,9 +3,12 @@
 import Image from "next/image";
 
 import { ProfileCard } from "../ProfileCard/ProfileCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FavoritesButton } from "../FavoritesButton/FavoritesButton";
 import { TimeStage } from "../SessionStages/TimeStage/TimeStage";
+import { ContactStage } from "../SessionStages/ContactStage/ContactStage";
+import useModalStage from "@/features/hooks/useModalStage";
+import { Button } from "@/components/ui/button";
 
 type Props = {
     name: string,
@@ -19,6 +22,24 @@ type Props = {
 export const Card = () => {
     const [isShow, setShow ] = useState(false);
     const [isShowInfo, setShowInfo ] = useState(false);
+
+    const [bidStage, setBidStage] = useState('Time');
+
+    const modal = useModalStage();
+
+    const { isOpen, isOpenType, open, close, openNext  } = useModalStage();
+
+    useEffect(() => {
+
+        const timeOutID = setTimeout(() => {
+            open();
+        },100)
+
+        return () => {
+            clearTimeout(timeOutID);
+        };
+
+    },[isOpenType])
 
     return (
         <>
@@ -281,7 +302,19 @@ export const Card = () => {
                         
                     </button>
 
-                    <TimeStage />
+                    <Button onClick={open} className="flex hover:bg-[#116466]  cursor-pointer grow h-full text-[#FFFFFF] font-normal text-[18px] border-[1px] rounded-[50px] bg-[#116466] p-[12px]">
+                        Оставить заявку
+                    </Button>
+
+                    <TimeStage callback={ () => {
+                        close();
+                        openNext('Contact')
+                    }} />                    
+
+                    <ContactStage callback={ () => {
+                        close();
+                        openNext('Contact')
+                    }} />
                 </div>
             </div>
         </>
