@@ -1,9 +1,11 @@
 'use client'
 
 import Image from "next/image";
-import FavoritesButton from "../FavoritesButton/FavoritesButton";
+
 import { ProfileCard } from "../ProfileCard/ProfileCard";
 import { useState } from "react";
+import { FavoritesButton } from "../FavoritesButton/FavoritesButton";
+import { TimeStage } from "../SessionStages/TimeStage/TimeStage";
 
 type Props = {
     name: string,
@@ -74,14 +76,20 @@ export const Card = () => {
                                         Ближайшая запись:
                                         
                                         <ul className="flex gap-[15px] mt-[5px] overflow-auto min-w-full">
-                                            <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-[132px] py-[8px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
-                                                28.01/ 13:00
+                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                                <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                                                    28.01/ 13:00
+                                                </button> 
                                             </li>
-                                            <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-[132px] py-[8px] bg-[#116466] border-[1px] border-[#D4D4D4]  text-[#FFFFFF] font-normal text-[18px] flex justify-center items-center">
-                                                28.01/ 13:00
+                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                                <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                                                    28.01/ 13:00
+                                                </button> 
                                             </li>
-                                            <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-[132px] py-[8px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
-                                                28.01/ 13:00
+                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                                <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                                                    28.01/ 13:00
+                                                </button> 
                                             </li>
                                         </ul>
                                     </span>
@@ -94,23 +102,35 @@ export const Card = () => {
                                 Запросы:
                             </span>   
                             <ul className="gap-[15px] grid grid-cols-3  mt-[5px] max-lg:flex overflow-auto">
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto p-[8px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
-                                    Рефлексивные группы
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
+                                        Рефлексивные группы
+                                    </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto p-[8px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
-                                    Рефлексивные группы
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
+                                        Рефлексивные группы
+                                    </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto p-[8px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
-                                    Рефлексивные группы
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
+                                        Рефлексивные группы
+                                    </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto p-[8px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
-                                    Рефлексивные группы
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
+                                        Рефлексивные группы
+                                    </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto p-[8px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
-                                    Рефлексивные группы
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
+                                        Рефлексивные группы
+                                    </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto p-[8px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
-                                    Рефлексивные группы
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
+                                        Рефлексивные группы
+                                    </button>
                                 </li>
                             </ul>
                         </div>
@@ -261,9 +281,7 @@ export const Card = () => {
                         
                     </button>
 
-                    <button type="button" className="cursor-pointer grow w-full text-[#FFFFFF] font-normal text-[18px] border-[1px] rounded-[50px] bg-[#116466] p-[12px]">
-                        Оставить заявку
-                    </button>
+                    <TimeStage />
                 </div>
             </div>
         </>

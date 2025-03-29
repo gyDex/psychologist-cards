@@ -1,0 +1,75 @@
+import { Button } from '@/components/ui/button';
+import { DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
+import React from 'react';
+
+export const TimeStage = () => {
+    return (
+        <>
+            <ModalWindow button ={
+                <Button className="flex hover:bg-[#116466]  cursor-pointer grow h-full text-[#FFFFFF] font-normal text-[18px] border-[1px] rounded-[50px] bg-[#116466] p-[12px]">
+                    Оставить заявку
+                </Button>
+            }>
+                <DialogHeader className="flex flex-row">
+                    <DialogTitle className="grow font-semibold text-[20px] max-lg:text-[16px]">Выберите время сеанса с хранителем</DialogTitle>
+                </DialogHeader>
+
+                <span className="text-[18px] font-normal text-[#151515] flex gap-[10px] max-lg:flex-col max-lg:text-[14px]">
+                    Часовой пояс:
+                    <span className="text-[#116466]">
+                        Asia/Yekaterinburg ( MSK + 2)
+                    </span>
+                </span>
+
+                <span className="font-semibold text-[18px] mt-[15px] max-lg:text-[14px]">
+                    Сегодня:
+                </span>
+
+                <ul className="flex gap-[15px] mt-[5px] overflow-auto min-w-full">
+                    <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                        <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                            28.01/ 13:00
+                        </button> 
+                    </li>
+                    <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                        <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                            28.01/ 13:00
+                        </button> 
+                    </li>
+                    <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                        <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                            28.01/ 13:00
+                        </button> 
+                    </li>
+                </ul>
+
+                <span className="font-semibold text-[18px] mt-[15px] max-lg:text-[14px]">
+                    Завтра:
+                </span>
+
+                <ul className="flex gap-[15px] mt-[5px] overflow-auto min-w-full mb-[25px]">
+                    <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                        <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                            28.01/ 13:00
+                        </button> 
+                    </li>
+                    <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                        <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                            28.01/ 13:00
+                        </button> 
+                    </li>
+                    <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                        <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                            28.01/ 13:00
+                        </button> 
+                    </li>
+                </ul>
+                
+                <DialogFooter>
+                    <Button className=" w-full hover:bg-[#116466] bg-[#116466] rounded-[50px] text-[white] py-[25px] font-normal  text-[18px]" type="button">Далее</Button>
+                </DialogFooter>
+            </ModalWindow>
+        </>
+    );
+};

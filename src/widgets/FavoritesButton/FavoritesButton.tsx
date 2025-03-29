@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const FavoritesButton = () => {
+export const FavoritesButton = () => {
     return (
         <>
             <button title="Добавить в избранное" type="button">
@@ -9,5 +9,3 @@ const FavoritesButton = () => {
         </>
     );
 };
-
-export default FavoritesButton;
