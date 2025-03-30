@@ -1,9 +1,8 @@
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
-import { useState } from 'react';
 import {
     Form,
     FormControl,
@@ -18,11 +17,11 @@ import { z } from "zod";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod"
 type Props = {
-    callback: () => void;
+    // callback: () => void;
     onSubmit: (data: any) => void;
 }
 
-export const FilterRequest:React.FC<Props> = ({callback,onSubmit }) => {
+export const FilterRequest:React.FC<Props> = ({onSubmit }) => {
     const items = [
         {
           id: "recents",

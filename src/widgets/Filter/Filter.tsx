@@ -11,17 +11,15 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalState } from "@/redux/store";
-import { close, open, openNext } from "@/redux/slices/modal";
-import { Button } from "@/components/ui/button";
-import { TimeStage } from "../SessionStages/TimeStage/TimeStage";
-import { FilterRequest } from "./FilterRequest";
+import { open, openNext } from "@/redux/slices/modal";
+// import { FilterRequest } from "./FilterRequest";
 
 export const Filter = () => {
     const [isShow, setShow] = useState(true);
     const isOpenType = useSelector<ModalState>(state => state.modal.isOpenType) as string
     const isOpen = useSelector<ModalState>(state => state.modal.isOpen) as boolean
 
-    const [filterData,setFilterData] = useState();
+    // const [filterData,setFilterData] = useState();
 
     const dispatch = useDispatch()
     return (
@@ -53,7 +51,7 @@ export const Filter = () => {
                 {
                     isShow && <>
                     <div className="w-full mt-[20px]">
-                        <FilterRequest callback={ () => {
+                        {/* <FilterRequest callback={ () => {
                             dispatch(close());
                             dispatch(openNext('Contact'));
                         }}
@@ -61,7 +59,7 @@ export const Filter = () => {
                             setFilterData(data)
                             console.log()
                         }}
-                        />        
+                        />         */}
                         <Select onOpenChange={() => {
                                 dispatch(openNext('FilterRequest'));
                                 dispatch(open())
@@ -70,13 +68,13 @@ export const Filter = () => {
                                 <SelectValue placeholder="Выберите пол хранителя" />
                             </SelectTrigger>
                         </Select>
-                        {
+                        {/* {
                             filterData?.items?.map((item,i) => <div key={i}>
                                 {
                                     item
                                 }
                             </div>)
-                        }
+                        } */}
                     </div>
 
                     <div className="w-full mt-[20px]">

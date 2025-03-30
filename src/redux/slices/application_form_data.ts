@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ModalState } from "../store";
 
 const applicationFormDataSlice = createSlice({
     name: 'applicationForm',

@@ -1,6 +1,6 @@
 'use client'
 import { ModalState } from "@/redux/store";
-import { Card, Filter } from "@/widgets";
+import { Filter } from "@/widgets";
 import { useSelector } from "react-redux";
 
 export const Psychologist_cards = () => {
@@ -15,11 +15,11 @@ export const Psychologist_cards = () => {
                 </aside>
 
                 <main className="min-lg:max-w-[790px] w-full">
-                    {
+                    {/* {
                         filter?.price >= 1000 && <>
                             <Card />
                         </>
-                    }
+                    } */}
                     
                 </main>
             </div>

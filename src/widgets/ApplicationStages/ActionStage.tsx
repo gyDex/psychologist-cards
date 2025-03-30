@@ -1,7 +1,6 @@
 'use client'
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
 import { toNextStage } from '@/redux/slices/application_form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
@@ -45,11 +44,14 @@ const ActionStage = () => {
             request: '',
         }
     })
-
-    function handleSubmit(data: z.infer<typeof FormSchema>) {
+    function handleSubmit() {
         dispatch(toNextStage('diseases')) 
         // dispatch(fill_username(data.request))
     }
+    // function handleSubmit(data: z.infer<typeof FormSchema>) {
+    //     dispatch(toNextStage('diseases')) 
+    //     // dispatch(fill_username(data.request))
+    // }
 
     return (
         <div className='px-[40px] max-lg:px-[20px]   flex w-full grow'>
@@ -58,7 +60,7 @@ const ActionStage = () => {
                     <FormField
                         control={form.control}
                         name="request"
-                        render={({ field }) => (
+                        render={({  }) => (
                             <div className='grow '>
                                 <FormItem className='grow p-[25px] max-lg:p-[15px] border-[1px] rounded-[25px]  '>
                                     <FormLabel className='max-lg:text-[16px] font-semibold text-[20px] leading-[100%] max-lg:w-full'>Беспокоит ли вас травмирующее событие, с которым сложно справиться самостоятельно?</FormLabel>
@@ -72,7 +74,7 @@ const ActionStage = () => {
                                                 key={item.id}
                                                 control={form.control}
                                                 name="request"
-                                                render={({ field }) => {
+                                                render={({ field } : any) => {
                                                     return (
                                                     <FormItem
                                                         key={item.id}
@@ -86,8 +88,8 @@ const ActionStage = () => {
                                                             return checked
                                                                 ? field.onChange([...field.value, item.id])
                                                                 : field.onChange(
-                                                                    field.value?.filter(
-                                                                    (value) => value !== item.id
+                                                                    field?.value?.filter(
+                                                                    (value: any) => value !== item.id
                                                                     )
                                                                 )
                                                             }}

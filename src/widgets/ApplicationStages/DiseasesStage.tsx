@@ -3,8 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
-import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -17,7 +15,6 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useDispatch } from "react-redux"
 import { toNextStage } from "@/redux/slices/application_form"
-import { fill_gender } from "@/redux/slices/application_form_data"
 
 const FormSchema = z.object({
     gender: z.enum(["male", "female", 'nothing'], {
@@ -33,11 +30,15 @@ export const DiseasesStage = () => {
     })
 
 
-    function handleSubmit(data: z.infer<typeof FormSchema>) {
+    // function handleSubmit(data: z.infer<typeof FormSchema>) {
+    //     dispatch(toNextStage('promocode')) 
+    //     // dispatch(fill_gender(data.gender))
+    // }
+
+    function handleSubmit() {
         dispatch(toNextStage('promocode')) 
         // dispatch(fill_gender(data.gender))
     }
-
   return (
     <div className='px-[40px] max-lg:px-[20px]  flex w-full grow'>
         <Form {...form}>

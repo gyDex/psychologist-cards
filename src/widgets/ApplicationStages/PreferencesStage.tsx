@@ -1,10 +1,8 @@
 'use client'
 import { Checkbox } from '@/components/ui/checkbox';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { toNextStage } from '@/redux/slices/application_form';
-import { fill_username } from '@/redux/slices/application_form_data';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -47,11 +45,14 @@ const PreferencesStage = () => {
             request: '',
         }
     })
-
-    function handleSubmit(data: z.infer<typeof FormSchema>) {
+    function handleSubmit() {
         dispatch(toNextStage('gender_psychologist')) 
         // dispatch(fill_username(data.request))
     }
+    // function handleSubmit(data: z.infer<typeof FormSchema>) {
+    //     dispatch(toNextStage('gender_psychologist')) 
+    //     // dispatch(fill_username(data.request))
+    // }
 
     return (
         <div className='px-[40px] max-lg:px-[20px]   flex w-full grow'>
@@ -60,7 +61,7 @@ const PreferencesStage = () => {
                     <FormField
                         control={form.control}
                         name="request"
-                        render={({ field }) => (
+                        render={({  }) => (
                             <div className='grow '>
                                 <FormItem className='grow p-[25px] max-lg:p-[15px] border-[1px] rounded-[25px]  '>
                                     <FormLabel className='max-lg:text-[16px] font-semibold text-[20px] leading-[100%]'>Что вам важно в психологе?</FormLabel>
@@ -74,7 +75,7 @@ const PreferencesStage = () => {
                                                 key={item.id}
                                                 control={form.control}
                                                 name="request"
-                                                render={({ field }) => {
+                                                render={({ field } : any) => {
                                                     return (
                                                     <FormItem
                                                         key={item.id}
@@ -89,7 +90,7 @@ const PreferencesStage = () => {
                                                                 ? field.onChange([...field.value, item.id])
                                                                 : field.onChange(
                                                                     field.value?.filter(
-                                                                    (value) => value !== item.id
+                                                                    (value: any) => value !== item.id
                                                                     )
                                                                 )
                                                             }}
