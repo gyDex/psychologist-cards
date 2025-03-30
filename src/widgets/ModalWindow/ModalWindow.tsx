@@ -16,8 +16,8 @@ export const ModalWindow:React.FC<Props> = ({children, type}) => {
 
     return (
         <>
-            <Dialog onOpenChange={() => dispatch(close())} open={isOpen && isOpenType === type} modal>
-                <DialogContent className="w-[95%] max-w-[640px]">
+            <Dialog onOpenChange={() => dispatch(close())} open={isOpen && isOpenType === type} >
+                <DialogContent className="w-[95%] max-w-[640px] p-[20px]">
                     {children}
                 </DialogContent>
             </Dialog>

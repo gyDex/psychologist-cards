@@ -51,30 +51,30 @@ export const Card = () => {
                             <ProfileCard />
 
                             <div className="flex flex-col justify-between max-lg:w-full">
-                                <div className="flex flex-col gap-[8px]">
-                                    <h2 className="font-semibold text-[20px] max-lg:text-[18px]">
+                                <div className="flex flex-col gap-[10px]">
+                                    <h2 className="font-semibold text-[20px] leading-[27px] max-lg:text-[18px]">
                                         Мария Ломакина, 26 лет
                                     </h2>
 
-                                    <h3 className=" flex max-lg:text-[14px] gap-[10px]">
+                                    <h3 className=" flex max-lg:text-[16px] leading-[22px] gap-[10px]">
                                         6 месяцев в сообществе <Image src={'/card/check.svg'} alt="check" height={23} width={23} />
                                     </h3>
                                 </div>
 
 
-                                <div className="flex gap-[20px] max-lg:flex-col max-lg:gap-[5px] max-lg:mt-[10px]">
-                                    <span className="text-[#9A9A9A] font-normal text-[16px] max-lg:text-[14px]">
+                                <div className="flex gap-[30px] max-lg:flex-col max-lg:gap-[5px] max-lg:mt-[10px]">
+                                    <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                         Основной подход:
-                                        <span className="text-[#151515] font-normal text-[18px] max-lg:text-[14px] flex gap-[10px] mt-[5px]">
+                                        <span className="text-[#151515] leading-[25px] font-normal text-[18px] max-lg:text-[14px] flex gap-[10px] mt-[5px]">
                                             Юнгианский анализ
 
                                             <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
                                         </span>
                                     </span>
 
-                                    <span className="text-[#9A9A9A] font-normal text-[16px] max-lg:text-[14px]">
+                                    <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                         Стоимость:
-                                        <span className="text-[#151515] font-normal text-[18px] max-lg:text-[14px] flex gap-[10px] mt-[5px]">
+                                        <span className="text-[#151515] leading-[25px] font-normal text-[18px] max-lg:text-[14px] flex gap-[10px] mt-[5px]">
                                             От 1500 ₽
 
                                             <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
@@ -83,9 +83,9 @@ export const Card = () => {
                                 </div>
 
                                 <div className="w-full max-lg:mt-[10px]">
-                                    <span className="text-[#9A9A9A] font-normal text-[16px] max-lg:text-[14px] w-full">
+                                    <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px] w-full">
                                         Дополнительные подходы:
-                                        <ul className="font-normal text-[18px] max-lg:text-[14px] gap-[15px] justify-items-stretch grid grid-cols-[repeat(auto-fit,_minmax(125px,_1fr))]  w-full text-[#151515] mt-[5px]">
+                                        <ul className="font-normal leading-[25px] text-[18px] max-lg:text-[14px] gap-[15px] justify-items-stretch grid grid-cols-[repeat(auto-fit,_minmax(125px,_1fr))]  w-full text-[#151515] mt-[5px]">
                                             <li className="flex gap-[5px]">КПТ <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
                                             <li className="flex gap-[5px]">Гештальт <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
                                             <li className="flex gap-[5px]">Полемодальный <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
@@ -94,21 +94,21 @@ export const Card = () => {
                                 </div>
 
                                 <div className="flex gap-[20px]">
-                                    <span className="text-[#9A9A9A] font-normal text-[16px] w-full max-lg:text-[14px] max-lg:mt-[5px]">
+                                    <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] w-full max-lg:text-[14px] max-lg:mt-[5px]">
                                         Ближайшая запись:
                                         
                                         <ul className="flex gap-[15px] mt-[5px] overflow-auto min-w-full">
-                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
                                                 <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
                                                     28.01/ 13:00
                                                 </button> 
                                             </li>
-                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
                                                 <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
                                                     28.01/ 13:00
                                                 </button> 
                                             </li>
-                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px] border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
                                                 <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
                                                     28.01/ 13:00
                                                 </button> 
@@ -120,36 +120,36 @@ export const Card = () => {
                         </div>
 
                         <div className="flex gap-[5px] flex-col w-full mt-[25px]">
-                            <span className="text-[#9A9A9A] font-normal text-[16px] max-lg:text-[14px]">
+                            <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                 Запросы:
                             </span>   
                             <ul className="gap-[15px] grid grid-cols-3  mt-[5px] max-lg:flex overflow-auto">
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
@@ -164,16 +164,16 @@ export const Card = () => {
                 </div>
 
                 <div className="flex gap-[5px] flex-col w-full mt-[35px]">
-                        <span className="text-[#9A9A9A] font-normal text-[16px] max-lg:text-[14px]">
+                        <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                             Диагностированные заболевания:
                         </span>   
                         <ul className="gap-[15px] flex flex-col  mt-[5px]">
-                            <span className="text-[#151515] max-lg:text-[14px] w-full justify-between font-normal text-[18px] flex gap-[10px] mt-[5px]">
+                            <span className="text-[#151515] max-lg:text-[14px] w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
                                 Работает с психическими заболеваниями (РПП, СДВГ и др)
 
                                 <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
                             </span>
-                            <span className="text-[#151515] max-lg:text-[14px] w-full justify-between font-normal text-[18px] flex gap-[10px] mt-[5px]">
+                            <span className="text-[#151515] max-lg:text-[14px] w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
                                 Работает с психиатрическими заболеваниями (ПРЛ, БАР, ПТСР и др)
 
                                 <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
@@ -184,11 +184,11 @@ export const Card = () => {
                 {
                     !isShow &&  <div className="flex gap-[5px] flex-col w-full mt-[35px]">
                         <div>
-                            <span className="text-[#9A9A9A] font-normal text-[16px] max-lg:text-[14px]">
+                            <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                 О хранителе
                             </span> 
 
-                            <span className="text-[#151515] max-lg:text-[14px] flex-col w-full justify-between font-normal text-[18px] flex gap-[10px] mt-[5px]">
+                            <span className="text-[#151515] max-lg:text-[14px] flex-col w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
                                 Два раза в месяц, интервизии, рефлексивные группы, тренинги и другие мероприятия на развитие профессионализма в аналитическом подходе
                                 {
                                     isShowInfo && <span className="block max-lg:text-[14px]">
@@ -206,14 +206,14 @@ export const Card = () => {
                         </div>
 
                         <div className="mt-[20px]">
-                            <span className="text-[#9A9A9A] font-normal text-[16px] max-lg:text-[14px]">
+                            <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                 Образование
                             </span> 
 
-                            <span className="text-[#151515] flex-col max-lg:text-[14px] w-full justify-between font-bold text-[18px] flex gap-[10px] mt-[5px]">
+                            <span className="text-[#151515] flex-col max-lg:text-[14px] w-full justify-between font-bold text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
                                 Диплом о профессиональной переподготовке, 2025
                             </span>
-                            <span className="text-[#151515] flex-col max-lg:text-[14px] w-full justify-between font-normal text-[18px] flex gap-[10px] mt-[5px]">
+                            <span className="text-[#151515] flex-col max-lg:text-[14px] w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
                                 Московская ассоциация аналитической психологии (МААП)
                             </span>
 
@@ -223,7 +223,7 @@ export const Card = () => {
                         </div>
 
                         <div className="mt-[20px] w-full">
-                            <span className="text-[#9A9A9A] font-normal text-[16px] max-lg:text-[14px]">
+                            <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                 Подробнее о хранителе
                             </span> 
 
@@ -249,9 +249,9 @@ export const Card = () => {
                             </ul>       
                         </div>
 
-                        <ul className="mt-[20px] w-full grid grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))] font-normal text-[18px] gap-[10px]">
+                        <ul className="mt-[20px] w-full grid grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))] font-normal text-[18px] leading-[25px] gap-[10px]">
                             <li>
-                                <span className="text-[#9A9A9A] text-[16px] max-lg:text-[12px]">
+                                <span className="text-[#9A9A9A] text-[16px] leading-[22px] max-lg:text-[12px]">
                                     Личная терапия:
                                 </span>
                                 
@@ -263,7 +263,7 @@ export const Card = () => {
                             </li>
 
                             <li>
-                                <span className="text-[#9A9A9A] text-[16px] max-lg:text-[12px]">
+                                <span className="text-[#9A9A9A] text-[16px] leading-[22px] max-lg:text-[12px]">
                                 Посещает супервизию:
                                 </span>
                                 
@@ -274,7 +274,7 @@ export const Card = () => {
                                 </span>
                             </li>
                             <li>
-                                <span className="text-[#9A9A9A] text-[16px] max-lg:text-[12px]">
+                                <span className="text-[#9A9A9A] text-[16px] leading-[22px] max-lg:text-[12px]">
                                     Семейное положение
                                 </span>
                                 
@@ -283,7 +283,7 @@ export const Card = () => {
                                 </span>
                             </li>
                             <li>
-                                <span className="text-[#9A9A9A] text-[16px] max-lg:text-[12px]">
+                                <span className="text-[#9A9A9A] text-[16px] leading-[22px] max-lg:text-[12px]">
                                     Есть дети:
                                 </span>
                                 
@@ -296,14 +296,16 @@ export const Card = () => {
                 }
 
                 <div className="flex gap-[25px] mt-[25px] max-[600px]:flex-col max-[600px]:w-[100%] ">
-                    <button onClick={() => setShow(prev => !prev)} type="button" className="cursor-pointer shrink-0 text-[#116466] font-normal text-[18px] border-[1px] rounded-[50px] border-[#116466] p-[12px]">
+                    <button onClick={() => setShow(prev => !prev)} type="button" className="cursor-pointer shrink-0 text-[#116466] font-normal text-[18px] leading-[25px] border-[1px] rounded-[50px] border-[#116466] p-[12px]">
                         {
                             isShow ? 'Свернуть' : "Подробнее о хранителе"
                         }
                         
                     </button>
 
-                    <Button onClick={() => dispatch(open())} className="flex hover:bg-[#116466]  cursor-pointer grow h-full text-[#FFFFFF] font-normal text-[18px] border-[1px] rounded-[50px] bg-[#116466] p-[12px]">
+                    <Button onClick={() => {
+                        dispatch(openNext('Time'));
+                        dispatch(open())}} className="flex hover:bg-[#116466]  cursor-pointer grow h-full text-[#FFFFFF] font-normal text-[18px]  leading-[25px] border-[1px] rounded-[50px] bg-[#116466] p-[12px]">
                         Оставить заявку
                     </Button>
 

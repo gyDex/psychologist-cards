@@ -5,7 +5,7 @@ const clickSlice = createSlice({
     name: 'modal',
 
     initialState:{
-        isOpenType: 'Time',
+        isOpenType: '',
         isOpen: false,
     },
     

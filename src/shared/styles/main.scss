@@ -1,7 +1,7 @@
 #root {
     height: 100%;
     width: 100%;
-    position: relative;
+    position: relative; 
 }
 
 html, body {
@@ -13,10 +13,9 @@ body {
     width: 100%;
     height: 100%;
     background: #116466;
-    
     font-family: 'Open Sans';
+    overflow-y: scroll !important;
 }
-
 .main
 {
     display: flex;
