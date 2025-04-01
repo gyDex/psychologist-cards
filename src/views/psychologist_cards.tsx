@@ -1,10 +1,8 @@
 'use client'
-import { ModalState } from "@/redux/store";
 import { Card, Filter } from "@/widgets";
-import { useSelector } from "react-redux";
 
 export const Psychologist_cards = () => {
-    const filter = useSelector<ModalState>(state => state.filter)
+    // const filter = useSelector<ModalState>(state => state.filter)
     
     return (
         <>

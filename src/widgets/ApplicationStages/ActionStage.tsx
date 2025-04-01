@@ -62,13 +62,13 @@ const ActionStage = () => {
                         name="request"
                         render={({  }) => (
                             <div className='grow'>
-                                <FormItem className='grow p-[25px] max-lg:p-[15px] border-[1px] rounded-[25px] max-h-[370px] overflow-hidden '>
+                                <FormItem className='grow p-[25px] max-lg:p-[15px] max-lg:max-h-none border-[1px] rounded-[25px]  max-h-[390px]'>
                                     <FormLabel className='max-lg:text-[16px] max-lg:leading-[22px] font-semibold text-[20px] leading-[27px] max-lg:w-full'>Беспокоит ли вас травмирующее событие, с которым сложно справиться самостоятельно?</FormLabel>
                                     <FormDescription className='max-lg:text-[14px] max-lg:w-full font-normal text-[18px]  leading-[25px] mt-[10px]  '>
                                         Выберите все подходящие пункты или пропустите вопрос, если ничего из этого не беспокоит
                                     </FormDescription>
-                                    <div className='flex justify-between mt-[25px] max-lg:flex-col min-h-fit'>
-                                        <div className='flex flex-col gap-[15px] w-full max-h-[190px] overflow-x-auto'>
+                                    <div className='flex justify-between mt-[25px] max-lg:flex-col min-h-full'>
+                                        <div className='flex flex-col gap-[15px] w-full max-h-[150px] max-lg:max-h-[200px] overflow-x-auto'>
                                             {request.map((item) => (
                                                 <FormField
                                                 key={item.id}

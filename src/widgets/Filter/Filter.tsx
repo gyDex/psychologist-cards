@@ -2,8 +2,6 @@
 import Image from "next/image";
 import {
     Select,
-    SelectContent,
-    SelectItem,
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
@@ -23,7 +21,7 @@ export const Filter = () => {
     const isOpenType = useSelector<ModalState>(state => state.modal.isOpenType) as string
     const isOpen = useSelector<ModalState>(state => state.modal.isOpen) as boolean
 
-    const [filterData,setFilterData] = useState();
+    const [filterData,setFilterData] = useState() as any;
 
     const dispatch = useDispatch()
     return (
@@ -73,7 +71,7 @@ export const Filter = () => {
                             </SelectTrigger>
                         </Select>
                         {
-                            filterData?.items?.map((item,i) => <div key={i}>
+                            filterData?.items?.map((item: any,i: number) => <div key={i}>
                                 {
                                     item
                                 }
@@ -101,7 +99,7 @@ export const Filter = () => {
                             </SelectTrigger>
                         </Select>
                         {
-                            filterData?.items?.map((item,i) => <div key={i}>
+                            filterData?.items?.map((item: any,i : number) => <div key={i}>
                                 {
                                     item
                                 }
@@ -129,7 +127,7 @@ export const Filter = () => {
                             </SelectTrigger>
                         </Select>
                         {
-                            filterData?.items?.map((item,i) => <div key={i}>
+                            filterData?.items?.map((item: any,i : any) => <div key={i}>
                                 {
                                     item
                                 }
@@ -157,7 +155,7 @@ export const Filter = () => {
                             </SelectTrigger>
                         </Select>
                         {
-                            filterData?.items?.map((item,i) => <div key={i}>
+                            filterData?.items?.map((item: any,i : number) => <div key={i}>
                                 {
                                     item
                                 }
@@ -185,7 +183,7 @@ export const Filter = () => {
                             </SelectTrigger>
                         </Select>
                         {
-                            filterData?.items?.map((item,i) => <div key={i}>
+                            filterData?.items?.map((item: any,i: any) => <div key={i}>
                                 {
                                     item
                                 }

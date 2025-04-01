@@ -22,7 +22,7 @@ type Props = {
     type: string;
 }
 
-export const FilterGender:React.FC<Props> = ({onSubmit, callback, type }) => {
+export const FilterGender:React.FC<Props> = ({onSubmit, type }) => {
     const FormSchema = z.object({
         gender: z.enum(["male", "female", "none"]).optional(),
       })

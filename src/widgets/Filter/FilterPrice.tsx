@@ -23,7 +23,7 @@ type Props = {
     type: string;
 }
 
-export const FilterPrice:React.FC<Props> = ({onSubmit, callback, type }) => {
+export const FilterPrice:React.FC<Props> = ({onSubmit, type }) => {
     const FormSchema = z.object({
         price: z.enum(["1500", "2000", "3000"]).optional(),
     })

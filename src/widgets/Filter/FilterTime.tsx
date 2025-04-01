@@ -1,13 +1,8 @@
 import { DialogClose, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
 
-import { z } from "zod";
-import { useForm } from 'react-hook-form';
-import { zodResolver } from "@hookform/resolvers/zod"
 import Image from 'next/image';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { open, openNext } from '@/redux/slices/modal';
 import clsx from 'clsx';
 
 type Props = {
@@ -16,10 +11,9 @@ type Props = {
     type: string;
 }
 
-export const FilterTime:React.FC<Props> = ({onSubmit, callback, type }) => {
+export const FilterTime:React.FC<Props> = ({ type }) => {
 
     const [ timeFilter, setTimeFilter ] = useState(0);
-    const dispatch = useDispatch();
 
     return (
         <ModalWindow maxWidth='max-w-[960px]' closeButton={false} type={type}>

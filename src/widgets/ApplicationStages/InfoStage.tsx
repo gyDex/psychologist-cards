@@ -1,16 +1,7 @@
 'use client'
-import { Checkbox } from '@/components/ui/checkbox';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
-import { toNextStage } from '@/redux/slices/application_form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { z } from 'zod'
 
 const InfoStage = () => {
-    const dispatch = useDispatch();
-
     return (
         <div className='font-normal h-full w-full p-[30px] flex flex-col gap-[30px]'>
             <div className=''>

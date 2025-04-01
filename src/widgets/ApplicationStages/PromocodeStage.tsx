@@ -2,7 +2,6 @@
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { toNextStage } from '@/redux/slices/application_form';
-import { fill_username } from '@/redux/slices/application_form_data';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -23,10 +22,14 @@ const PromocodeStage = () => {
         }
     })
 
-    function handleSubmit(data: z.infer<typeof FormSchema>) {
+    function handleSubmit() {
         dispatch(toNextStage('psychologist')) 
         // dispatch(fill_username(data.request))
     }
+    // function handleSubmit(data: z.infer<typeof FormSchema>) {
+    //     dispatch(toNextStage('psychologist')) 
+    //     // dispatch(fill_username(data.request))
+    // }
 
     return (
         <div className='px-[50px] max-lg:px-[20px]  flex w-full grow'>

@@ -63,13 +63,13 @@ const PreferencesStage = () => {
                         name="request"
                         render={({  }) => (
                             <div className='grow '>
-                                <FormItem className='grow p-[25px] max-h-[320px] max-lg:p-[15px] border-[1px] rounded-[25px]  '>
+                                <FormItem className='grow p-[25px] max-h-[320px] max-lg:max-h-none max-lg:p-[15px] border-[1px] rounded-[25px]  '>
                                     <FormLabel className='max-lg:text-[16px] max-lg:leading-[22px] font-semibold text-[20px] leading-[27px]'>Что вам важно в психологе?</FormLabel>
                                     <FormDescription className='max-lg:text-[14px] font-normal text-[18px]  leading-[25px] mt-[10px]'>
                                         Опыт, образование и личная терапия - по умолчанию. Если предпочтений нет - можете пропустить
                                     </FormDescription>
-                                    <div className='flex justify-between mt-[25px] max-lg:flex-col  max-h-[150px] overflow-hidden'>
-                                        <div className='flex flex-col gap-[15px] w-full max-h-[150px] pb-[50px] overflow-x-auto'>
+                                    <div className='flex justify-between mt-[25px] max-lg:flex-col  max-h-[150px] max-lg:max-h-none overflow-hidden'>
+                                        <div className='flex flex-col gap-[15px] w-full max-h-[150px]  max-lg:max-h-[200px] pb-[50px] overflow-x-auto'>
                                             {request.map((item) => (
                                                 <FormField
                                                 key={item.id}

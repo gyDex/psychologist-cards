@@ -1,5 +1,6 @@
 import { toNextStage } from "@/redux/slices/application_form";
 import Image from "next/image";
+import Link from "next/link";
 import { useDispatch } from "react-redux";
 
 export const PsychologistStage = () => {
@@ -20,7 +21,7 @@ export const PsychologistStage = () => {
                                 </div>
                             </div>
 
-                            <a href="/" className="text-[#116466] text-[18px] font-normal max-lg:hidden">Перейти на карточку психолога</a>
+                            <Link href="/" className="text-[#116466] text-[18px] font-normal max-lg:hidden">Перейти на карточку психолога</Link>
                         </div>
 
                         <div className="grid grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))]  gap-[30px] mt-[30px]">

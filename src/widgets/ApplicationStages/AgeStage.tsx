@@ -1,5 +1,5 @@
 'use client'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { toNextStage } from '@/redux/slices/application_form';
 import { fill_username } from '@/redux/slices/application_form_data';
@@ -43,11 +43,15 @@ const AgeStageApplication = () => {
                                     <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[25px] mt-[10px]'>
                                         Мы учитываем ваш возраст при подборе психолога
                                     </FormDescription>
-                                    <FormControl className='mt-[30px]'>
-                                        <Input className='bg-[#FAFAFA] placeholder:text-[18px] placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-[65px]' placeholder="Введите ваше имя или псевдоним" {...field} />
-                                    </FormControl>
+                                    <div className='input__text_container relative bg-[#FAFAFA] w-full h-[65px]'>
+                                        <Input className='input placeholder:text-[18px] placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-full' {...field} />
+                                        <label className='input__text_label'>Введите ваше имя или псевдоним</label>
+                                    </div>
+                                    {/* <FormControl className='mt-[30px]'> */}
+                                        
+                                    {/* </FormControl> */}
                                     <span className='mt-[10px] max-lg:text-[12px] font-normal text-[14px] leading-[100%] text-[#9A9A9A]'>
-                                        ! Поле обязательное для заполнения
+                                        { !form.formState.errors.age && '! Поле обязательное для заполнения' }
                                     </span>
                                     <FormMessage />
                                 </FormItem>

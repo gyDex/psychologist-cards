@@ -1,9 +1,5 @@
 import { DialogClose, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
-
-import { z } from "zod";
-import { useForm } from 'react-hook-form';
-import { zodResolver } from "@hookform/resolvers/zod"
 import Image from 'next/image';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -16,9 +12,9 @@ type Props = {
     type: string;
 }
 
-export const FilterDate:React.FC<Props> = ({onSubmit, callback, type }) => {
+export const FilterDate:React.FC<Props> = ({ type }) => {
 
-    const [ dateFilter, setDateFilter ] = useState();
+    const [ dateFilter, setDateFilter ] = useState(0);
     const dispatch = useDispatch();
 
     return (

@@ -9,7 +9,6 @@ import { DiseasesStage } from "@/widgets/ApplicationStages/DiseasesStage";
 import { FinalStage } from "@/widgets/ApplicationStages/FinalStage";
 import { GenderStageApplication } from "@/widgets/ApplicationStages/GenderStage";
 import { GenderStagePsychologist } from "@/widgets/ApplicationStages/GenderStagePsychologist";
-import InfoStage from "@/widgets/ApplicationStages/InfoStage";
 import NameStageApplication from "@/widgets/ApplicationStages/NameStage";
 import PreferencesStage from "@/widgets/ApplicationStages/PreferencesStage";
 import PromocodeStage from "@/widgets/ApplicationStages/PromocodeStage";

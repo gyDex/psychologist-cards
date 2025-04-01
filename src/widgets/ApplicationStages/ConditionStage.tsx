@@ -66,13 +66,13 @@ const ConditionStage = () => {
                         name="request"
                         render={({  }) => (
                             <div className='grow '>
-                                <FormItem className='grow p-[25px] max-lg:p-[15px] border-[1px] rounded-[25px]  max-h-[390px]'>
-                                    <FormLabel className='max-lg:text-[16px] max-lg:leading-[22px] font-semibold text-[20px] leading-[100%] max-lg:w-full w-[541px] '>Что из описанного ниже вы наблюдаете в своём состоянии в последнее время?</FormLabel>
+                                <FormItem className='grow p-[25px] max-lg:p-[15px] max-lg:max-h-none border-[1px] rounded-[25px]  max-h-[390px]'>
+                                    <FormLabel className='max-lg:text-[16px] max-lg:leading-[22px] font-semibold text-[20px] leading-[27px] max-lg:w-full w-[541px] '>Что из описанного ниже вы наблюдаете в своём состоянии в последнее время?</FormLabel>
                                     <FormDescription className='max-lg:text-[14px] w-full font-normal text-[18px]  leading-[25px] mt-[10px]  '>
                                         Выберите все подходящие пункты или пропустите вопрос, если ничего из этого не наблюдается
                                     </FormDescription>
                                     <div className='flex justify-between mt-[25px] max-lg:flex-col min-h-full'>
-                                        <div className='flex flex-col gap-[15px] w-full max-h-[150px] overflow-x-auto'>
+                                        <div className='flex flex-col gap-[15px] w-full max-h-[150px] max-lg:max-h-[200px] overflow-x-auto'>
                                             {request.map((item) => (
                                                 <FormField
                                                 key={item.id}

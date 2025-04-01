@@ -1,8 +1,6 @@
 import Image from "next/image";
-import { useDispatch } from "react-redux";
 
 export const PsychologistStageTop = () => {
-    const dispatch = useDispatch();
 
     return (
         <>

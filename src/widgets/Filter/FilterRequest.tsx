@@ -6,7 +6,6 @@ import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -23,7 +22,7 @@ type Props = {
     type: string;
 }
 
-export const FilterRequest:React.FC<Props> = ({onSubmit, callback, type }) => {
+export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
     const items = [
         {
           id: "recents",
