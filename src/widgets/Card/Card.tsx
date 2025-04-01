@@ -52,7 +52,7 @@ export const Card = () => {
 
                             <div className="flex flex-col justify-between max-lg:w-full">
                                 <div className="flex flex-col gap-[10px]">
-                                    <h2 className="font-semibold text-[20px] leading-[27px] max-lg:text-[18px]">
+                                    <h2 className="font-semibold text-[20px] leading-[27px] max-lg:text-[18px] max-lg:leading-[25px]">
                                         Мария Ломакина, 26 лет
                                     </h2>
 
@@ -65,7 +65,7 @@ export const Card = () => {
                                 <div className="flex gap-[30px] max-lg:flex-col max-lg:gap-[5px] max-lg:mt-[10px]">
                                     <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                         Основной подход:
-                                        <span className="text-[#151515] leading-[25px] font-normal text-[18px] max-lg:text-[14px] flex gap-[10px] mt-[5px]">
+                                        <span className="text-[#151515] leading-[25px] font-normal text-[18px]  max-lg:text-[14px] flex gap-[10px] mt-[5px]">
                                             Юнгианский анализ
 
                                             <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
@@ -74,7 +74,7 @@ export const Card = () => {
 
                                     <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                         Стоимость:
-                                        <span className="text-[#151515] leading-[25px] font-normal text-[18px] max-lg:text-[14px] flex gap-[10px] mt-[5px]">
+                                        <span className="text-[#151515] leading-[25px] font-normal text-[18px]  max-lg:text-[14px] flex gap-[10px] mt-[5px]">
                                             От 1500 ₽
 
                                             <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
@@ -85,7 +85,7 @@ export const Card = () => {
                                 <div className="w-full max-lg:mt-[10px]">
                                     <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px] w-full">
                                         Дополнительные подходы:
-                                        <ul className="font-normal leading-[25px] text-[18px] max-lg:text-[14px] gap-[15px] justify-items-stretch grid grid-cols-[repeat(auto-fit,_minmax(125px,_1fr))]  w-full text-[#151515] mt-[5px]">
+                                        <ul className="font-normal leading-[25px] text-[18px]  max-lg:text-[14px] gap-[15px] justify-items-stretch grid grid-cols-[repeat(auto-fit,_minmax(125px,_1fr))]  w-full text-[#151515] mt-[5px]">
                                             <li className="flex gap-[5px]">КПТ <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
                                             <li className="flex gap-[5px]">Гештальт <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
                                             <li className="flex gap-[5px]">Полемодальный <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
@@ -97,8 +97,8 @@ export const Card = () => {
                                     <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] w-full max-lg:text-[14px] max-lg:mt-[5px]">
                                         Ближайшая запись:
                                         
-                                        <ul className="flex gap-[15px] mt-[5px] overflow-auto min-w-full">
-                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
+                                        <ul className="flex gap-[14px] mt-[5px] overflow-auto min-w-full">
+                                            <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px]  flex justify-center items-center">
                                                 <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
                                                     28.01/ 13:00
                                                 </button> 
@@ -119,37 +119,37 @@ export const Card = () => {
                             </div>
                         </div>
 
-                        <div className="flex gap-[5px] flex-col w-full mt-[25px]">
+                        <div className="flex gap-[5px] flex-col w-full mt-[30px] max-lg:mt-[30px]">
                             <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                 Запросы:
                             </span>   
                             <ul className="gap-[15px] grid grid-cols-3  mt-[5px] max-lg:flex overflow-auto">
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px]flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
                                 </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[50px] w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] flex justify-center items-center">
+                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] flex justify-center items-center">
                                     <button className="relative h-full w-full cursor-pointer p-[8px]">
                                         Рефлексивные группы
                                     </button>
@@ -163,7 +163,7 @@ export const Card = () => {
                     </div>
                 </div>
 
-                <div className="flex gap-[5px] flex-col w-full mt-[35px]">
+                <div className="flex gap-[5px] flex-col w-full mt-[30px]">
                         <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                             Диагностированные заболевания:
                         </span>   
@@ -182,7 +182,7 @@ export const Card = () => {
                 </div>
 
                 {
-                    !isShow &&  <div className="flex gap-[5px] flex-col w-full mt-[35px]">
+                    !isShow &&  <div className="flex gap-[5px] flex-col w-full mt-[30px]">
                         <div>
                             <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                 О хранителе
@@ -205,7 +205,7 @@ export const Card = () => {
                             </button>       
                         </div>
 
-                        <div className="mt-[20px]">
+                        <div className="mt-[30px]">
                             <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                 Образование
                             </span> 
@@ -222,26 +222,26 @@ export const Card = () => {
                             </button>       
                         </div>
 
-                        <div className="mt-[20px] w-full">
+                        <div className="mt-[30px] w-full">
                             <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                 Подробнее о хранителе
                             </span> 
 
-                            <ul className="flex w-full font-normal text-[14px] mt-[10px] overflow-auto gap-[15px]">
+                            <ul className="flex w-full font-normal text-[14px] mt-[10px] overflow-auto gap-[20px]">
                                 <li className="shrink-0 flex items-center justify-center gap-[15px]">
-                                    <Image src={'/card/favorites_icon.svg'} alt="favorites" height={30} width={30} />
+                                    <Image src={'/card/favorites_icon.svg'} alt="favorites" height={40} width={40} />
                                     <span>
                                          vk.com/example
                                     </span>
                                 </li>
                                 <li className="shrink-0 flex items-center justify-center gap-[15px]">
-                                    <Image src={'/card/favorites_icon.svg'} alt="favorites" height={30} width={30} />
+                                    <Image src={'/card/favorites_icon.svg'} alt="favorites" height={40} width={40} />
                                     <span>
                                          vk.com/example
                                     </span>
                                 </li>
                                 <li className="shrink-0 flex items-center justify-center gap-[15px]">
-                                    <Image src={'/card/favorites_icon.svg'} alt="favorites" height={30} width={30} />
+                                    <Image src={'/card/favorites_icon.svg'} alt="favorites" height={40} width={40} />
                                     <span>
                                          vk.com/example
                                     </span>
@@ -249,7 +249,7 @@ export const Card = () => {
                             </ul>       
                         </div>
 
-                        <ul className="mt-[20px] w-full grid grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))] font-normal text-[18px] leading-[25px] gap-[10px]">
+                        <ul className="mt-[30px] w-full grid grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))] font-normal text-[18px] leading-[25px] gap-[10px]">
                             <li>
                                 <span className="text-[#9A9A9A] text-[16px] leading-[22px] max-lg:text-[12px]">
                                     Личная терапия:
@@ -298,7 +298,7 @@ export const Card = () => {
                 <div className="flex gap-[25px] mt-[25px] max-[600px]:flex-col max-[600px]:w-[100%] ">
                     <button onClick={() => setShow(prev => !prev)} type="button" className="cursor-pointer shrink-0 text-[#116466] font-normal text-[18px] leading-[25px] border-[1px] rounded-[50px] border-[#116466] p-[12px]">
                         {
-                            isShow ? 'Свернуть' : "Подробнее о хранителе"
+                            isShow ? 'Подробнее о хранителе' : "Свернуть"
                         }
                         
                     </button>

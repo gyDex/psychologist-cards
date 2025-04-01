@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { DialogClose, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
 import {
     Form,
@@ -16,43 +16,51 @@ import {
 import { z } from "zod";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod"
+import Image from 'next/image';
 type Props = {
-    // callback: () => void;
+    callback: () => void;
     onSubmit: (data: any) => void;
+    type: string;
 }
 
-export const FilterRequest:React.FC<Props> = ({onSubmit }) => {
+export const FilterRequest:React.FC<Props> = ({onSubmit, callback, type }) => {
     const items = [
         {
           id: "recents",
-          label: "Recents",
+          label: "Есть диагностированное психическое заболевание",
         },
         {
           id: "home",
-          label: "Home",
+          label: "Есть диагностированное психиатрическое заболевание",
         },
         {
           id: "applications",
-          label: "Applications",
+          label: "Принимаете ли вы медикаменты по назначению психиатра",
         },
         {
           id: "desktop",
-          label: "Desktop",
+          label: "Физические недомогания: постоянная усталость, бессонница, проблемы с питанием, проблемы с памятью, психосоматические реакции",
         },
         {
           id: "downloads",
-          label: "Downloads",
+          label: "Подавленное настроение, прокрастинация, ощущение бессмысленности существования, опустошенность, отверженность",
         },
         {
           id: "documents",
-          label: "Documents",
+          label: "Странные, кошмарные, повторяющиеся сны",
+        },
+        {
+            id: "documents2",
+            label: "Страх будущего и неопределенности",
+        },
+        {
+            id: "documents3",
+            label: "Беременность, родительство, послеродовая депрессия, проблемы в отношениях с детьми до 18 лет",
         },
     ] as const
 
     const FormSchema = z.object({
-        items: z.array(z.string()).refine((value) => value.some((item) => item), {
-          message: "You have to select at least one item.",
-        }),
+        items: z.array(z.string()),
     })
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -68,24 +76,21 @@ export const FilterRequest:React.FC<Props> = ({onSubmit }) => {
      
 
     return (
-        <ModalWindow type='FilterRequest'>
-            <DialogHeader className="flex flex-row">
-                <DialogTitle className="grow font-semibold text-[20px] leading-[27px] max-lg:text-[16px]">Выберите запросы:</DialogTitle>
+        <ModalWindow closeButton={false} type={type}>
+            <DialogHeader className="flex flex-row items-center">
+                <DialogTitle className="grow font-semibold text-[20px] leading-[27px] max-lg:text-[16px] max-lg:leading-[22px]">Выберите запросы:</DialogTitle>
+                <DialogClose className="w-[40px] h-[40px] shrink-0 flex justify-center items-center border-2 border-[#D4D4D4] rounded-full">
+                    <Image src={'/modal/cross.svg'} alt="cross" height={15} width={15} />
+                </DialogClose>
             </DialogHeader>
 
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
+                <form onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col gap-[20px]">
                     <FormField
                     control={form.control}
                     name="items"
                     render={() => (
                         <FormItem>
-                        <div className="mb-4">
-                            <FormLabel className="text-base">Sidebar</FormLabel>
-                            <FormDescription>
-                            Select the items you want to display in the sidebar.
-                            </FormDescription>
-                        </div>
                         {items.map((item) => (
                             <FormField
                             key={item.id}
@@ -95,10 +100,11 @@ export const FilterRequest:React.FC<Props> = ({onSubmit }) => {
                                 return (
                                 <FormItem
                                     key={item.id}
-                                    className="flex flex-row items-start space-x-3 space-y-0"
+                                    className="flex flex-row items-center gap-[14px]"
                                 >
                                     <FormControl>
-                                    <Checkbox
+                                    <Checkbox 
+                                        className='h-[30px] w-[30px]'
                                         checked={field.value?.includes(item.id)}
                                         onCheckedChange={(checked) => {
                                         return checked
@@ -111,7 +117,7 @@ export const FilterRequest:React.FC<Props> = ({onSubmit }) => {
                                         }}
                                     />
                                     </FormControl>
-                                    <FormLabel className="text-sm font-normal">
+                                    <FormLabel className="text-[18px] max-lg:text-[14px]  font-normal">
                                     {item.label}
                                     </FormLabel>
                                 </FormItem>

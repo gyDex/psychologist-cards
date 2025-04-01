@@ -55,21 +55,21 @@ const PreferencesStage = () => {
     // }
 
     return (
-        <div className='px-[40px] max-lg:px-[20px]   flex w-full grow'>
+        <div className='px-[50px] max-lg:px-[20px]  flex w-full grow'>
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(handleSubmit)} className=" border-[#D4D4D4] w-full flex flex-col h-[100%]">
+                <form onSubmit={form.handleSubmit(handleSubmit)} className="mt-[20px] border-[#D4D4D4] w-full flex flex-col">
                     <FormField
                         control={form.control}
                         name="request"
                         render={({  }) => (
                             <div className='grow '>
-                                <FormItem className='grow p-[25px] max-lg:p-[15px] border-[1px] rounded-[25px]  '>
-                                    <FormLabel className='max-lg:text-[16px] font-semibold text-[20px] leading-[100%]'>Что вам важно в психологе?</FormLabel>
-                                    <FormDescription className='max-lg:text-[14px] font-normal text-[18px]  leading-[25px] mt-[5px]'>
+                                <FormItem className='grow p-[25px] max-h-[320px] max-lg:p-[15px] border-[1px] rounded-[25px]  '>
+                                    <FormLabel className='max-lg:text-[16px] max-lg:leading-[22px] font-semibold text-[20px] leading-[27px]'>Что вам важно в психологе?</FormLabel>
+                                    <FormDescription className='max-lg:text-[14px] font-normal text-[18px]  leading-[25px] mt-[10px]'>
                                         Опыт, образование и личная терапия - по умолчанию. Если предпочтений нет - можете пропустить
                                     </FormDescription>
-                                    <div className='flex justify-between mt-[25px] max-lg:flex-col'>
-                                        <div className='flex flex-col gap-[15px]'>
+                                    <div className='flex justify-between mt-[25px] max-lg:flex-col  max-h-[150px] overflow-hidden'>
+                                        <div className='flex flex-col gap-[15px] w-full max-h-[150px] pb-[50px] overflow-x-auto'>
                                             {request.map((item) => (
                                                 <FormField
                                                 key={item.id}
@@ -96,7 +96,7 @@ const PreferencesStage = () => {
                                                             }}
                                                         />
                                                         </FormControl>
-                                                        <FormLabel className="text-[18px] max-lg:text-[14px]  font-normal">
+                                                        <FormLabel className="text-[18px] leading-[25px] max-lg:text-[14px]  font-normal">
                                                         {item.label}
                                                         </FormLabel>
                                                     </FormItem>
@@ -111,7 +111,6 @@ const PreferencesStage = () => {
                                             <Textarea
                                             placeholder="Введите свой вариант ответа"
                                             className="w-[361px] bg-[#FAFAFA] border-none h-[190px] min-h-[190px] max-h-[190px] max-lg:mt-[25px] max-lg:w-full"
-                                            // {...field}
                                             />
                                         </FormControl>
                                         </div>
@@ -120,12 +119,12 @@ const PreferencesStage = () => {
                             </div>
                         )}
                     />
-                    <div className="shrink-0 mt-[25px]  pb-[40px] flex gap-[10px]">
-                        <button onClick={() => dispatch(toNextStage('gender'))} className="cursor-pointer shrink-0 w-[81px] border-[1px] border-[#116466] p-[12px] text-[#116466] font-normal text-[14px] rounded-[50px]">
+                    <div className="shrink-0  pb-[50px] flex gap-[10px]  max-lg:mt-[20px]">
+                        <button onClick={() => dispatch(toNextStage('gender'))} className="cursor-pointer shrink-0 w-[81px] border-[1px] border-[#116466] p-[12px] text-[#116466] font-normal text-[18px] max-lg:text-[14px] rounded-[50px]">
                             Назад
                         </button>
 
-                        <button type='submit' className="cursor-pointer grow border-[1px] bg-[#116466] p-[12px] text-[white] font-normal text-[14px] rounded-[50px]">
+                        <button type='submit' className="cursor-pointer grow border-[1px] bg-[#116466] p-[12px] text-[white] font-normal text-[18px] max-lg:text-[14px] rounded-[50px]">
                             Продолжить
                         </button>
                     </div>

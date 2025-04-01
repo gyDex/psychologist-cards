@@ -24,7 +24,7 @@ export const ContactStage:React.FC<Props> = ({callback}) => {
                 </Button>   
             </DialogHeader>
 
-            <DialogTitle className="grow font-semibold text-[20px] leading-[27px] max-lg:text-[16px]">Оставить заявку</DialogTitle>
+            <DialogTitle className="grow font-semibold text-[20px] leading-[27px] max-lg:text-[16px] max-lg:leading-[22px]">Оставить заявку</DialogTitle>
 
             <div className='h-[80px] flex items-center gap-[25px]'>
                 <Image className='rounded-full object-cover  max-md:h-[52px]  max-md:w-[52px]' src={'/images/person.png'} alt='person' height={80} width={80} />

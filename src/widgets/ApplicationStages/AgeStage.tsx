@@ -29,9 +29,9 @@ const AgeStageApplication = () => {
     }
 
     return (
-        <div className='px-[40px] max-lg:px-[20px]  flex w-full grow'>
+        <div className='px-[50px] max-lg:px-[20px]  flex w-full grow'>
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(handleSubmit)} className="w-full flex flex-col h-[100%]">
+                <form onSubmit={form.handleSubmit(handleSubmit)} className="w-full flex flex-col mt-[20px]">
                     <FormField
                         
                         control={form.control}
@@ -39,14 +39,14 @@ const AgeStageApplication = () => {
                         render={({ field }) => (
                             <div className='grow'>
                                 <FormItem className='grow'>
-                                    <FormLabel className='max-lg:text-[16px] font-semibold text-[20px] leading-[100%]'>Сколько вам лет?</FormLabel>
-                                    <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[100%] mt-[5px]'>
+                                    <FormLabel className='max-lg:text-[16px] max-lg:leading-[22px] text-[20px] font-semibold leading-[27px] '>Сколько вам лет?</FormLabel>
+                                    <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[25px] mt-[10px]'>
                                         Мы учитываем ваш возраст при подборе психолога
                                     </FormDescription>
-                                    <FormControl className='mt-[20px]'>
-                                        <Input className='bg-[#FAFAFA] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-[65px]' placeholder="Введите ваше имя или псевдоним" {...field} />
+                                    <FormControl className='mt-[30px]'>
+                                        <Input className='bg-[#FAFAFA] placeholder:text-[18px] placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-[65px]' placeholder="Введите ваше имя или псевдоним" {...field} />
                                     </FormControl>
-                                    <span className='mt-[5px] max-lg:text-[12px] font-normal text-[14px] leading-[100%] text-[#9A9A9A]'>
+                                    <span className='mt-[10px] max-lg:text-[12px] font-normal text-[14px] leading-[100%] text-[#9A9A9A]'>
                                         ! Поле обязательное для заполнения
                                     </span>
                                     <FormMessage />
@@ -54,12 +54,12 @@ const AgeStageApplication = () => {
                             </div>
                         )}
                     />
-                    <div className="shrink-0  pb-[40px] flex gap-[10px]">
-                        <button type='submit' onClick={() => dispatch(toNextStage('name'))} className="cursor-pointer shrink-0 w-[81px] border-[1px] border-[#116466] p-[12px] text-[#116466] font-normal text-[14px] rounded-[50px]">
+                    <div className="shrink-0  pb-[50px] flex gap-[10px]">
+                        <button type='submit' onClick={() => dispatch(toNextStage('name'))} className="cursor-pointer shrink-0 w-[81px] border-[1px] border-[#116466] p-[12px] text-[#116466] font-normal text-[18px] max-lg:text-[14px] rounded-[50px]">
                             Назад
                         </button>
 
-                        <button type='submit' className="cursor-pointer grow border-[1px] bg-[#116466] p-[12px] text-[white] font-normal text-[14px] rounded-[50px]">
+                        <button type='submit' className="cursor-pointer grow border-[1px] bg-[#116466] p-[12px] text-[white] font-normal text-[18px] max-lg:text-[14px] rounded-[50px]">
                             Продолжить
                         </button>
                     </div>

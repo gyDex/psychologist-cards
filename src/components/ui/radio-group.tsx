@@ -19,10 +19,15 @@ function RadioGroup({
   )
 }
 
+interface IRadioGroupItemCustom extends React.ComponentProps<typeof RadioGroupPrimitive.Item> {
+  colorRadio?: string,
+}
+
 function RadioGroupItem({
   className,
+  colorRadio = `#116466`,
   ...props
-}: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {
+}: IRadioGroupItemCustom) {
   return (
     <RadioGroupPrimitive.Item
       data-slot="radio-group-item"
@@ -36,7 +41,7 @@ function RadioGroupItem({
         data-slot="radio-group-indicator"
         className="relative flex items-center  justify-center"
       >
-        <CircleIcon color="#116466" className="fill-[#116466] absolute top-1/2 left-1/2 size-2  h-[14px] w-[14px]  -translate-x-1/2 -translate-y-1/2" />
+        <CircleIcon color={colorRadio} fill={colorRadio} className={`fill-[${{colorRadio}}] absolute top-1/2 left-1/2 size-2  h-[14px] w-[14px]  -translate-x-1/2 -translate-y-1/2`} />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   )

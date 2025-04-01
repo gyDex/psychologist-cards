@@ -29,37 +29,39 @@ const NameStageApplication = () => {
     }
 
     return (
-        <div className='px-[40px] max-lg:px-[20px]  flex w-full grow'>
+        <div className='px-[50px] max-lg:px-[20px]  flex w-full grow'>
             <Form {...form} >
-                <form onSubmit={form.handleSubmit(handleSubmit)} className="w-full flex flex-col h-[100%]">
+                <form onSubmit={form.handleSubmit(handleSubmit)} className="w-full mt-[20px] flex flex-col">
                     <FormField
                         
                         control={form.control}
                         name="username"
                         render={({ field }) => (
-                            <div className='grow'>
+                            <div className='grow  max-h-[100%]'>
                                 <FormItem className='grow'>
-                                    <FormLabel className='max-lg:text-[16px] font-semibold text-[20px] leading-[100%]'>Как вас зовут?</FormLabel>
-                                    <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[100%] mt-[5px]'>
+                                    <FormLabel className='max-lg:text-[16px] max-lg:leading-[22px] font-semibold text-[20px] leading-[27px]'>Как вас зовут?</FormLabel>
+                                    <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[25px] mt-[10px]'>
                                         Вы можете не указывать имя, если пока не готовы
                                     </FormDescription>
-                                    <FormControl className='mt-[20px]'>
-                                        <Input className='bg-[#FAFAFA] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-[65px]' placeholder="Введите ваше имя или псевдоним" {...field} />
+                                    <FormControl className='mt-[30px]'>
+                                        <Input className='bg-[#FAFAFA] placeholder:text-[18px]  placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-[65px]' placeholder="Введите ваше имя или псевдоним" {...field} />
                                     </FormControl>
-                                    <span className='mt-[5px] max-lg:text-[12px] font-normal text-[14px] leading-[100%] text-[#9A9A9A]'>
+                                    {
+                                        !form.formState.errors.username && <span className='mt-[10px] max-lg:text-[12px] font-normal text-[14px] leading-[100%] text-[#9A9A9A]'>
                                         ! Поле обязательное для заполнения
                                     </span>
+                                    }
                                     <FormMessage />
                                 </FormItem>
                             </div>
                         )}
                     />
-                    <div className="shrink-0  pb-[40px] flex gap-[10px]">
-                        <button className="cursor-pointer shrink-0 w-[81px] border-[1px] border-[#116466] p-[12px] text-[#116466] font-normal text-[14px] rounded-[50px]">
+                    <div className="shrink-0  pb-[50px] flex gap-[10px]">
+                        <button className="cursor-pointer shrink-0 w-[81px] border-[1px] border-[#116466] p-[12px] text-[#116466] font-normal text-[18px] max-lg:text-[14px] rounded-[50px]">
                             Назад
                         </button>
 
-                        <button type='submit' className="cursor-pointer grow border-[1px] bg-[#116466] p-[12px] text-[white] font-normal text-[14px] rounded-[50px]">
+                        <button type='submit' className="cursor-pointer grow border-[1px] bg-[#116466] p-[12px] text-[white] font-normal text-[18px] max-lg:text-[14px] rounded-[50px]">
                             Продолжить
                         </button>
                     </div>

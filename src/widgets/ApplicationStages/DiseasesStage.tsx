@@ -40,19 +40,19 @@ export const DiseasesStage = () => {
         // dispatch(fill_gender(data.gender))
     }
   return (
-    <div className='px-[40px] max-lg:px-[20px]  flex w-full grow'>
+    <div className='px-[50px] grow max-lg:px-[20px] flex-col  flex w-full'>
         <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)}  className=" border-[#D4D4D4] w-full flex flex-col h-[100%]">
+        <form onSubmit={form.handleSubmit(handleSubmit)}  className="mt-[20px] border-[#D4D4D4] w-full flex flex-col grow">
             <FormField
             control={form.control}
             name="gender"
             render={({ field }) => (
-                <div className='grow'>
+                <div className='grow max-lg:mb-[20px]'>
                 <FormItem  className='grow p-[25px] max-lg:p-[15px] border-[1px] rounded-[25px]  '>
-                    <FormLabel className=' max-lg:text-[16px] font-semibold text-[20px] leading-[100%]'>Есть ли у вас диагностированные психические/
+                    <FormLabel className=' max-lg:text-[16px] max-lg:leading-[22px] font-semibold text-[20px] leading-[27px]'>Есть ли у вас диагностированные психические/
                         <br />
                         психиатрические заболевания?</FormLabel>
-                    <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[100%] mt-[5px]'>
+                    <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[25px] mt-[10px]'>
                         Выберите один вариант ответа
                     </FormDescription>
                     <FormControl className="mt-[20px]">
@@ -65,7 +65,7 @@ export const DiseasesStage = () => {
                                 <FormControl>
                                 <RadioGroupItem className="h-[30px] w-[30px]" value="male" />
                                 </FormControl>
-                                <FormLabel className="font-normal">
+                                <FormLabel className="font-normal text-[18px]">
                                     Есть диагностированное психическое заболевание
                                 </FormLabel>
                             </FormItem>
@@ -73,7 +73,7 @@ export const DiseasesStage = () => {
                                 <FormControl> 
                                 <RadioGroupItem className="h-[30px] w-[30px]" value="nothing" />
                                 </FormControl>
-                                <FormLabel className="font-normal">
+                                <FormLabel className="font-normal text-[18px]">
                                     Есть диагностированное психиатрическое заболевание
                                 </FormLabel>
                             </FormItem>
@@ -81,7 +81,7 @@ export const DiseasesStage = () => {
                                 <FormControl> 
                                 <RadioGroupItem className="h-[30px] w-[30px]" value="female" />
                                 </FormControl>
-                                <FormLabel className="font-normal">
+                                <FormLabel className="font-normal text-[18px]">
                                     Не имеет значения
                                 </FormLabel>
                             </FormItem>
@@ -92,16 +92,17 @@ export const DiseasesStage = () => {
                 </div>
             )}
             />
-            <div className="shrink-0  pb-[40px] flex gap-[10px]">
-                <button type='submit' onClick={() => dispatch(toNextStage('action'))} className="cursor-pointer shrink-0 w-[81px] border-[1px] border-[#116466] p-[12px] text-[#116466] font-normal text-[14px] rounded-[50px]">
+        <div className="shrink-0  pb-[50px] flex gap-[10px]">
+                <button type='submit' onClick={() => dispatch(toNextStage('action'))} className="cursor-pointer shrink-0 w-[81px] border-[1px] border-[#116466] p-[12px] text-[#116466] font-normal text-[18px] max-lg:text-[14px] rounded-[50px]">
                     Назад
                 </button>
 
-                <button type='submit' className="cursor-pointer grow border-[1px] bg-[#116466] p-[12px] text-[white] font-normal text-[14px] rounded-[50px]">
+                <button type='submit' className="cursor-pointer grow border-[1px] bg-[#116466] p-[12px] text-[white] font-normal text-[18px] max-lg:text-[14px] rounded-[50px]">
                     Продолжить
                 </button>
-            </div>
+        </div>
         </form>
+
         </Form>
     </div>
   )
