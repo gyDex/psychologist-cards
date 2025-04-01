@@ -1,5 +1,5 @@
 'use client'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import { Form, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { toNextStage } from '@/redux/slices/application_form';
 import { fill_username } from '@/redux/slices/application_form_data';
@@ -36,15 +36,16 @@ const RequestStage = () => {
                         control={form.control}
                         name="request"
                         render={({ field }) => (
-                            <div className='grow'>
-                                <FormItem className='grow'>
+                            <div className='grow max-[425px]:mb-[30px]'>
+                                <FormItem className='grow gap-0'>
                                     <FormLabel className='max-lg:text-[16px] font-semibold text-[20px] leading-[27px]'>Опишите свой запрос к психологу: что беспокоит, чего ожидаете, к чему хотите прийти?</FormLabel>
                                     <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[25px] mt-[10px]'>
                                         Не знаете ответов — это нормально, напишите, как чувствуете. Можете пропустить если не готовы
                                     </FormDescription>
-                                    <FormControl className='mt-[30px]'>
-                                        <Input className='bg-[#FAFAFA] placeholder:text-[18px] placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-[65px]' placeholder="Введите свой запрос" {...field} />
-                                    </FormControl>
+                                    <div className='input__text_container mt-[30px] relative bg-[#FAFAFA] w-full h-[65px] m-0 '>
+                                        <Input className='input__text placeholder:text-[18px] placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-full' {...field} />
+                                        <label className='input__text_label'>Введите свой запрос</label>
+                                    </div>
                                 </FormItem>
                             </div>
                         )}

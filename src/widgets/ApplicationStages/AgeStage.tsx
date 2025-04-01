@@ -38,21 +38,20 @@ const AgeStageApplication = () => {
                         name="age"
                         render={({ field }) => (
                             <div className='grow'>
-                                <FormItem className='grow'>
+                                <FormItem className='grow max-[425px]:mb-[30px]'>
                                     <FormLabel className='max-lg:text-[16px] max-lg:leading-[22px] text-[20px] font-semibold leading-[27px] '>Сколько вам лет?</FormLabel>
                                     <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[25px] mt-[10px]'>
                                         Мы учитываем ваш возраст при подборе психолога
                                     </FormDescription>
-                                    <div className='input__text_container relative bg-[#FAFAFA] w-full h-[65px]'>
-                                        <Input className='input placeholder:text-[18px] placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-full' {...field} />
+                                    <div className='input__text_container mt-[30px] relative bg-[#FAFAFA] w-full h-[65px]'>
+                                        <Input className='input__text placeholder:text-[#9A9A9A]  rounded-[10px] border-none w-full h-full' {...field} />
                                         <label className='input__text_label'>Введите ваше имя или псевдоним</label>
                                     </div>
-                                    {/* <FormControl className='mt-[30px]'> */}
-                                        
-                                    {/* </FormControl> */}
-                                    <span className='mt-[10px] max-lg:text-[12px] font-normal text-[14px] leading-[100%] text-[#9A9A9A]'>
-                                        { !form.formState.errors.age && '! Поле обязательное для заполнения' }
-                                    </span>
+                                    { !form.formState.errors.age &&
+                                        <span className='mt-[10px] max-lg:text-[12px] font-normal text-[14px] leading-[100%] text-[#9A9A9A]'>
+                                            ! Поле обязательное для заполнения
+                                        </span>
+                                    }
                                     <FormMessage />
                                 </FormItem>
                             </div>

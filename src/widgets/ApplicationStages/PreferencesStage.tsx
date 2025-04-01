@@ -36,23 +36,27 @@ const PreferencesStage = () => {
     ] as const
 
     const FormSchema = z.object({
-        request: z.string()
+        request: z.array(z.string())
     });
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            request: '',
+            request: [
+
+            ],
         }
     })
-    function handleSubmit() {
-        dispatch(toNextStage('gender_psychologist')) 
-        // dispatch(fill_username(data.request))
-    }
-    // function handleSubmit(data: z.infer<typeof FormSchema>) {
+    // function handleSubmit() {
     //     dispatch(toNextStage('gender_psychologist')) 
     //     // dispatch(fill_username(data.request))
     // }
+    function handleSubmit(data: z.infer<typeof FormSchema>) {
+        console.log(data);
+        
+        dispatch(toNextStage('gender_psychologist')) 
+        // dispatch(fill_username(data.request))
+    }
 
     return (
         <div className='px-[50px] max-lg:px-[20px]  flex w-full grow'>
@@ -105,7 +109,6 @@ const PreferencesStage = () => {
                                                 />
                                             ))}
                                         </div>
-
                                         <div>
                                         <FormControl>
                                             <Textarea

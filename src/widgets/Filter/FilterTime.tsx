@@ -16,16 +16,14 @@ export const FilterTime:React.FC<Props> = ({ type }) => {
     const [ timeFilter, setTimeFilter ] = useState(0);
 
     return (
-        <ModalWindow maxWidth='max-w-[960px]' closeButton={false} type={type}>
-
+        <ModalWindow className='max-[425px]:h-[400px]' maxWidth='max-w-[960px]' closeButton={false} type={type}>
             <DialogHeader className="flex flex-row items-center">
                 <DialogTitle className="grow font-semibold text-[20px] leading-[27px] max-lg:text-[16px] max-lg:leading-[22px]">Выберите подходяще для Вас время</DialogTitle>
                 <DialogClose className="w-[40px] h-[40px] shrink-0 flex justify-center items-center border-2 border-[#D4D4D4] rounded-full">
                     <Image src={'/modal/cross.svg'} alt="cross" height={15} width={15} />
                 </DialogClose>
             </DialogHeader>
-
-            <ul className="max-lg:w-full max-lg:grid-cols-[repeat(auto-fit,_minmax(64px,_1fr))] grid gap-[10px] grid-cols-10 mt-[5px] w-fit">
+            <ul className="max-lg:w-full max-lg:grid-cols-[repeat(auto-fit,_minmax(64px,_1fr))] grid gap-[10px] grid-cols-10 mt-[5px] w-fit overflow-auto ">
                 {
                     Array.from(Array(30).keys()).map((item: number, i: number) => 
                         <li key={i} className={

@@ -45,7 +45,7 @@ export const GenderStagePsychologist = () => {
             name="gender"
             render={({ field }) => (
                 <div className='grow'>
-                <FormItem className='grow'>
+                <FormItem className='grow max-[425px]:mb-[30px]'>
                     <FormLabel className=' max-lg:text-[16px] max-lg:leading-[22px] font-semibold text-[20px]  leading-[27px] '>С психологом какого пола вы готовы работать?</FormLabel>
                     <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[25px] mt-[10px]'>
                         Мы учитываем ваш пол при подборе психолога

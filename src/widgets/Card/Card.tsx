@@ -62,7 +62,7 @@ export const Card = () => {
                                 </div>
 
 
-                                <div className="flex gap-[30px] max-lg:flex-col max-lg:gap-[5px] max-lg:mt-[10px]">
+                                <div className="flex gap-[30px] max-lg:flex-col max-lg:gap-[5px] max-lg:mt-[20px]">
                                     <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                         Основной подход:
                                         <span className="text-[#151515] leading-[25px] font-normal text-[18px]  max-lg:text-[14px] flex gap-[10px] mt-[5px]">
@@ -72,7 +72,7 @@ export const Card = () => {
                                         </span>
                                     </span>
 
-                                    <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
+                                    <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px] max-lg:mt-[20px]">
                                         Стоимость:
                                         <span className="text-[#151515] leading-[25px] font-normal text-[18px]  max-lg:text-[14px] flex gap-[10px] mt-[5px]">
                                             От 1500 ₽
@@ -82,7 +82,7 @@ export const Card = () => {
                                     </span>
                                 </div>
 
-                                <div className="w-full max-lg:mt-[10px]">
+                                <div className="w-full max-lg:mt-[20px]">
                                     <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px] w-full">
                                         Дополнительные подходы:
                                         <ul className="font-normal leading-[25px] text-[18px]  max-lg:text-[14px] gap-[15px] justify-items-stretch grid grid-cols-[repeat(auto-fit,_minmax(125px,_1fr))]  w-full text-[#151515] mt-[5px]">
@@ -93,7 +93,7 @@ export const Card = () => {
                                     </span>
                                 </div>
 
-                                <div className="flex gap-[20px]">
+                                <div className="flex gap-[20px] max-lg:mt-[20px]">
                                     <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] w-full max-lg:text-[14px] max-lg:mt-[5px]">
                                         Ближайшая запись:
                                         
@@ -182,7 +182,7 @@ export const Card = () => {
                 </div>
 
                 {
-                    !isShow &&  <div className="flex gap-[5px] flex-col w-full mt-[30px]">
+                    isShow &&  <div className="flex gap-[5px] flex-col w-full mt-[30px]">
                         <div>
                             <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                 О хранителе

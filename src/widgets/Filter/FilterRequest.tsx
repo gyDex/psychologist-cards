@@ -75,7 +75,7 @@ export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
      
 
     return (
-        <ModalWindow closeButton={false} type={type}>
+        <ModalWindow className='max-[425px]:h-[400px]'  closeButton={false} type={type}>
             <DialogHeader className="flex flex-row items-center">
                 <DialogTitle className="grow font-semibold text-[20px] leading-[27px] max-lg:text-[16px] max-lg:leading-[22px]">Выберите запросы:</DialogTitle>
                 <DialogClose className="w-[40px] h-[40px] shrink-0 flex justify-center items-center border-2 border-[#D4D4D4] rounded-full">
@@ -89,7 +89,7 @@ export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
                     control={form.control}
                     name="items"
                     render={() => (
-                        <FormItem>
+                        <FormItem className='gap-[20px] overflow-auto max-lg:max-h-[200px]'>
                         {items.map((item) => (
                             <FormField
                             key={item.id}
@@ -131,24 +131,6 @@ export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
                     <Button type="submit">Submit</Button>
                 </form>
             </Form>
-
-            {/* <Form {...form}  onSubmit={handleSubmit}>
-                <div className='w-full flex gap-[14px] items-center'>
-                    <Checkbox className="w-[30px] h-[30px]" id="ps" 
-                    value={filterRequest.ps} 
-                
-                    onChange={() => setFilterRequest({
-                        ps: 'true'
-                    })} />
-
-                    <span className='text-[18px] leading-[100%]'>Есть диагностированное психическое заболевание</span>
-                </div>
-
-                <DialogFooter>
-                    <Button className="cursor-pointer w-full mt-[15px] hover:bg-[#116466] bg-[#116466] rounded-[50px] text-[white] py-[25px] font-normal  text-[18px] leading-[25px]" type="submit">Применить</Button>
-                </DialogFooter>
-            </Form> */}
-     
         </ModalWindow>
     );
 };

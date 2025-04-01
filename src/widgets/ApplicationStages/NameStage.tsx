@@ -1,5 +1,5 @@
 'use client'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { toNextStage } from '@/redux/slices/application_form';
 import { fill_username } from '@/redux/slices/application_form_data';
@@ -38,14 +38,15 @@ const NameStageApplication = () => {
                         name="username"
                         render={({ field }) => (
                             <div className='grow  max-h-[100%]'>
-                                <FormItem className='grow'>
+                                <FormItem className='grow max-[425px]:mb-[30px]'>
                                     <FormLabel className='max-lg:text-[16px] max-lg:leading-[22px] font-semibold text-[20px] leading-[27px]'>Как вас зовут?</FormLabel>
                                     <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[25px] mt-[10px]'>
                                         Вы можете не указывать имя, если пока не готовы
                                     </FormDescription>
-                                    <FormControl className='mt-[30px]'>
-                                        <Input className='bg-[#FAFAFA] placeholder:text-[18px]  placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-[65px]' placeholder="Введите ваше имя или псевдоним" {...field} />
-                                    </FormControl>
+                                    <div className='input__text_container mt-[30px] relative bg-[#FAFAFA] w-full h-[65px]'>
+                                        <Input className='input__text placeholder:text-[18px] placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-full' {...field} />
+                                        <label className='input__text_label'>Введите ваше имя или псевдоним</label>
+                                    </div>
                                     {
                                         !form.formState.errors.username && <span className='mt-[10px] max-lg:text-[12px] font-normal text-[14px] leading-[100%] text-[#9A9A9A]'>
                                         ! Поле обязательное для заполнения

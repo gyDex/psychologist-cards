@@ -35,13 +35,13 @@ const ActionStage = () => {
     ] as const
 
     const FormSchema = z.object({
-        request: z.string()
+        request: z.array(z.string())
     });
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            request: '',
+            request: [],
         }
     })
     function handleSubmit() {

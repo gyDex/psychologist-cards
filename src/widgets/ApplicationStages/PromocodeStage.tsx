@@ -1,5 +1,5 @@
 'use client'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
+import { Form, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { toNextStage } from '@/redux/slices/application_form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -46,9 +46,10 @@ const PromocodeStage = () => {
                                     <FormDescription className='max-lg:text-[14px] font-normal text-[18px] leading-[25px] mt-[10px]'>
                                         Вы можете не указывать код, если у вас его нет
                                     </FormDescription>
-                                    <FormControl className='mt-[20px]'>
-                                        <Input className='bg-[#FAFAFA] placeholder:text-[18px] placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] placeholder:text-[18px] placeholder:leading-[25px]  rounded-[10px] border-none w-full h-[65px]' placeholder="Введите промокод или номер подарочного сертификата" {...field} />
-                                    </FormControl>
+                                    <div className='input__text_container mt-[30px] relative bg-[#FAFAFA] w-full h-[65px]'>
+                                        <Input className='input__text placeholder:text-[18px] placeholder:text-[#9A9A9A] placeholder:max-lg:text-[14px] rounded-[10px] border-none w-full h-full' {...field} />
+                                        <label className='input__text_label'>Введите промокод или номер подарочного сертификата</label>
+                                    </div>
                                 </FormItem>
                             </div>
                         )}
