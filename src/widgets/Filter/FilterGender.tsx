@@ -1,5 +1,4 @@
 
-import { Button } from '@/components/ui/button';
 import { DialogClose, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
 import {
@@ -16,6 +15,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod"
 import Image from 'next/image';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { useEffect } from 'react';
 type Props = {
     callback: () => void;
     onSubmit: (data: any) => void;
@@ -23,19 +23,32 @@ type Props = {
 }
 
 export const FilterGender:React.FC<Props> = ({onSubmit, type }) => {
+
+    const items =
+    {
+        ['male']: 'Мужчина',
+        ['female']: 'Женщина',
+        ['none']: 'Не имеет значения',
+    } as const
+
     const FormSchema = z.object({
         gender: z.enum(["male", "female", "none"]).optional(),
-      })
-
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
     })
 
-    function handleSubmit(data: z.infer<typeof FormSchema>) { 
-        alert(data.gender)
-        onSubmit(data)
-    }
-     
+    const { handleSubmit, watch, control, ...form }  = useForm<z.infer<typeof FormSchema>>({
+        resolver: zodResolver(FormSchema),
+        defaultValues: {
+            gender: 'none'
+        }
+    })
+
+    const handleCheckboxCheck = watch('gender'); 
+    
+    useEffect(() => {
+        if(handleCheckboxCheck !== undefined) {
+            onSubmit(items[handleCheckboxCheck] as any)
+        }
+    },[handleCheckboxCheck])
 
     return (
         <ModalWindow closeButton={false} type={type}>
@@ -47,22 +60,22 @@ export const FilterGender:React.FC<Props> = ({onSubmit, type }) => {
                 </DialogClose>
             </DialogHeader>
 
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(handleSubmit)} className="w-2/3 space-y-6">
+            <Form {...form} control={control} watch={watch} handleSubmit={handleSubmit}>
+                <form className="w-2/3 space-y-6">
                     <FormField
-                    control={form.control}
+                    control={control}
                     name="gender"
                     render={({ field }) => (
                         <FormItem className="space-y-3">
-                        <FormControl>
+                        <FormControl >
                             <RadioGroup
-                            onValueChange={field.onChange}
                             defaultValue={field.value}
-                            className="flex flex-col space-y-1"
+                            onValueChange={field.onChange}
+                            className="flex flex-col gap-[40px] max-lg:gap-[20px]"
                             >
                             <FormItem className="flex items-center space-x-3 space-y-0">
                                 <FormControl>
-                                <RadioGroupItem colorRadio={'#116466'} className='w-[30px] h-[30px] ' value="male" />
+                                <RadioGroupItem colorRadio={'#116466'} className='w-[30px] h-[30px]' value="male" />
                                 </FormControl>
                                 <FormLabel className="font-normal text-[18px] max-lg:text-[14px]">
                                 Мужской
@@ -90,7 +103,6 @@ export const FilterGender:React.FC<Props> = ({onSubmit, type }) => {
                         </FormItem>
                     )}
                     />
-                    <Button type="submit">Submit</Button>
                 </form>
             </Form>
         </ModalWindow>

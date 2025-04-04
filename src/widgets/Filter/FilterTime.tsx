@@ -2,7 +2,7 @@ import { DialogClose, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 type Props = {
@@ -10,10 +10,36 @@ type Props = {
     onSubmit: (data: any) => void;
     type: string;
 }
+type FilterSelectButtonTime = {
+    select: boolean;
+}
 
 export const FilterTime:React.FC<Props> = ({ type }) => {
 
-    const [ timeFilter, setTimeFilter ] = useState(0);
+    const [ timeFilter, setTimeFilter ] = useState<FilterSelectButtonTime[]>();
+
+    const handleClick = useCallback((findIndex: number = 0) => {
+        setTimeFilter((prev: any) => prev?.map((item: any, i: any) => {
+            if (i === findIndex) {
+                return {
+                    select: !item.select
+                }
+            }
+            else {
+                return {
+                    select: item.select
+                }
+            }
+        }))
+    },[])
+    
+    useEffect(() => {
+        setTimeFilter(Array.from({length: 30}, () =>{
+            return {
+                select: false
+            }
+        }))
+    },[])
 
     return (
         <ModalWindow className='max-[425px]:h-[400px]' maxWidth='max-w-[960px]' closeButton={false} type={type}>
@@ -29,10 +55,10 @@ export const FilterTime:React.FC<Props> = ({ type }) => {
                         <li key={i} className={
                             clsx(`max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[74px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] leading-[25px] flex justify-center items-center`,
                             {
-                                ['border-none bg-[#116466] text-[white]']: timeFilter === i
+                                ['border-none bg-[#116466] text-[white]']: timeFilter?.[i].select === true
                             }
                         )}>
-                            <button onClick={() => setTimeFilter(i)} className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                            <button onClick={() => handleClick(i)} className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
                                 10:00
                             </button> 
                         </li>

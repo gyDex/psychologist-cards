@@ -2,7 +2,7 @@
 import { Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { toNextStage } from '@/redux/slices/application_form';
-import { fill_username } from '@/redux/slices/application_form_data';
+import { fill_age } from '@/redux/slices/application_form_data';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -25,7 +25,7 @@ const AgeStageApplication = () => {
 
     function handleSubmit(data: z.infer<typeof FormSchema>) {
         dispatch(toNextStage('gender')) 
-        dispatch(fill_username(data.age))
+        dispatch(fill_age(data.age))
     }
 
     return (

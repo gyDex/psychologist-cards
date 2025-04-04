@@ -15,9 +15,10 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useDispatch } from "react-redux"
 import { toNextStage } from "@/redux/slices/application_form"
+import { fill_diseases } from "@/redux/slices/application_form_data"
 
 const FormSchema = z.object({
-    gender: z.enum(["male", "female", 'nothing'], {
+    diseases: z.enum(["diseases1", "diseases2", 'nothing'], {
     required_error: "Вы не заполнили обязательное поле",
   }),
 })
@@ -25,27 +26,30 @@ const FormSchema = z.object({
 export const DiseasesStage = () => {
     const dispatch = useDispatch();
 
+    const diseases = {
+        ['diseases1'] : ['Есть диагностированное психическое заболевание'],
+        ['diseases2'] : ['Есть диагностированное психиатрическое заболевание'],
+        ['nothing'] : ['Не имеет значения']
+    } as const
+
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     })
 
 
-    // function handleSubmit(data: z.infer<typeof FormSchema>) {
-    //     dispatch(toNextStage('promocode')) 
-    //     // dispatch(fill_gender(data.gender))
-    // }
-
-    function handleSubmit() {
-        dispatch(toNextStage('promocode')) 
-        // dispatch(fill_gender(data.gender))
+    function handleSubmit(data: z.infer<typeof FormSchema>) {
+        dispatch(toNextStage('promocode'))  
+        console.log(data)
+        dispatch(fill_diseases(diseases[data.diseases]))
     }
+
   return (
     <div className='px-[50px] grow max-lg:px-[20px] flex-col  flex w-full'>
         <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)}  className="mt-[20px] border-[#D4D4D4] w-full flex flex-col grow">
             <FormField
             control={form.control}
-            name="gender"
+            name="diseases"
             render={({ field }) => (
                 <div className='grow max-lg:mb-[20px]'>
                 <FormItem  className='grow p-[25px] max-lg:p-[15px] border-[1px] rounded-[25px]  '>
@@ -63,7 +67,7 @@ export const DiseasesStage = () => {
                         >
                             <FormItem className="flex items-center gap-[15px]">
                                 <FormControl>
-                                <RadioGroupItem className="h-[30px] w-[30px]" value="male" />
+                                <RadioGroupItem className="h-[30px] w-[30px]" value="diseases1" />
                                 </FormControl>
                                 <FormLabel className="font-normal text-[18px]">
                                     Есть диагностированное психическое заболевание
@@ -71,7 +75,7 @@ export const DiseasesStage = () => {
                             </FormItem>
                             <FormItem className="flex items-center gap-[15px]">
                                 <FormControl> 
-                                <RadioGroupItem className="h-[30px] w-[30px]" value="nothing" />
+                                <RadioGroupItem className="h-[30px] w-[30px]" value="diseases2" />
                                 </FormControl>
                                 <FormLabel className="font-normal text-[18px]">
                                     Есть диагностированное психиатрическое заболевание
@@ -79,7 +83,7 @@ export const DiseasesStage = () => {
                             </FormItem>
                             <FormItem className="flex items-center gap-[15px]">
                                 <FormControl> 
-                                <RadioGroupItem className="h-[30px] w-[30px]" value="female" />
+                                <RadioGroupItem className="h-[30px] w-[30px]" value="nothing" />
                                 </FormControl>
                                 <FormLabel className="font-normal text-[18px]">
                                     Не имеет значения

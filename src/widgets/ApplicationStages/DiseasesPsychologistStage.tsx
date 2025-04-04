@@ -15,9 +15,10 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useDispatch } from "react-redux"
 import { toNextStage } from "@/redux/slices/application_form"
+import { fill_diseasesPsychologist } from "@/redux/slices/application_form_data"
 
 const FormSchema = z.object({
-    gender: z.enum(["male", "female", 'nothing'], {
+    diseases: z.enum(["diseases1", "diseases2", 'nothing'], {
     required_error: "Вы не заполнили обязательное поле",
   }),
 })
@@ -29,15 +30,15 @@ export const DiseasesPsychologistStage = () => {
         resolver: zodResolver(FormSchema),
     })
 
+    const diseases = {
+        ['diseases1'] : ['Есть диагностированное психическое заболевание'],
+        ['diseases2'] : ['Есть диагностированное психиатрическое заболевание'],
+        ['nothing'] : ['Не имеет значения']
+    } as const
 
-    // function handleSubmit(data: z.infer<typeof FormSchema>) {
-    //     dispatch(toNextStage('promocode')) 
-    //     // dispatch(fill_gender(data.gender))
-    // }
-
-    function handleSubmit() {
+    function handleSubmit(data: z.infer<typeof FormSchema>) {
         dispatch(toNextStage('gratitude')) 
-        // dispatch(fill_gender(data.gender))
+        dispatch(fill_diseasesPsychologist(diseases[data.diseases]))
     }
   return (
     <div className='px-[50px] max-lg:px-[20px] flex-col min-h-full h-full  flex w-full grow'>
@@ -47,7 +48,7 @@ export const DiseasesPsychologistStage = () => {
         <form onSubmit={form.handleSubmit(handleSubmit)} className=" border-[#D4D4D4] w-full flex flex-col h-[100%] grow">
             <FormField
             control={form.control}
-            name="gender"
+            name="diseases"
             render={({ field }) => (
                 <div className='grow mb-[20px]'>
                 <FormItem  className=' grow p-[25px] max-lg:p-[15px] border-[1px] rounded-[25px]  '>
@@ -65,7 +66,7 @@ export const DiseasesPsychologistStage = () => {
                         >
                             <FormItem className="flex items-center gap-[15px]">
                                 <FormControl>
-                                <RadioGroupItem className="h-[30px] w-[30px]" value="male" />
+                                <RadioGroupItem className="h-[30px] w-[30px]" value="diseases1" />
                                 </FormControl>
                                 <FormLabel className="font-normal text-[18px]">
                                     Есть диагностированное психическое заболевание
@@ -73,7 +74,7 @@ export const DiseasesPsychologistStage = () => {
                             </FormItem>
                             <FormItem className="flex items-center gap-[15px]">
                                 <FormControl> 
-                                <RadioGroupItem className="h-[30px] w-[30px]" value="nothing" />
+                                <RadioGroupItem className="h-[30px] w-[30px]" value="diseases2" />
                                 </FormControl>
                                 <FormLabel className="font-normal text-[18px]">
                                     Есть диагностированное психиатрическое заболевание
@@ -81,7 +82,7 @@ export const DiseasesPsychologistStage = () => {
                             </FormItem>
                             <FormItem className="flex items-center gap-[15px]">
                                 <FormControl> 
-                                <RadioGroupItem className="h-[30px] w-[30px]" value="female" />
+                                <RadioGroupItem className="h-[30px] w-[30px]" value="nothing" />
                                 </FormControl>
                                 <FormLabel className="font-normal text-[18px]">
                                     Не имеет значения

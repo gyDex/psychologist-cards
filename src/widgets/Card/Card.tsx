@@ -12,23 +12,26 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { open,close,openNext } from '../../redux/slices/modal'
 import { ModalState } from "@/redux/store";
+import { IPsychologist } from "@/entities/IPsychologist";
 
-// type Props = {
-//     name: string,
-//     price: number,
-//     additional_approaches: string,
-//     basic_approaches: string, 
-//     requests: any[],
-//     diagnosed_diseases: any[],
-// }
+type Props =  {
+    data: IPsychologist
+}
 
-export const Card = () => {
+export const Card:React.FC<Props> = ({data}) => {
     const [isShow, setShow ] = useState(false);
     const [isShowInfo, setShowInfo ] = useState(false);
 
     const isOpenType = useSelector<ModalState>(state => state.modal.isOpenType)
 
     const dispatch = useDispatch()
+
+    const works_with = data.works_with.split(';').map(function(item){
+        return item.trimStart();
+    });;
+    const queries = data.queries.split(';').map(function(item){
+        return item.trimStart();
+    }); 
 
     useEffect(() => {
 
@@ -53,7 +56,7 @@ export const Card = () => {
                             <div className="flex flex-col justify-between max-lg:w-full">
                                 <div className="flex flex-col gap-[10px]">
                                     <h2 className="font-semibold text-[20px] leading-[27px] max-lg:text-[18px] max-lg:leading-[25px]">
-                                        Мария Ломакина, 26 лет
+                                        {data.name}
                                     </h2>
 
                                     <h3 className=" flex max-lg:text-[16px] leading-[22px] gap-[10px]">
@@ -66,7 +69,7 @@ export const Card = () => {
                                     <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                         Основной подход:
                                         <span className="text-[#151515] leading-[25px] font-normal text-[18px]  max-lg:text-[14px] flex gap-[10px] mt-[5px]">
-                                            Юнгианский анализ
+                                            {data.main_modal}
 
                                             <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
                                         </span>
@@ -82,19 +85,23 @@ export const Card = () => {
                                     </span>
                                 </div>
 
+                                {/* grid-cols-[repeat(auto-fit,_minmax(125px,_1fr))]  */}
                                 <div className="w-full max-lg:mt-[20px]">
-                                    <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px] w-full">
+                                    <span className="text-[#9A9A9A] font-normal flex-col flex gap-[10px] text-[16px] leading-[22px] max-lg:text-[14px] w-full">
                                         Дополнительные подходы:
-                                        <ul className="font-normal leading-[25px] text-[18px]  max-lg:text-[14px] gap-[15px] justify-items-stretch grid grid-cols-[repeat(auto-fit,_minmax(125px,_1fr))]  w-full text-[#151515] mt-[5px]">
-                                            <li className="flex gap-[5px]">КПТ <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
-                                            <li className="flex gap-[5px]">Гештальт <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
-                                            <li className="flex gap-[5px]">Полемодальный <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
+                                        <ul className="font-normal  leading-[25px] text-[18px]  max-lg:text-[14px] gap-[0px] gap-[10px] flex text-[#151515] mt-[5px]">
+                                            {
+                                                // data.additional_modals.map((item, i) => <>
+                                                //     <li className="flex w-fit gap-[5px]">{item} <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
+                                                // </>)                                           
+                                                <li className="flex w-fit gap-[5px]">{data.additional_modals} <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
+                                            }
                                         </ul>
                                     </span>
                                 </div>
 
                                 <div className="flex gap-[20px] max-lg:mt-[20px]">
-                                    <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] w-full max-lg:text-[14px] max-lg:mt-[5px]">
+                                    <span className="text-[#9A9A9A] flex flex-col gap-[10px] font-normal text-[16px] leading-[22px] w-full max-lg:text-[14px] max-lg:mt-[5px]">
                                         Ближайшая запись:
                                         
                                         <ul className="flex gap-[14px] mt-[5px] overflow-auto min-w-full">
@@ -123,37 +130,17 @@ export const Card = () => {
                             <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                                 Запросы:
                             </span>   
-                            <ul className="gap-[15px] grid grid-cols-3  mt-[5px] max-lg:flex overflow-auto">
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
-                                        Рефлексивные группы
-                                    </button>
-                                </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px]flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
-                                        Рефлексивные группы
-                                    </button>
-                                </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
-                                        Рефлексивные группы
-                                    </button>
-                                </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
-                                        Рефлексивные группы
-                                    </button>
-                                </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
-                                        Рефлексивные группы
-                                    </button>
-                                </li>
-                                <li className="max-lg:text-[14px] shrink-0 rounded-[20px] text-[18px] font-semibold w-auto  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px]">
-                                        Рефлексивные группы
-                                    </button>
-                                </li>
+                            <ul className="  min-w-fit gap-[10px] max-[425px]:gap-x-[120px]  grid-cols-[repeat(auto-full,_minmax(100px,_1fr))] w-initial mt-[5px] flex-wrap max-lg:grid-cols-[repeat(2,_minmax(100px,_1fr))] inline-grid w-fit overflow-auto">
+                                {
+                                    queries.map((item, i ) => <li key={i} className="max-lg:text-[14px] h-fit min-w-[200px] shrink-0 rounded-[20px]   max-lg:max-w-[300px] text-[18px] font-semibold w-fit  border-[1px] border-[#D4D4D4]  text-[#116466] leading-[25px] ">
+                                        <button className="relative h-full w-full cursor-pointer p-[8px] flex justify-start">
+                                        {
+                                            item
+                                        }
+                                        </button>    
+                                    </li>)
+                                }
+                                
                             </ul>
                         </div>
                     </div>
@@ -167,17 +154,17 @@ export const Card = () => {
                         <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px]">
                             Диагностированные заболевания:
                         </span>   
-                        <ul className="gap-[15px] flex flex-col  mt-[5px]">
-                            <span className="text-[#151515] max-lg:text-[14px] w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
-                                Работает с психическими заболеваниями (РПП, СДВГ и др)
+                        <ul className="gap-[10px] flex flex-col  mt-[5px]">
 
-                                <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
-                            </span>
-                            <span className="text-[#151515] max-lg:text-[14px] w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
-                                Работает с психиатрическими заболеваниями (ПРЛ, БАР, ПТСР и др)
+                            {
+                                works_with.map((item, i) => <span key={i} className="text-[#151515] max-lg:text-[14px] w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
+                                    {
+                                        item
+                                    }
 
-                                <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
-                            </span>
+                                    <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
+                                </span>)
+                            }
                         </ul>
                 </div>
 
@@ -188,7 +175,7 @@ export const Card = () => {
                                 О хранителе
                             </span> 
 
-                            <span className="text-[#151515] max-lg:text-[14px] flex-col w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
+                            <span className="overflow-hidden text-[#151515] max-lg:text-[14px] flex-col w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
                                 Два раза в месяц, интервизии, рефлексивные группы, тренинги и другие мероприятия на развитие профессионализма в аналитическом подходе
                                 {
                                     isShowInfo && <span className="block max-lg:text-[14px]">
@@ -231,25 +218,31 @@ export const Card = () => {
                                 <li className="shrink-0 flex items-center justify-center gap-[15px]">
                                     <Image src={'/card/favorites_icon.svg'} alt="favorites" height={40} width={40} />
                                     <span>
-                                         vk.com/example
+                                        {
+                                            data.vk
+                                        }
                                     </span>
                                 </li>
                                 <li className="shrink-0 flex items-center justify-center gap-[15px]">
                                     <Image src={'/card/favorites_icon.svg'} alt="favorites" height={40} width={40} />
                                     <span>
-                                         vk.com/example
+                                        {
+                                            data.site
+                                        }
                                     </span>
                                 </li>
                                 <li className="shrink-0 flex items-center justify-center gap-[15px]">
                                     <Image src={'/card/favorites_icon.svg'} alt="favorites" height={40} width={40} />
                                     <span>
-                                         vk.com/example
+                                        {
+                                            data.telegram
+                                        }
                                     </span>
                                 </li>
                             </ul>       
                         </div>
 
-                        <ul className="mt-[30px] w-full grid grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))] font-normal text-[18px] leading-[25px] gap-[10px]">
+                        <ul className="mt-[30px] w-fit flex grid-cols-4 font-normal text-[18px] leading-[25px] gap-[30px] max-[425px]:grid-cols-2 max-[425px]:gap-[30px]">
                             <li>
                                 <span className="text-[#9A9A9A] text-[16px] leading-[22px] max-lg:text-[12px]">
                                     Личная терапия:
@@ -262,7 +255,7 @@ export const Card = () => {
                                 </span>
                             </li>
 
-                            <li>
+                            <li className="w-[200px]">
                                 <span className="text-[#9A9A9A] text-[16px] leading-[22px] max-lg:text-[12px]">
                                 Посещает супервизию:
                                 </span>
@@ -279,7 +272,13 @@ export const Card = () => {
                                 </span>
                                 
                                 <span className="flex text-[#151515] gap-[10px] mt-[10px] max-lg:text-[14px]">
-                                    Замужем, дети
+                                    {
+                                        (data.is_married && data.has_children) ? 'Замужем, дети' : 'Замужем'
+                                    }
+
+                                    {
+                                        (!data.is_married) && 'Не замужем'
+                                    }
                                 </span>
                             </li>
                             <li>
@@ -288,7 +287,9 @@ export const Card = () => {
                                 </span>
                                 
                                 <span className="flex text-[#151515] gap-[10px] mt-[10px] max-lg:text-[14px]">
-                                    Да
+                                    {
+                                        data.has_children ? 'Да' : 'Нет'
+                                    }
                                 </span>
                             </li>
                         </ul>
@@ -298,7 +299,7 @@ export const Card = () => {
                 <div className="flex gap-[25px] mt-[25px] max-[600px]:flex-col max-[600px]:w-[100%] ">
                     <button onClick={() => setShow(prev => !prev)} type="button" className="cursor-pointer shrink-0 text-[#116466] font-normal text-[18px] leading-[25px] border-[1px] rounded-[50px] border-[#116466] p-[12px]">
                         {
-                            isShow ? 'Подробнее о хранителе' : "Свернуть"
+                            isShow ?  "Свернуть"  : 'Подробнее о хранителе'
                         }
                         
                     </button>

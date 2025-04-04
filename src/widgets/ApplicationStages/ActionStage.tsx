@@ -2,6 +2,7 @@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { toNextStage } from '@/redux/slices/application_form';
+import { fill_actions } from '@/redux/slices/application_form_data';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -11,7 +12,7 @@ import { z } from 'zod'
 const ActionStage = () => {
     const dispatch = useDispatch();
 
-        const request = [
+        const actions = [
         {
           id: "recents",
           label: "Опыт семейной жизни, собственные дети",
@@ -35,23 +36,26 @@ const ActionStage = () => {
     ] as const
 
     const FormSchema = z.object({
-        request: z.array(z.string())
+        actions: z.array(z.string())
     });
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            request: [],
+            actions: [],
         }
     })
-    function handleSubmit() {
+    function handleSubmit(data: z.infer<typeof FormSchema>) {
         dispatch(toNextStage('diseases')) 
-        // dispatch(fill_username(data.request))
+
+        const result = []
+        for (let index = 0; index < data.actions.length; index++) {
+            const findElements = actions.find(item => item.id === data.actions[index])
+            result.push(findElements?.label);
+        }
+
+        dispatch(fill_actions(result))
     }
-    // function handleSubmit(data: z.infer<typeof FormSchema>) {
-    //     dispatch(toNextStage('diseases')) 
-    //     // dispatch(fill_username(data.request))
-    // }
 
     return (
         <div className='px-[50px] max-lg:px-[20px]   flex w-full grow'>
@@ -59,7 +63,7 @@ const ActionStage = () => {
                 <form onSubmit={form.handleSubmit(handleSubmit)} className="mt-[20px] border-[#D4D4D4] w-full flex flex-col">
                     <FormField
                         control={form.control}
-                        name="request"
+                        name="actions"
                         render={({  }) => (
                             <div className='grow'>
                                 <FormItem className='grow p-[25px] max-lg:p-[15px] max-lg:max-h-none border-[1px] rounded-[25px]  max-h-[390px]'>
@@ -69,11 +73,11 @@ const ActionStage = () => {
                                     </FormDescription>
                                     <div className='flex justify-between mt-[25px] max-lg:flex-col min-h-full'>
                                         <div className='flex flex-col gap-[15px] w-full max-h-[150px] max-lg:max-h-[200px] overflow-x-auto'>
-                                            {request.map((item) => (
+                                            {actions.map((item) => (
                                                 <FormField
                                                 key={item.id}
                                                 control={form.control}
-                                                name="request"
+                                                name="actions"
                                                 render={({ field } : any) => {
                                                     return (
                                                     <FormItem

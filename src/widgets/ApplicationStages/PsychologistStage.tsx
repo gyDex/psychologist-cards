@@ -1,10 +1,61 @@
 import { toNextStage } from "@/redux/slices/application_form";
+import { fill_slots } from "@/redux/slices/application_form_data";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+
+type FilterSelectButtonTime = {
+    select: boolean,
+    time: string,
+}
 
 export const PsychologistStage = () => {
     const dispatch = useDispatch();
+
+    const [ timeFilter, setTimeFilter ] = useState<FilterSelectButtonTime[]>();
+    
+    // const [ selectTimeSlot, setSelectTimeSlot ] = useState([]);
+    
+
+    const handleClick = useCallback((findIndex: number = 0) => {
+        setTimeFilter((prev: any) => prev?.map((item: any, i: any) => {
+            if (i === findIndex) {
+                return {
+                    select: !item.select,
+                    time: item.time,
+                }
+            }
+            else {
+                return {
+                    select: item.select,
+                    time: item.time,
+                }
+            }
+        }))
+    },[])
+
+    const handleSubmit = useCallback(() => {
+        const selectTabs = timeFilter?.filter(item => item.select === true)
+
+        const result = selectTabs?.map((item: FilterSelectButtonTime) => {
+            return item.time
+        })
+        
+        dispatch(fill_slots(result));
+    },[timeFilter])
+
+    useEffect(() => {
+        setTimeFilter(Array.from({length: 10}, () =>{
+            return {
+                select: false,
+                time: '28.01/ 13:00'
+            }
+        }))
+
+        console.log(timeFilter)
+    },[])
 
     return (
         <>
@@ -53,56 +104,20 @@ export const PsychologistStage = () => {
                             <h2 className="text-[18px] leading-[25px] font-semibold max-lg:text-[14px]">Ближайшая запись:</h2>
                             
                             <ul className="max-lg:flex max-lg:w-full grid grid-cols-5 gap-[14px] mt-[10px] overflow-auto  w-fit">
-                                <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
-                                        28.01/ 13:00
-                                    </button> 
-                                </li>
-                                <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
-                                        28.01/ 13:00
-                                    </button> 
-                                </li>
-                                <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
-                                        28.01/ 13:00
-                                    </button> 
-                                </li>
-                                <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
-                                        28.01/ 13:00
-                                    </button> 
-                                </li>
-                                <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
-                                        28.01/ 13:00
-                                    </button> 
-                                </li>
-                                <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
-                                        28.01/ 13:00
-                                    </button> 
-                                </li>
-                                <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
-                                        28.01/ 13:00
-                                    </button> 
-                                </li>
-                                <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
-                                        28.01/ 13:00
-                                    </button> 
-                                </li>
-                                <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
-                                        28.01/ 13:00
-                                    </button> 
-                                </li>
-                                <li className="max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center">
-                                    <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
-                                        28.01/ 13:00
-                                    </button> 
-                                </li>
+                                {
+                                    timeFilter?.map((item: FilterSelectButtonTime, i: number) =>
+                                    <li key={i} onClick={() => handleClick(i)} className={clsx("max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[132px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal leading-[25px] text-[18px] leading-[25px] flex justify-center items-center",
+                                        {
+                                            ['border-none bg-[#116466] text-[white]']: timeFilter?.[i].select === true
+                                        }
+                                    )}>
+                                        <button className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                                            {
+                                                item.time
+                                            }
+                                        </button> 
+                                    </li>)
+                                }
                             </ul>
                         </div>
                     </div>
@@ -116,7 +131,9 @@ export const PsychologistStage = () => {
                         Назад
                     </button>
 
-                    <button type='button'  onClick={() => dispatch(toNextStage('diseases_psychologist'))} className="cursor-pointer grow border-[1px] bg-[#116466] p-[12px] text-[white] font-normal text-[18px] max-lg:text-[14px] rounded-[50px]">
+                    <button type='button'  onClick={() => {
+                        handleSubmit();
+                        dispatch(toNextStage('diseases_psychologist'))}} className="cursor-pointer grow border-[1px] bg-[#116466] p-[12px] text-[white] font-normal text-[18px] max-lg:text-[14px] rounded-[50px]">
                         Продолжить
                     </button>
                 </div>

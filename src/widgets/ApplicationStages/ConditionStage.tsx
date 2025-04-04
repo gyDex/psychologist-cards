@@ -2,6 +2,7 @@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { toNextStage } from '@/redux/slices/application_form';
+import { fill_conditions } from '@/redux/slices/application_form_data';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -11,51 +12,56 @@ import { z } from 'zod'
 const ConditionStage = () => {
     const dispatch = useDispatch();
 
-        const request = [
+        const condition = [
         {
-          id: "recents",
+          id: "condition",
           label: "Опыт семейной жизни, собственные дети",
         },
         {
-            id: "recents1",
+            id: "condition1",
             label: "Опыт семейной жизни, собственные дети",
         },
         {
-            id: "recents2",
+            id: "condition2",
             label: "Опыт семейной жизни, собственные дети",
         },
         {
-            id: "recents3",
+            id: "condition3",
             label: "Опыт семейной жизни, собственные дети",
         },
         {
-            id: "recents4",
+            id: "condition4",
             label: "Опыт семейной жизни, собственные дети",
         },
         {
-            id: "recents5",
+            id: "condition5",
             label: "Опыт семейной жизни, собственные дети",
         },
     ] as const
 
     const FormSchema = z.object({
-        request: z.array(z.string())
+        condition: z.array(z.string())
     });
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            request: [],
+            condition: [],
         }
     })
 
-    // function handleSubmit(data: z.infer<typeof FormSchema>) {
-    //     dispatch(toNextStage('action')) 
-    //     // dispatch(fill_username(data.request))
-    // }
-    function handleSubmit() {
+    function handleSubmit(data: z.infer<typeof FormSchema>) {
         dispatch(toNextStage('action')) 
-        // dispatch(fill_username(data.request))
+
+        const result = []
+
+        for (let index = 0; index < data.condition.length; index++) {
+            const findElements = condition.find(item => item.id === data.condition[index])
+            result.push(findElements?.label);
+        }
+
+
+        dispatch(fill_conditions(result))
     }
     return (
         <div className='px-[50px] max-lg:px-[20px]  flex w-full grow'>
@@ -63,7 +69,7 @@ const ConditionStage = () => {
                 <form onSubmit={form.handleSubmit(handleSubmit)} className="mt-[20px] border-[#D4D4D4] w-full flex flex-col">
                     <FormField
                         control={form.control}
-                        name="request"
+                        name="condition"
                         render={({  }) => (
                             <div className='grow '>
                                 <FormItem className='grow p-[25px] max-lg:p-[15px] max-lg:max-h-none border-[1px] rounded-[25px]  max-h-[390px]'>
@@ -73,11 +79,11 @@ const ConditionStage = () => {
                                     </FormDescription>
                                     <div className='flex justify-between mt-[25px] max-lg:flex-col min-h-full'>
                                         <div className='flex flex-col gap-[15px] w-full max-h-[150px] max-lg:max-h-[200px] overflow-x-auto'>
-                                            {request.map((item) => (
+                                            {condition.map((item) => (
                                                 <FormField
                                                 key={item.id}
                                                 control={form.control}
-                                                name="request"
+                                                name="condition"
                                                 render={({ field }: any) => {
                                                     return (
                                                     <FormItem

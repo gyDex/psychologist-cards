@@ -1,7 +1,7 @@
 import { DialogClose, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { open, openNext } from '@/redux/slices/modal';
 import clsx from 'clsx';
@@ -12,14 +12,42 @@ type Props = {
     type: string;
 }
 
-export const FilterDate:React.FC<Props> = ({ type }) => {
+type FilterSelectButtonDate = {
+    select: boolean;
+}
 
-    const [ dateFilter, setDateFilter ] = useState(0);
+export const FilterDate:React.FC<Props> = ({ type }) => {
     const dispatch = useDispatch();
+
+    const [ dateFilter, setDateFilter ] = useState<FilterSelectButtonDate[]>();
+
+    const handleClick = useCallback((findIndex: number = 0) => {
+        setDateFilter((prev: any) => prev?.map((item: any, i: any) => {
+            if (i === findIndex) {
+                return {
+                    select: !item.select
+                }
+            }
+            else {
+                return {
+                    select: item.select
+                }
+            }
+        }))
+    },[])
+
+    useEffect(() => {
+        setDateFilter(Array.from({length: 30}, () =>{
+            return {
+                select: false
+            }
+        }))
+
+    },[])
+
 
     return (
         <ModalWindow className='max-[425px]:h-[519px]' maxWidth='max-w-[960px]' closeButton={false} type={type}>
-
             <DialogHeader className="flex flex-row items-center">
                 <DialogTitle className="grow font-semibold text-[20px] leading-[27px] max-lg:text-[16px] max-lg:leading-[22px]">Выберите подходящую для Вас дату:</DialogTitle>
                 <DialogClose className="w-[40px] h-[40px] shrink-0 flex justify-center items-center border-2 border-[#D4D4D4] rounded-full">
@@ -33,10 +61,10 @@ export const FilterDate:React.FC<Props> = ({ type }) => {
                         <li key={i} className={
                             clsx(`max-lg:text-[14px] relative shrink-0 rounded-[50px] w-[74px]  border-[1px] border-[#D4D4D4]  text-[#116466] font-normal text-[18px] leading-[25px] flex justify-center items-center`,
                             {
-                                ['border-none bg-[#116466] text-[white]']: dateFilter === i
+                                ['border-none bg-[#116466] text-[white]']: dateFilter?.[i].select === true
                             }
                         )}>
-                            <button onClick={() => setDateFilter(i)} className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
+                            <button onClick={() => handleClick(i)} className="relative h-full w-full cursor-pointer p-[8px] py-[8px]">
                                 28.01
                             </button> 
                         </li>

@@ -15,15 +15,22 @@ import { FilterGender } from "./FilterGender";
 import { FilterPrice } from "./FilterPrice";
 import { FilterDate } from "./FilterDate";
 import { FilterTime } from "./FilterTime";
+import { findByGender, findByPrice, findByRequests } from "@/redux/slices/filter";
 
 export const Filter = () => {
     const [isShow, setShow] = useState(true);
     const isOpenType = useSelector<ModalState>(state => state.modal.isOpenType) as string
     const isOpen = useSelector<ModalState>(state => state.modal.isOpen) as boolean
 
-    const [filterData,setFilterData] = useState() as any;
+    const [filterData, setFilterData] = useState<string[]>([]) as any;
+    const [filterPrice, setFilterPrice] = useState<string[]>([]);
+    const [filterRequest, setFilterRequest] = useState<string[]>([]);
+    // const [filterTime, setFilterTime] = useState<string[]>([]);
+    // const [filterDate, setFilterDate] = useState<string[]>([]);
+    const [filterGender, setFilterGender] = useState<string[]>([]);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
     return (
         <>
             <div className="w-[100%] bg-[#FFFFFF] rounded-[20px] p-[20px]">
@@ -53,28 +60,30 @@ export const Filter = () => {
                 {
                     isShow && <>
                     <div className="w-full mt-[20px]">
-                        <FilterRequest  type="FilterRequest" callback={ () => {
+                        <FilterRequest type="FilterRequest" callback={ () => {
                             dispatch(close());
                             dispatch(openNext('Contact'));
                         }}
-                        onSubmit={(data) => {
-                            setFilterData(data)
-                            console.log()
+                        onSubmit={(data: string[]) => {
+                            setFilterRequest(data)
+                            dispatch(findByRequests(data));
                         }}
                         />        
                         <Select onOpenChange={() => {
                                 dispatch(open())
                                 dispatch(openNext('FilterRequest'));
                             }} open={isOpen && isOpenType === 'FilterRequest'}>
-                            <SelectTrigger className="w-full min-h-[65px] font-normal text-[18px] leading-[25px]">
+                            <SelectTrigger className="w-full min-h-[65px] font-normal border-none bg-[#FAFAFA] text-[18px] leading-[25px]">
                                 <SelectValue placeholder="Выберите пол хранителя" />
                             </SelectTrigger>
                         </Select>
-                        {
-                            filterData?.items?.map((item: any,i: number) => <div key={i}>
-                                {
-                                    item
-                                }
+                        {   
+                            filterRequest?.map((item: any, i: number) => <div key={i}>
+                                <p>
+                                    {
+                                        item.label
+                                    }
+                                </p>      
                             </div>)
                         }
                     </div>
@@ -82,93 +91,76 @@ export const Filter = () => {
                     <div className="w-full mt-[20px]">
                         <FilterGender type="FilterGender" callback={ () => {
                             dispatch(close());
-                            dispatch(openNext('Contact'));
                         }}
-                        onSubmit={(data) => {
-                            setFilterData(data)
-                            console.log()
+                        onSubmit={(data: string[]) => {
+                            setFilterGender(data)
+                            dispatch(findByGender(data))
                         }}
                         />        
                         <Select onOpenChange={() => {
                                 dispatch(open())
                                 dispatch(openNext('FilterGender'));
-                               
                             }} open={isOpen && isOpenType === 'FilterGender'}>
-                            <SelectTrigger className="w-full min-h-[65px] font-normal text-[18px] leading-[25px]">
+                            <SelectTrigger className="w-full min-h-[65px] font-normal border-none bg-[#FAFAFA] text-[18px] leading-[25px]">
                                 <SelectValue placeholder="Выберите запросы" />
                             </SelectTrigger>
                         </Select>
                         {
-                            filterData?.items?.map((item: any,i : number) => <div key={i}>
-                                {
-                                    item
-                                }
-                            </div>)
+                            filterGender    
                         }
                     </div>
 
                     <div className="w-full mt-[20px]">
-                        <FilterPrice type="FilterPrice" callback={ () => {
+                        <FilterPrice type="FilterPrice" 
+                        callback={ () => {
                             dispatch(close());
-                            dispatch(openNext('Contact'));
                         }}
-                        onSubmit={(data) => {
-                            setFilterData(data)
-                            console.log()
+                        onSubmit={(data: string[]) => {
+                            dispatch(findByPrice(data))
+                            setFilterPrice(data)
                         }}
                         />        
                         <Select onOpenChange={() => {
                                 dispatch(open())
-                                dispatch(openNext('FilterPrice'));
-                               
+                                dispatch(openNext('FilterPrice'));          
                             }} open={isOpen && isOpenType === 'FilterPrice'}>
-                            <SelectTrigger className="w-full min-h-[65px] font-normal text-[18px] leading-[25px]">
-                                <SelectValue placeholder="Выберите основной подход" />
-                            </SelectTrigger>
-                        </Select>
-                        {
-                            filterData?.items?.map((item: any,i : any) => <div key={i}>
-                                {
-                                    item
-                                }
-                            </div>)
-                        }
-                    </div>
-
-                    <div className="w-full mt-[20px]">
-                        <FilterPrice type="FilterPrice" callback={ () => {
-                            dispatch(close());
-                            dispatch(openNext('Contact'));
-                        }}
-                        onSubmit={(data) => {
-                            setFilterData(data)
-                            console.log()
-                        }}
-                        />        
-                        <Select onOpenChange={() => {
-                                dispatch(open())
-                                dispatch(openNext('FilterPrice'));
-                               
-                            }} open={isOpen && isOpenType === 'FilterPrice'}>
-                            <SelectTrigger className="w-full min-h-[65px] font-normal text-[18px] leading-[25px]">
+                            <SelectTrigger className="w-full min-h-[65px] font-normal border-none bg-[#FAFAFA] text-[18px] leading-[25px]">
                                 <SelectValue placeholder="Выберите стоимость" />
                             </SelectTrigger>
                         </Select>
                         {
-                            filterData?.items?.map((item: any,i : number) => <div key={i}>
-                                {
-                                    item
-                                }
-                            </div>)
+                            filterPrice
                         }
                     </div>
+
+                    {/* <div className="w-full mt-[20px]">
+                        <FilterPrice type="FilterPrice" callback={ () => {
+                            dispatch(close());
+                        }}
+                        onSubmit={(data: string[]) => {
+                            setFilterPrice(data)
+                            console.log(data)
+                        }}
+                        />        
+                        <Select onOpenChange={() => {
+                                dispatch(open())
+                                dispatch(openNext('FilterPrice'));
+                               
+                            }} open={isOpen && isOpenType === 'FilterPrice'}>
+                            <SelectTrigger className="w-full min-h-[65px] font-normal border-none bg-[#FAFAFA] text-[18px] leading-[25px]">
+                                <SelectValue placeholder="Выберите стоимость" />
+                            </SelectTrigger>
+                        </Select>
+                        {
+                            filterPrice
+                        }
+                    </div> */}
 
                     <div className="w-full mt-[20px]">
                         <FilterDate type="FilterDate" callback={ () => {
                             dispatch(close());
-                            dispatch(openNext('Contact'));
                         }}
-                        onSubmit={(data) => {
+                        onSubmit={(data:string[]) => {
                             setFilterData(data)
                             console.log()
                         }}
@@ -178,7 +170,7 @@ export const Filter = () => {
                                 dispatch(openNext('FilterDate'));
                                
                             }} open={isOpen && isOpenType === 'FilterDate'}>
-                            <SelectTrigger className="w-full min-h-[65px] font-normal text-[18px] leading-[25px]">
+                            <SelectTrigger className="w-full min-h-[65px] font-normal border-none bg-[#FAFAFA] text-[18px] leading-[25px]">
                                 <SelectValue placeholder="Выберите дату сессии" />
                             </SelectTrigger>
                         </Select>
@@ -194,9 +186,8 @@ export const Filter = () => {
                     <div className="w-full mt-[20px]">
                         <FilterTime type="FilterTime" callback={ () => {
                             dispatch(close());
-                            dispatch(openNext('FilterTime'));
                         }}
-                        onSubmit={(data) => {
+                        onSubmit={(data:string[]) => {
                             setFilterData(data)
                             console.log()
                         }}

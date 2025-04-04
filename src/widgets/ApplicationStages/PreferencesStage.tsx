@@ -3,6 +3,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
 import { toNextStage } from '@/redux/slices/application_form';
+import { fill_custom_preferences, fill_preferences } from '@/redux/slices/application_form_data';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -12,50 +13,59 @@ import { z } from 'zod'
 const PreferencesStage = () => {
     const dispatch = useDispatch();
 
-        const request = [
+    const preferences = [
         {
-          id: "recents",
+          id: "preferences",
           label: "Опыт семейной жизни, собственные дети",
         },
         {
-            id: "recents1",
+            id: "preferences1",
             label: "Опыт семейной жизни, собственные дети",
         },
         {
-            id: "recents2",
+            id: "preferences2",
             label: "Опыт семейной жизни, собственные дети",
         },
         {
-            id: "recents3",
+            id: "preferences3",
             label: "Опыт семейной жизни, собственные дети",
         },
         {
-            id: "recents4",
+            id: "preferences4",
             label: "Опыт семейной жизни, собственные дети",
         },
+
     ] as const
 
     const FormSchema = z.object({
-        request: z.array(z.string())
+        preferences: z.array(z.string()),
+        customPreferences: z.string(),
     });
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
-            request: [
+            preferences: [
 
             ],
+            customPreferences: '',
         }
     })
-    // function handleSubmit() {
-    //     dispatch(toNextStage('gender_psychologist')) 
-    //     // dispatch(fill_username(data.request))
-    // }
+
     function handleSubmit(data: z.infer<typeof FormSchema>) {
-        console.log(data);
-        
         dispatch(toNextStage('gender_psychologist')) 
-        // dispatch(fill_username(data.request))
+
+        const result = []
+
+
+        for (let index = 0; index < data.preferences.length; index++) {
+            const findElements = preferences.find(item => item.id === data.preferences[index])
+            result.push(findElements?.label);
+        }
+
+        dispatch(fill_preferences(result))
+
+        dispatch(fill_custom_preferences(data.customPreferences))
     }
 
     return (
@@ -64,8 +74,8 @@ const PreferencesStage = () => {
                 <form onSubmit={form.handleSubmit(handleSubmit)} className="mt-[20px] border-[#D4D4D4] w-full flex flex-col">
                     <FormField
                         control={form.control}
-                        name="request"
-                        render={({  }) => (
+                        name="preferences"
+                        render={({ field }) => (
                             <div className='grow '>
                                 <FormItem className='grow p-[25px] max-h-[320px] max-lg:max-h-none max-lg:p-[15px] border-[1px] rounded-[25px]  '>
                                     <FormLabel className='max-lg:text-[16px] max-lg:leading-[22px] font-semibold text-[20px] leading-[27px]'>Что вам важно в психологе?</FormLabel>
@@ -74,12 +84,12 @@ const PreferencesStage = () => {
                                     </FormDescription>
                                     <div className='flex justify-between mt-[25px] max-lg:flex-col  max-h-[150px] max-lg:max-h-none overflow-hidden'>
                                         <div className='flex flex-col gap-[15px] w-full max-h-[150px]  max-lg:max-h-[200px] pb-[50px] overflow-x-auto'>
-                                            {request.map((item) => (
+                                            {preferences.map((item) => (
                                                 <FormField
                                                 key={item.id}
                                                 control={form.control}
-                                                name="request"
-                                                render={({ field } : any) => {
+                                                name="preferences"
+                                                render={({  } : any) => {
                                                     return (
                                                     <FormItem
                                                         key={item.id}
@@ -110,12 +120,18 @@ const PreferencesStage = () => {
                                             ))}
                                         </div>
                                         <div>
-                                        <FormControl>
-                                            <Textarea
-                                            placeholder="Введите свой вариант ответа"
-                                            className="w-[361px] bg-[#FAFAFA] border-none h-[190px] min-h-[190px] max-h-[190px] max-lg:mt-[25px] max-lg:w-full"
-                                            />
-                                        </FormControl>
+                                        <FormField
+                                            control={form.control}
+                                            name="customPreferences"
+                                            render={({ field }) => (
+                                            <FormControl>
+                                                <Textarea
+                                                {...field} 
+                                                placeholder="Введите свой вариант ответа"
+                                                className="w-[361px] bg-[#FAFAFA] border-none h-[190px] min-h-[190px] max-h-[190px] max-lg:mt-[25px] max-lg:w-full"
+                                                />
+                                            </FormControl>
+                                            )}/>
                                         </div>
                                     </div>
                                 </FormItem>

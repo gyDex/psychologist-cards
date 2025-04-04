@@ -2,7 +2,7 @@
 import { Form, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { toNextStage } from '@/redux/slices/application_form';
-import { fill_username } from '@/redux/slices/application_form_data';
+import { fill_requests } from '@/redux/slices/application_form_data';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -25,7 +25,7 @@ const RequestStage = () => {
 
     function handleSubmit(data: z.infer<typeof FormSchema>) {
         dispatch(toNextStage('condition')) 
-        dispatch(fill_username(data.request))
+        dispatch(fill_requests(data.request))
     }
 
     return (

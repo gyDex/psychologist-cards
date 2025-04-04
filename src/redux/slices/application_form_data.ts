@@ -1,18 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const makeTicketId = (length: number) => {
+    let result = "";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        counter += 1;
+    }
+    return result;
+}
+
 const applicationFormDataSlice = createSlice({
     name: 'applicationForm',
 
     initialState:{
         username: '',
-        age: '',
+        age: 0,
         gender_user: '',
         preferences: [],
         gender_psychologist: '',
+        actions: [],
+        conditions: [],
+        diseasesPsychologist: [],
+        diseases:[],
+        requests: [],
+        promocode:'',
+        slots:[],
+        custom_preferences: '',
 
+        ticketID: ''
     },
     
     reducers: {
+        generateTicketId(state) {
+            const ticketId = makeTicketId(7);
+            state.ticketID =  ticketId;
+        },
         fill_username(state, action) {
             state.username = action.payload;
         },
@@ -25,12 +50,51 @@ const applicationFormDataSlice = createSlice({
         fill_preferences(state, action) {
             state.preferences = action.payload;
         },
+        fill_actions(state, action) {
+            state.actions = action.payload;
+        },
+        fill_promocode(state, action) {
+            state.promocode = action.payload;
+        },
+        fill_diseases(state, action) {
+            state.diseases = action.payload;
+        },
+        fill_diseasesPsychologist(state, action) {
+            state.diseasesPsychologist = action.payload;
+        },
+        fill_conditions(state, action) {
+            state.conditions = action.payload;
+        },
+        fill_requests(state, action) {
+            state.requests = action.payload;
+        },
+        fill_gender_psychologist(state, action) {
+            state.gender_psychologist = action.payload;
+        },
+        fill_slots(state,action) {
+            state.slots = action.payload;
+        },
+        fill_custom_preferences(state,action) {
+            state.custom_preferences = action.payload;
+        }
     },
 });
 
 
-export const  { fill_username, fill_age, fill_gender, fill_preferences  } = applicationFormDataSlice.actions;
+export const  { 
+                fill_username, 
+                fill_age, 
+                fill_gender, 
+                fill_preferences, 
+                fill_actions,
+                fill_gender_psychologist, 
+                fill_conditions,fill_diseases,
+                fill_diseasesPsychologist,
+                fill_promocode,
+                fill_requests, 
+                fill_slots,  
+                fill_custom_preferences,
 
-// export const application_stage = ( state: ModalState ) => state.applicationFormData.username;
+            } = applicationFormDataSlice.actions;
 
 export default applicationFormDataSlice.reducer;

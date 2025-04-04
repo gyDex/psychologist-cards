@@ -23,17 +23,23 @@ const FormSchema = z.object({
   }),
 })
 
+const sex_data = {
+    ['male']: 'Мужчина',
+    ['female']: 'Женщина',
+} 
+
 export const GenderStageApplication = () => {
+
+
     const dispatch = useDispatch();
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     })
 
-
     function handleSubmit(data: z.infer<typeof FormSchema>) {
         dispatch(toNextStage('preferences')) 
-        dispatch(fill_gender(data.gender))
+        dispatch(fill_gender(sex_data[data.gender]))
     }
 
   return (

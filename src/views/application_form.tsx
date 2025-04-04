@@ -22,7 +22,7 @@ export const ApplicationForm = () => {
     const application_stage = useSelector<ModalState>( state => state.applicationForm.application_stage) as string
 
     return (
-        <>
+        <>  
             <div className="w-full   min-lg:max-w-[960px] min-lg:rounded-[30px] min-h-[100svh] bg-[white]  flex flex-col">
                 {
                     application_stage === 'gratitude' && <FinalStage /> 
@@ -79,69 +79,47 @@ export const ApplicationForm = () => {
                             ["psychologist", "diseases_psychologist"].includes(application_stage) && <hr className="w-full border-t-[2px] border-dotted my-[20px]  #000;" />
                         }
                     </div>
-            }
-                        {/* {
-                                application_stage !== 'psychologist' && <PsychologistStage />
-                        } */}
-                        {/* {
-                            application_stage === 'name'  &&   <NameStageApplication />             
-                        } */}
-                        {/* {
-                            application_stage !== 'psychologist' && <DiseasesPsychologistStage />
-                        }  */}
-                        {/* {
-                            application_stage !== 'info' && <InfoStage />
-                        }  */}
-                        {/* {
-                            application_stage !== 'psychologist' && <FinalStage />
-                        }  */}
-                        {/* {
-                            application_stage === 'psychologist' && <PsychologistStage />
-                        }  */}
-                        {
-                            application_stage === 'diseases_psychologist' && <DiseasesPsychologistStage />
-                        } 
-
-                        {
-                            application_stage === 'psychologist' && <PsychologistStage />
-                        } 
-
-
+                    }
+                    {
+                        application_stage === 'diseases_psychologist' && <DiseasesPsychologistStage />
+                    } 
+                    {
+                        application_stage === 'psychologist' && <PsychologistStage />
+                    } 
                     {
                         application_stage !== 'psychologist' &&            
                         <>             
-                        {/* <hr className="w-full border-t-[2px] border-dotted my-[30px]  #000;" /> */}
-                        {
-                            application_stage === 'name'  &&   <NameStageApplication />             
-                        }
-                        {
-                            application_stage === 'age' && <AgeStageApplication />
-                        }
-                        {
-                            application_stage === 'gender' && <GenderStageApplication />
-                        } 
-                        {
-                            application_stage === 'preferences' && <PreferencesStage />
-                        }
-                        {
-                            application_stage === 'gender_psychologist' && <GenderStagePsychologist />
-                        } 
-                        {
-                            application_stage === 'request' && <RequestStage />
-                        }
-                        {
-                            application_stage === 'condition' && <ConditionStage />
-                        }
-                        {
-                            application_stage === 'action' && <ActionStage />
-                        }
-                        {
-                            application_stage === 'diseases' && <DiseasesStage />
-                        } 
-                        {
-                            application_stage === 'promocode' && <PromocodeStage />
-                        }
-                    </>
+                            {
+                                application_stage === 'name'  &&   <NameStageApplication />             
+                            }
+                            {
+                                application_stage === 'age' && <AgeStageApplication />
+                            }
+                            {
+                                application_stage === 'gender' && <GenderStageApplication />
+                            } 
+                            {
+                                application_stage === 'preferences' && <PreferencesStage />
+                            }
+                            {
+                                application_stage === 'gender_psychologist' && <GenderStagePsychologist />
+                            } 
+                            {
+                                application_stage === 'request' && <RequestStage />
+                            }
+                            {
+                                application_stage === 'condition' && <ConditionStage />
+                            }
+                            {
+                                application_stage === 'action' && <ActionStage />
+                            }
+                            {
+                                application_stage === 'diseases' && <DiseasesStage />
+                            } 
+                            {
+                                application_stage === 'promocode' && <PromocodeStage />
+                            }
+                        </>
                     }         
             </div>
         </>

@@ -8,8 +8,9 @@ const filterSlice = createSlice({
         gender: '',
         requests: [],
         basic_approach: '',
-        date: '',
-        price: 1000,
+        dates: [],
+        times: [],
+        price: 0,
     },
     
     reducers: {
@@ -22,18 +23,25 @@ const filterSlice = createSlice({
         findByBasicApproach(state, action) {
             state.basic_approach = action.payload;
         },
-        findByPrice(state,action) {
+        findByPrice(state,action) {          
             state.price = action.payload;
         },
-        findByDate(state,action) {
-            state.date = action.payload
+        findByDates(state,action) {
+            state.dates = action.payload
+        },
+        findByTimes(state,action) {
+            state.times = action.payload
         }
     },
 });
 
 
-export const  { findByGender, findByBasicApproach, findByDate, findByPrice, findByRequests } = filterSlice.actions;
+export const  { findByGender, findByBasicApproach,findByTimes, findByDates, findByPrice, findByRequests } = filterSlice.actions;
 
 export const price = ( state: ModalState ) => state.filter.price;
+export const gender = ( state: ModalState ) => state.filter.gender;
+export const requests = ( state: ModalState ) => state.filter.requests;
+export const times = ( state: ModalState ) => state.filter.times;
+export const dates = ( state: ModalState ) => state.filter.dates;
 
 export default filterSlice.reducer;

@@ -1,5 +1,4 @@
 
-import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DialogClose, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ModalWindow } from '@/widgets/ModalWindow/ModalWindow';
@@ -16,6 +15,7 @@ import { z } from "zod";
 import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod"
 import Image from 'next/image';
+import { useCallback, useEffect } from 'react';
 type Props = {
     callback: () => void;
     onSubmit: (data: any) => void;
@@ -25,35 +25,31 @@ type Props = {
 export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
     const items = [
         {
-          id: "recents",
-          label: "Есть диагностированное психическое заболевание",
-        },
-        {
-          id: "home",
+          id: "query",
           label: "Есть диагностированное психиатрическое заболевание",
         },
         {
-          id: "applications",
+          id: "query2",
           label: "Принимаете ли вы медикаменты по назначению психиатра",
         },
         {
-          id: "desktop",
+          id: "query3",
           label: "Физические недомогания: постоянная усталость, бессонница, проблемы с питанием, проблемы с памятью, психосоматические реакции",
         },
         {
-          id: "downloads",
+          id: "query4",
           label: "Подавленное настроение, прокрастинация, ощущение бессмысленности существования, опустошенность, отверженность",
         },
         {
-          id: "documents",
+          id: "query5",
           label: "Странные, кошмарные, повторяющиеся сны",
         },
         {
-            id: "documents2",
+            id: "query6",
             label: "Страх будущего и неопределенности",
         },
         {
-            id: "documents3",
+            id: "query7",
             label: "Беременность, родительство, послеродовая депрессия, проблемы в отношениях с детьми до 18 лет",
         },
     ] as const
@@ -62,18 +58,33 @@ export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
         items: z.array(z.string()),
     })
 
-    const form = useForm<z.infer<typeof FormSchema>>({
+    const { handleSubmit, watch, ...form } = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
-        defaultValues: {
-        items: ["recents", "home"],
-        },
+            defaultValues: {
+                items: ['query']
+            },
     })
 
-    function handleSubmit(data: z.infer<typeof FormSchema>) { 
-        onSubmit(data)
-    }
-     
+    const handleSubmitData = useCallback((data: z.infer<typeof FormSchema>) => {
+        const result: any = []
+        for (let index = 0; index < data.items.length; index++) {
+            const findItems = items.find(item => item.id === data.items[index]);  
+            result.push(findItems) 
+        }
 
+        console.log(result)
+
+        return result;
+    },[])
+
+    const handleCheckboxCheck = watch('items');
+
+    useEffect(() => {
+        const filterData = handleSubmitData({items: handleCheckboxCheck})
+
+        onSubmit(filterData)
+    },[handleCheckboxCheck])
+    
     return (
         <ModalWindow className='max-[425px]:h-[400px]'  closeButton={false} type={type}>
             <DialogHeader className="flex flex-row items-center">
@@ -83,8 +94,8 @@ export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
                 </DialogClose>
             </DialogHeader>
 
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col gap-[20px]">
+            <Form {...form} watch={watch} handleSubmit={handleSubmit}>
+                <form  className="flex flex-col gap-[20px]">
                     <FormField
                     control={form.control}
                     name="items"
@@ -106,13 +117,12 @@ export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
                                         className='h-[30px] w-[30px]'
                                         checked={field.value?.includes(item.id)}
                                         onCheckedChange={(checked) => {
-                                        return checked
-                                            ? field.onChange([...field.value, item.id])
-                                            : field.onChange(
+                                            return checked
+                                            ?  field.onChange([...field.value, item.id])
+                                            :  field.onChange(
                                                 field.value?.filter(
                                                 (value) => value !== item.id
-                                                )
-                                            )
+                                                ))
                                         }}
                                     />
                                     </FormControl>
@@ -128,7 +138,6 @@ export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
                         </FormItem>
                     )}
                     />
-                    <Button type="submit">Submit</Button>
                 </form>
             </Form>
         </ModalWindow>

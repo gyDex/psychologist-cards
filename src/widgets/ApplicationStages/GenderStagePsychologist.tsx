@@ -15,6 +15,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useDispatch } from "react-redux"
 import { toNextStage } from "@/redux/slices/application_form"
+import { fill_gender_psychologist } from "@/redux/slices/application_form_data"
 
 const FormSchema = z.object({
     gender: z.enum(["male", "female", 'nothing'], {
@@ -22,19 +23,25 @@ const FormSchema = z.object({
   }),
 })
 
+const sex_data = {
+    ['male']: 'Мужчина',
+    ['female']: 'Женщина',
+    ['nothing']: 'Не имеет значения',
+} 
+
 export const GenderStagePsychologist = () => {
+
+
     const dispatch = useDispatch();
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     })
-    function handleSubmit() {
-        dispatch(toNextStage('request')) 
-    }
 
-    // function handleSubmit(data: z.infer<typeof FormSchema>) {
-    //     dispatch(toNextStage('request')) 
-    // }
+    function handleSubmit(data: z.infer<typeof FormSchema>) {
+        dispatch(toNextStage('request')) 
+        dispatch(fill_gender_psychologist(sex_data[data.gender]))
+    }
 
   return (
     <div className='px-[50px] max-lg:px-[20px]  flex w-full grow'>
