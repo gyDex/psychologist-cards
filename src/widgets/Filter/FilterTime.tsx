@@ -8,7 +8,6 @@ import clsx from 'clsx';
 import axios from 'axios'
 import { ModalState } from '@/redux/store';
 import { fillDatesPsychologists, fillHourAndDate } from '@/redux/slices/filter';
-import { getTimeDifference } from '@/features/utils';
 
 type Props = {
     callback: () => void;
@@ -27,7 +26,7 @@ export const FilterTime:React.FC<Props> = ({ type, onSubmit }) => {
 
     const [ timeFilter, setTimeFilter ] = useState<FilterSelectButtonDate[]>();
 
-    const psychologists = useSelector<ModalState>(state => state.filter.data_name_psychologist) as [];
+    const psychologists = useSelector<ModalState>(state => state.filter.data_name_psychologist) as any;
 
     const [ datePsychologists, setDatePsychologists ] = useState<any[]>();
 
@@ -56,8 +55,7 @@ export const FilterTime:React.FC<Props> = ({ type, onSubmit }) => {
         '21:00',
         '22:00',
         '23:00',
-        
-    ] as const;
+    ]
 
     const handleClick = useCallback((findIndex: number = 0) => {
         setTimeFilter((prev: any) => prev?.map((item: any, i: any) => {
@@ -79,10 +77,8 @@ export const FilterTime:React.FC<Props> = ({ type, onSubmit }) => {
     },[])
 
     useEffect(() => {
-        const timeDifference = getTimeDifference();
-
-        for (let index = 0; index < [psychologists]?.length; index++) {
-            const apiUrl = `https://n8n-v2.hrani.live/webhook/get-aggregated-schedule-by-psychologist-test-contur?utm_psy=${psychologists[index]}&userTimeOffsetMsk=${timeDifference}`;
+        for (let index = 0; index < [psychologists].length; index++) {
+            const apiUrl = `https://n8n-v2.hrani.live/webhook/get-aggregated-schedule-by-psychologist-test-contur?utm_psy=${psychologists[index]}&userTimeOffsetMsk=-2`;
             
             axios.get(apiUrl).then((resp) => {
                 const allData = resp.data;
@@ -103,8 +99,16 @@ export const FilterTime:React.FC<Props> = ({ type, onSubmit }) => {
 
         const notDublicate = [] as any;
 
+        // datePsychologists?.forEach(element => {
+        //     console.log(element?.slots);
+        //     [element?.slots].forEach(item => {
+        //         if(!notDublicate.includes(item)) {
+        //             notDublicate.push(item);         
+        //         }
+        //     })
+        // }); 
         const result = [] as any;
-        [psychologists]?.forEach((element1 : any ) => {
+        psychologists?.forEach((element1 : any ) => {
             datePsychologists?.map((item) => {
                 hours.forEach((hour) => {
                     [item.slots[hour]].forEach((element: any) => {
