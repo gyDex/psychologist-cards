@@ -15,19 +15,20 @@ import { FilterGender } from "./FilterGender";
 import { FilterPrice } from "./FilterPrice";
 import { FilterDate } from "./FilterDate";
 import { FilterTime } from "./FilterTime";
-import { findByGender, findByPrice, findByRequests } from "@/redux/slices/filter";
+import { findByDates, findByGender, findByMental_Illness, findByMental_Illness2, findByPrice, findByRequests, findByTimes, findByVideo } from "@/redux/slices/filter";
 
 export const Filter = () => {
     const [isShow, setShow] = useState(true);
     const isOpenType = useSelector<ModalState>(state => state.modal.isOpenType) as string
     const isOpen = useSelector<ModalState>(state => state.modal.isOpen) as boolean
 
-    const [filterData, setFilterData] = useState<string[]>([]) as any;
+    const [filterData, setFilterDate] = useState<string[]>([]) as any;
     const [filterPrice, setFilterPrice] = useState<string[]>([]);
     const [filterRequest, setFilterRequest] = useState<string[]>([]);
-    // const [filterTime, setFilterTime] = useState<string[]>([]);
-    // const [filterDate, setFilterDate] = useState<string[]>([]);
+    const [filterTime, setFilterTime] = useState<string[]>([]);
     const [filterGender, setFilterGender] = useState<string[]>([]);
+
+    const [isVideoFilter, setVideoFilter] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -74,7 +75,7 @@ export const Filter = () => {
                                 dispatch(openNext('FilterRequest'));
                             }} open={isOpen && isOpenType === 'FilterRequest'}>
                             <SelectTrigger className="w-full min-h-[65px] font-normal border-none bg-[#FAFAFA] text-[18px] leading-[25px]">
-                                <SelectValue placeholder="Выберите пол хранителя" />
+                                <SelectValue placeholder="Выберите запросы" />
                             </SelectTrigger>
                         </Select>
                         {   
@@ -102,7 +103,7 @@ export const Filter = () => {
                                 dispatch(openNext('FilterGender'));
                             }} open={isOpen && isOpenType === 'FilterGender'}>
                             <SelectTrigger className="w-full min-h-[65px] font-normal border-none bg-[#FAFAFA] text-[18px] leading-[25px]">
-                                <SelectValue placeholder="Выберите запросы" />
+                                <SelectValue placeholder="Выберите пол хранителя" />
                             </SelectTrigger>
                         </Select>
                         {
@@ -133,36 +134,13 @@ export const Filter = () => {
                         }
                     </div>
 
-                    {/* <div className="w-full mt-[20px]">
-                        <FilterPrice type="FilterPrice" callback={ () => {
-                            dispatch(close());
-                        }}
-                        onSubmit={(data: string[]) => {
-                            setFilterPrice(data)
-                            console.log(data)
-                        }}
-                        />        
-                        <Select onOpenChange={() => {
-                                dispatch(open())
-                                dispatch(openNext('FilterPrice'));
-                               
-                            }} open={isOpen && isOpenType === 'FilterPrice'}>
-                            <SelectTrigger className="w-full min-h-[65px] font-normal border-none bg-[#FAFAFA] text-[18px] leading-[25px]">
-                                <SelectValue placeholder="Выберите стоимость" />
-                            </SelectTrigger>
-                        </Select>
-                        {
-                            filterPrice
-                        }
-                    </div> */}
-
                     <div className="w-full mt-[20px]">
                         <FilterDate type="FilterDate" callback={ () => {
                             dispatch(close());
                         }}
                         onSubmit={(data:string[]) => {
-                            setFilterData(data)
-                            console.log()
+                            setFilterDate(data)
+                            dispatch(findByDates(data))
                         }}
                         />        
                         <Select onOpenChange={() => {
@@ -188,14 +166,18 @@ export const Filter = () => {
                             dispatch(close());
                         }}
                         onSubmit={(data:string[]) => {
-                            setFilterData(data)
-                            console.log()
+                            setFilterTime(data)
+                            dispatch(findByTimes(data))
                         }}
                         />        
                     </div>
 
                     <div className="flex items-center gap-[15px] mt-[30px]">
-                        <Checkbox className="w-[30px] h-[30px]" id="video" />
+                        <Checkbox className="w-[30px] h-[30px]" id="video"
+                            onClickCapture={() => {
+                                dispatch(findByVideo())
+                            }}
+                        />
                         <label
                             htmlFor="video"
                             className="font-normal text-[16px] leading-[22px]"
@@ -205,7 +187,11 @@ export const Filter = () => {
                     </div>
 
                     <div className="flex items-center gap-[15px] mt-[15px]">
-                        <Checkbox className="w-[30px] h-[30px]" id="mental_illnesses " />
+                        <Checkbox className="w-[30px] h-[30px]" id="mental_illnesses " 
+                            onClickCapture={() => {
+                                dispatch(findByMental_Illness())
+                            }}
+                        />
                         <label
                             htmlFor="mental_illnesses"
                             className="font-normal text-[16px] leading-[22px]"
@@ -215,7 +201,11 @@ export const Filter = () => {
                     </div>
 
                     <div className="flex items-center gap-[15px] mt-[15px]">
-                        <Checkbox className="w-[30px] h-[30px]" id="mental_illnesses2" />
+                        <Checkbox className="w-[30px] h-[30px]" id="mental_illnesses2"
+                            onClickCapture={() => {
+                                dispatch(findByMental_Illness2())
+                            }}
+                        />
                         <label
                             htmlFor="mental_illnesses2"
                             className="font-normal text-[16px] leading-[22px]"

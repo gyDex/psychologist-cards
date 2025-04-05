@@ -11,6 +11,17 @@ const filterSlice = createSlice({
         dates: [],
         times: [],
         price: 0,
+
+        isVideo: false,
+        
+        data_name_psychologist: [],
+
+        dates_psychologists: [],
+
+        hour_dates: [],
+
+        IsMental_Illness: false,
+        IsMental_Illness2: false,
     },
     
     reducers: {
@@ -31,12 +42,40 @@ const filterSlice = createSlice({
         },
         findByTimes(state,action) {
             state.times = action.payload
-        }
+        },
+        fillDataNamePsycho(state,action) {
+            state.data_name_psychologist = action.payload;
+        },
+        fillDatesPsychologists(state,action) {
+            state.dates_psychologists = action.payload;
+        },
+
+        fillHourAndDate(state,action) {
+            state.hour_dates = action.payload;
+        },
+
+        findByVideo(state) {
+            state.isVideo = !state.isVideo;
+        },
+        
+        findByMental_Illness(state) {
+            state.IsMental_Illness = !state.IsMental_Illness;
+        },
+        findByMental_Illness2(state) {
+            state.IsMental_Illness2 = !state.IsMental_Illness2;
+        },
     },
 });
 
 
-export const  { findByGender, findByBasicApproach,findByTimes, findByDates, findByPrice, findByRequests } = filterSlice.actions;
+export const  { findByGender,findByMental_Illness,
+    findByMental_Illness2,
+    findByBasicApproach,findByTimes, findByDates, findByPrice, findByRequests,
+    fillDataNamePsycho,
+    fillDatesPsychologists,
+    fillHourAndDate,
+    findByVideo,
+} = filterSlice.actions;
 
 export const price = ( state: ModalState ) => state.filter.price;
 export const gender = ( state: ModalState ) => state.filter.gender;

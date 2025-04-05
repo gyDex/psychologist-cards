@@ -34,7 +34,6 @@ export const Card:React.FC<Props> = ({data}) => {
     }); 
 
     useEffect(() => {
-
         const timeOutID = setTimeout(() => {
             dispatch(open());
         },100)
@@ -42,7 +41,6 @@ export const Card:React.FC<Props> = ({data}) => {
         return () => {
             clearTimeout(timeOutID);
         };
-
     },[isOpenType])
 
     return (
@@ -85,15 +83,11 @@ export const Card:React.FC<Props> = ({data}) => {
                                     </span>
                                 </div>
 
-                                {/* grid-cols-[repeat(auto-fit,_minmax(125px,_1fr))]  */}
                                 <div className="w-full max-lg:mt-[20px]">
                                     <span className="text-[#9A9A9A] font-normal flex-col flex gap-[10px] text-[16px] leading-[22px] max-lg:text-[14px] w-full">
                                         Дополнительные подходы:
                                         <ul className="font-normal  leading-[25px] text-[18px]  max-lg:text-[14px] gap-[0px] gap-[10px] flex text-[#151515] mt-[5px]">
-                                            {
-                                                // data.additional_modals.map((item, i) => <>
-                                                //     <li className="flex w-fit gap-[5px]">{item} <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
-                                                // </>)                                           
+                                            {                                        
                                                 <li className="flex w-fit gap-[5px]">{data.additional_modals} <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} /></li>
                                             }
                                         </ul>

@@ -23,6 +23,7 @@ type Props = {
 }
 
 export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
+
     const items = [
         {
           id: "query",
@@ -57,7 +58,7 @@ export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
     const { handleSubmit, watch, ...form } = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
             defaultValues: {
-                items: ['query']
+                items: []
             },
     })
 
@@ -67,8 +68,6 @@ export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
             const findItems = items.find(item => item.id === data.items[index]);  
             result.push(findItems) 
         }
-
-        console.log(result)
 
         return result;
     },[])

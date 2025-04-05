@@ -2,12 +2,11 @@
 import { ModalState } from "@/redux/store";
 import { Card, Filter } from "@/widgets";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 import Error from "next/error";
 import { IPsychologist } from "@/entities/IPsychologist";
-
-
+import { fillDataNamePsycho } from "@/redux/slices/filter";
 
 export const Psychologist_cards = () => { 
     const filter = useSelector<ModalState>(state => state.filter) as any;
@@ -16,7 +15,7 @@ export const Psychologist_cards = () => {
 
     const [isLoading, setLoading] = useState(true);
 
-    
+    const dispatch = useDispatch();
 
     useEffect(() => {
         try
@@ -26,6 +25,9 @@ export const Psychologist_cards = () => {
 
             axios.get(apiUrl).then((resp) => {
                 const allPsychologist = resp.data;
+                dispatch(fillDataNamePsycho(allPsychologist.map((item: IPsychologist) => {
+                    return item.name
+                })))
                 setDataCard(allPsychologist);
             });
         }
@@ -43,6 +45,7 @@ export const Psychologist_cards = () => {
         {
             setLoading(true);
             const apiUrl = 'https://n8n-v2.hrani.live/webhook/get-filtered-psychologists-test-contur';
+
             console.log(filter)
             axios.get(apiUrl).then((resp) => {
                 const allPsychologist = resp.data;
@@ -57,62 +60,214 @@ export const Psychologist_cards = () => {
             setLoading(false)
         }
     },[filter]);
+    
 
+    //Метод фильтрации данных 
     const FilterData = async(data: any) => {
         const gender = filter.gender;
         const price = filter.price;
-        const requests = filter.requests;
-        // const basic_approach = filter.basic_approach;
-        // const dates = filter.dates;
-        // const times = filter.times;
+        let requests = filter.requests;
+        const dates = filter.dates;
+        const times = filter.times;
+        const hour_dates = filter.hour_dates;
+        const isVideo = filter.isVideo;
+        const mental_Illness = filter.IsMental_Illness;
+        const mental_Illness2 = filter.IsMental_Illness2;
 
+        
         let filterData = data;
-
-        if(gender !== 'none' && gender !== 'Не имеет значения'  && gender !== '' && gender !== null && gender !== undefined) {
-            filterData = filterData.find((item: any) => item.sex === gender);
-        }
-
-        if(filterData !== null && filterData !== undefined) {  
-            console.log(filterData)
+        console.log(filterData)
+        // Фильтрация по стоимости
+        if(filterData !== null && filterData !== undefined && price !== 1500) {  
             if (filterData.length > 1) {
-                filterData = filterData.find((item : any) => Number(item.min_session_price) >= price);
+                filterData = filterData.filter((item : any) => Number(item.min_session_price) <= price);
             }
-            else if ([filterData].length === 1) {
-                filterData = [filterData].find(item => Number(item.min_session_price) >= price);
-            }
+
+            console.log(filterData)
+            // else if ([filterData].length === 1) {
+            //     filterData = [filterData].filter(item => Number(item.min_session_price) < price);
+            // }
         }
 
-        if(filterData !== null && filterData !== undefined) {
-            for (let index = 0; index < filterData.length; index++) {
-                const works_with = filterData[index].works_with.split(';').map(function(item: any){
+        // Фильтрация по видео визитки 
+        if(filterData !== null && filterData !== undefined && isVideo) {  
+            var result = filterData.filter((item) => item.link_video !== null);
+            filterData = result;
+        }
+
+        // Фильтрация по пс.заболеваниям
+        // if(filterData !== null && filterData !== undefined) { 
+        //     let result = [];
+        //     if (mental_Illness) {
+        //         filterData.forEach(element => {
+        //             const works_with = element.works_with.split(';').map(function(item){
+        //                 return item.trimStart();
+        //             }); 
+        //             if (works_with.includes('Есть диагностированное психическое заболевание (РПП, СДВГ и др)')){
+        //                 result.push(element);
+        //             }                
+        //         })
+                
+        //         filterData = result;
+        //     }
+        //     if (mental_Illness === false) {
+        //         filterData.forEach(element => {
+        //             const works_with = element.works_with.split(';').map(function(item){
+        //                 return item.trimStart();
+        //             }); 
+        //             if (!works_with.includes('Есть диагностированное психическое заболевание (РПП, СДВГ и др)')){
+        //                 result.push(element);
+        //             }                
+        //         })
+                
+        //         filterData = result;
+        //     }
+        // }
+
+        // // // Фильтрация по пс.заболеваниям2
+        // if(filterData !== null && filterData !== undefined && mental_Illness2) { 
+        //     let result = [];
+        //     if (mental_Illness === true) {
+        //         filterData.forEach(element => {
+        //             const works_with = element.works_with.split(';').map(function(item){
+        //                 return item.trimStart();
+        //             }); 
+        //             if (works_with.includes('Есть диагностированное психиатрическое заболевание (ПРЛ, БАР, ПТСР и др)')){
+        //                 result.push(element);
+        //             }                
+        //         })
+        //     }
+        //     else {
+        //         filterData.forEach(element => {
+        //             const works_with = element.works_with.split(';').map(function(item){
+        //                 return item.trimStart();
+        //             }); 
+        //             if (!works_with.includes('Есть диагностированное психиатрическое заболевание (ПРЛ, БАР, ПТСР и др)')){
+        //                 result.push(element);
+        //             }                
+        //         })
+        //     }
+            
+        //     filterData = result;
+        // }
+
+        // Фильтрация по запросу
+        if(filterData !== null && filterData !== undefined && requests.length > 0) {
+            const result = []
+            requests = requests.map(function(item: any){
+                return item?.label;
+            })
+            for (let index = 0; index <= filterData.length - 1; index++) {
+                const queries = filterData[index].queries.split(';').map(function(item: any){
                     return item.trimStart();
                 });
-                for (let j = 0; j <= requests.length - 1; index++) {
-                    if(works_with.label.includes(requests[j]))
-                    {
-                        setDataCard([])
-                        return;
+
+                
+                console.log(filterData[index].queries.split(';')[0])
+                    console.log('queries',queries)
+                let isInclude = true;
+                for (let index = 0; index < requests.length; index++) {
+                    if(!queries.includes(requests[index])) {
+                        isInclude = false;
+                        break;
                     }
                 }
-            }
-        }
 
-        if (filterData !== null && filterData !== undefined) {
-
-            if(filterData.length > 1) {
-                setDataCard(filterData)
+                if(isInclude) {
+                    result.push(filterData[index]);
+                }              
             }
-            else if ([filterData].length === 1) {
-                setDataCard([filterData])
-                return;
-            }
-            else if([filterData].length === 0) {
+            if (result.length === 0) {
                 setDataCard([])
                 return;
             }
+            filterData = result;  
         }
-        else {
-            setDataCard([])
+
+
+        // Фильтрация по полу
+        if(gender !== 'none' && gender !== 'Не имеет значения'  && gender !== '' && gender !== null && gender !== undefined) {
+            filterData = filterData.filter((item: any) => item.sex === gender);       
+        }
+
+        // Фильтрация по дате и  часам 
+        if(filterData !== null && filterData !== undefined && dates.length > 0) {
+            const result = []
+            if (filterData != null && filterData != undefined) {
+                dates.forEach(element => {
+                    const persons = hour_dates.filter((item: any) => item.pretty_date === element.text)
+                    result.push(persons);
+                }); 
+            }
+    
+            const names = new Set();
+    
+            result.forEach((item) => {
+                item.forEach(element => {
+                    names.add(element.element1)
+                });
+            })
+
+            let data = filterData;
+
+            let newData = [] as any
+
+            names.forEach((res) => {
+                let findItem = data;
+                console.log(res)
+                findItem = data.find(item => item.name !== res);
+                if (findItem != undefined && findItem != null) {
+                    newData.push(findItem);
+                }
+            })
+
+            filterData = newData;
+        }
+
+        // Фильтрация по дате и  часам 
+        if(filterData !== null && filterData !== undefined && times.length > 0) {
+            const result = []
+            if (filterData != null && filterData != undefined) {
+                times.forEach(element => {
+                    console.log(hour_dates)
+                    const persons = hour_dates.filter((item: any) => item.hour === element.text)
+                    result.push(persons);
+                }); 
+            }
+    
+            const names = new Set();
+    
+            result.forEach((item) => {
+                item.forEach(element => {
+                    names.add(element.element1)
+                });
+            })
+
+            let data = filterData;
+
+            let newData = [] as any
+
+            names.forEach((res) => {
+                let findItem = data;
+                findItem = data.find(item => item.name !== res);
+                if (findItem != undefined && findItem != null) {
+                    newData.push(findItem);
+                }
+            })
+
+            filterData = newData;
+        }
+
+        if (filterData !== null && filterData !== undefined) {
+            if(filterData.length === 0) {
+                setDataCard([])
+                return;
+            }
+            if (Object.keys(dataCard)?.length === 1) {{
+                setDataCard(filterData)
+                return;
+            }}
+            setDataCard(filterData)
         }
     }
 
@@ -137,18 +292,21 @@ export const Psychologist_cards = () => {
             </aside>
 
             <main className="min-lg:max-w-[790px] w-full">
-                {
-                    dataCard?.length > 1 && dataCard?.map((item: IPsychologist, i) => 
+                <div className="flex flex-col gap-[20px]">
+                    {
+                        dataCard?.length > 1 && dataCard?.map((item: IPsychologist, i) => 
                         <Card key={i} data={item} />)                    
-                }
+                    }
+                </div>
                 {
-                    dataCard?.length === 1 && <Card data={dataCard[0]} />
-                }  
-                {
-                    dataCard.length === 0 && <h1>
+                    Object.keys(dataCard)?.length === 0 && <h1>
                         Ничего не найдено
                     </h1>
                 }
+                {
+                    Object.keys(dataCard)?.length === 1 && dataCard?.map((item: IPsychologist, i) => 
+                        <Card key={i} data={item} />) 
+                }  
             </main>
         </div>
     );
