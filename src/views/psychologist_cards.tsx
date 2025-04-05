@@ -71,8 +71,8 @@ export const Psychologist_cards = () => {
         const times = filter.times;
         const hour_dates = filter.hour_dates;
         const isVideo = filter.isVideo;
-        const mental_Illness = filter.IsMental_Illness;
-        const mental_Illness2 = filter.IsMental_Illness2;
+        // const mental_Illness = filter.IsMental_Illness;
+        // const mental_Illness2 = filter.IsMental_Illness2;
 
         let filterData = data;
 
@@ -90,60 +90,60 @@ export const Psychologist_cards = () => {
         }
 
         // Фильтрация по пс.заболеваниям
-        if(filterData !== null && filterData !== undefined) { 
-            const result = [] as any;
-            if (mental_Illness) {
-                filterData.forEach((element: any) => {
-                    const works_with = element.works_with.split(';').map(function(item: any){
-                        return item.trimStart();
-                    }); 
-                    if (works_with.includes('Есть диагностированное психическое заболевание (РПП, СДВГ и др)')){
-                        result.push(element);
-                    }                
-                })
+        // if(filterData !== null && filterData !== undefined) { 
+        //     const result = [] as any;
+        //     if (mental_Illness) {
+        //         filterData.forEach((element: any) => {
+        //             const works_with = element.works_with.split(';').map(function(item: any){
+        //                 return item.trimStart();
+        //             }); 
+        //             if (works_with.includes('Есть диагностированное психическое заболевание (РПП, СДВГ и др)')){
+        //                 result.push(element);
+        //             }                
+        //         })
                 
-                filterData = result;
-            }
-            if (mental_Illness === false) {
-                filterData.forEach((element: any) => {
-                    const works_with = element.works_with.split(';').map(function(item: any){
-                        return item.trimStart();
-                    }); 
-                    if (!works_with.includes('Есть диагностированное психическое заболевание (РПП, СДВГ и др)')){
-                        result.push(element);
-                    }                
-                })
+        //         filterData = result;
+        //     }
+        //     if (mental_Illness === false) {
+        //         filterData.forEach((element: any) => {
+        //             const works_with = element.works_with.split(';').map(function(item: any){
+        //                 return item.trimStart();
+        //             }); 
+        //             if (!works_with.includes('Есть диагностированное психическое заболевание (РПП, СДВГ и др)')){
+        //                 result.push(element);
+        //             }                
+        //         })
                 
-                filterData = result;
-            }
-        }
+        //         filterData = result;
+        //     }
+        // }
 
         //Фильтрация по пс.заболеваниям2
-        if(filterData !== null && filterData !== undefined && mental_Illness2) { 
-            const result = [] as any;
-            if (mental_Illness === true) {
-                filterData.forEach((element: any) => {
-                    const works_with = element.works_with.split(';').map(function(item: any){
-                        return item.trimStart();
-                    }); 
-                    if (works_with.includes('Есть диагностированное психиатрическое заболевание (ПРЛ, БАР, ПТСР и др)')){
-                        result.push(element);
-                    }                
-                })
-            }
-            else {
-                filterData.forEach((element: any) => {
-                    const works_with = element.works_with.split(';').map(function(item: any){
-                        return item.trimStart();
-                    }); 
-                    if (!works_with.includes('Есть диагностированное психиатрическое заболевание (ПРЛ, БАР, ПТСР и др)')){
-                        result.push(element);
-                    }                
-                })
-            }
+        // if(filterData !== null && filterData !== undefined && mental_Illness2) { 
+        //     const result = [] as any;
+        //     if (mental_Illness === true) {
+        //         filterData.forEach((element: any) => {
+        //             const works_with = element.works_with.split(';').map(function(item: any){
+        //                 return item.trimStart();
+        //             }); 
+        //             if (works_with.includes('Есть диагностированное психиатрическое заболевание (ПРЛ, БАР, ПТСР и др)')){
+        //                 result.push(element);
+        //             }                
+        //         })
+        //     }
+        //     else {
+        //         filterData.forEach((element: any) => {
+        //             const works_with = element.works_with.split(';').map(function(item: any){
+        //                 return item.trimStart();
+        //             }); 
+        //             if (!works_with.includes('Есть диагностированное психиатрическое заболевание (ПРЛ, БАР, ПТСР и др)')){
+        //                 result.push(element);
+        //             }                
+        //         })
+        //     }
             
-            filterData = result;
-        }
+        //     filterData = result;
+        // }
 
         // Фильтрация по запросу
         if(filterData !== null && filterData !== undefined && requests.length > 0) {

@@ -14,6 +14,8 @@ import { open,close,openNext } from '../../redux/slices/modal'
 import { ModalState } from "@/redux/store";
 import { IPsychologist } from "@/entities/IPsychologist";
 
+import axios from "axios";
+
 type Props =  {
     data: IPsychologist
 }
@@ -21,6 +23,7 @@ type Props =  {
 export const Card:React.FC<Props> = ({data}) => {
     const [isShow, setShow ] = useState(false);
     const [isShowInfo, setShowInfo ] = useState(false);
+    const [education, setEducation] = useState('');
 
     const isOpenType = useSelector<ModalState>(state => state.modal.isOpenType)
 
@@ -42,6 +45,16 @@ export const Card:React.FC<Props> = ({data}) => {
             clearTimeout(timeOutID);
         };
     },[isOpenType])
+
+    useEffect(() => {
+        const apiUrl = `https://n8n-v2.hrani.live/webhook/download-psychologist-education-test-contur?psychologist_id=${data.telegram_id}`;
+
+        axios.get(apiUrl).then((resp) => {
+            const data = resp.data;
+            console.log(data)
+            setEducation(data[0]);
+        });
+    },[data])
 
     return (
         <>
@@ -170,7 +183,7 @@ export const Card:React.FC<Props> = ({data}) => {
                             </span> 
 
                             <span className="overflow-hidden text-[#151515] max-lg:text-[14px] flex-col w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
-                                Два раза в месяц, интервизии, рефлексивные группы, тренинги и другие мероприятия на развитие профессионализма в аналитическом подходе
+                                {data.short_description}
                                 {
                                     isShowInfo && <span className="block max-lg:text-[14px]">
                                         ..................
@@ -192,10 +205,10 @@ export const Card:React.FC<Props> = ({data}) => {
                             </span> 
 
                             <span className="text-[#151515] flex-col max-lg:text-[14px] w-full justify-between font-bold text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
-                                Диплом о профессиональной переподготовке, 2025
+                                {education.educationItemType},  {education.educationItemYear}
                             </span>
                             <span className="text-[#151515] flex-col max-lg:text-[14px] w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
-                                Московская ассоциация аналитической психологии (МААП)
+                                {education.educationItemProgramTitle}
                             </span>
 
                             <button className="text-[#116466] max-lg:text-[14px] w-full flex justify-start cursor-pointer mt-[10px]">
