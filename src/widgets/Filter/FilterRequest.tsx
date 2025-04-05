@@ -25,10 +25,6 @@ type Props = {
 export const FilterRequest:React.FC<Props> = ({onSubmit, type }) => {
     const items = [
         {
-          id: "query",
-          label: "Есть диагностированное психиатрическое заболевание",
-        },
-        {
           id: "query2",
           label: "Принимаете ли вы медикаменты по назначению психиатра",
         },
