@@ -76,7 +76,7 @@ export const Card:React.FC<Props> = ({data}) => {
                                     <span className="text-[#9A9A9A] font-normal text-[16px] leading-[22px] max-lg:text-[14px] max-lg:mt-[20px]">
                                         Стоимость:
                                         <span className="text-[#151515] leading-[25px] font-normal text-[18px]  max-lg:text-[14px] flex gap-[10px] mt-[5px]">
-                                            От 1500 ₽
+                                            От {data.min_session_price}
 
                                             <Image src={'/card/hint.svg'} alt="hint" height={23} width={23} />
                                         </span>

@@ -74,82 +74,76 @@ export const Psychologist_cards = () => {
         const mental_Illness = filter.IsMental_Illness;
         const mental_Illness2 = filter.IsMental_Illness2;
 
-        
         let filterData = data;
-        console.log(filterData)
+
         // Фильтрация по стоимости
         if(filterData !== null && filterData !== undefined && price !== 1500) {  
             if (filterData.length > 1) {
                 filterData = filterData.filter((item : any) => Number(item.min_session_price) <= price);
             }
-
-            console.log(filterData)
-            // else if ([filterData].length === 1) {
-            //     filterData = [filterData].filter(item => Number(item.min_session_price) < price);
-            // }
         }
 
         // Фильтрация по видео визитки 
         if(filterData !== null && filterData !== undefined && isVideo) {  
-            var result = filterData.filter((item) => item.link_video !== null);
+            const result = filterData.filter((item: any) => item.link_video !== null);
             filterData = result;
         }
 
         // Фильтрация по пс.заболеваниям
-        // if(filterData !== null && filterData !== undefined) { 
-        //     let result = [];
-        //     if (mental_Illness) {
-        //         filterData.forEach(element => {
-        //             const works_with = element.works_with.split(';').map(function(item){
-        //                 return item.trimStart();
-        //             }); 
-        //             if (works_with.includes('Есть диагностированное психическое заболевание (РПП, СДВГ и др)')){
-        //                 result.push(element);
-        //             }                
-        //         })
+        if(filterData !== null && filterData !== undefined) { 
+            const result = [] as any;
+            if (mental_Illness) {
+                filterData.forEach((element: any) => {
+                    const works_with = element.works_with.split(';').map(function(item: any){
+                        return item.trimStart();
+                    }); 
+                    if (works_with.includes('Есть диагностированное психическое заболевание (РПП, СДВГ и др)')){
+                        result.push(element);
+                    }                
+                })
                 
-        //         filterData = result;
-        //     }
-        //     if (mental_Illness === false) {
-        //         filterData.forEach(element => {
-        //             const works_with = element.works_with.split(';').map(function(item){
-        //                 return item.trimStart();
-        //             }); 
-        //             if (!works_with.includes('Есть диагностированное психическое заболевание (РПП, СДВГ и др)')){
-        //                 result.push(element);
-        //             }                
-        //         })
+                filterData = result;
+            }
+            if (mental_Illness === false) {
+                filterData.forEach((element: any) => {
+                    const works_with = element.works_with.split(';').map(function(item: any){
+                        return item.trimStart();
+                    }); 
+                    if (!works_with.includes('Есть диагностированное психическое заболевание (РПП, СДВГ и др)')){
+                        result.push(element);
+                    }                
+                })
                 
-        //         filterData = result;
-        //     }
-        // }
+                filterData = result;
+            }
+        }
 
-        // // // Фильтрация по пс.заболеваниям2
-        // if(filterData !== null && filterData !== undefined && mental_Illness2) { 
-        //     let result = [];
-        //     if (mental_Illness === true) {
-        //         filterData.forEach(element => {
-        //             const works_with = element.works_with.split(';').map(function(item){
-        //                 return item.trimStart();
-        //             }); 
-        //             if (works_with.includes('Есть диагностированное психиатрическое заболевание (ПРЛ, БАР, ПТСР и др)')){
-        //                 result.push(element);
-        //             }                
-        //         })
-        //     }
-        //     else {
-        //         filterData.forEach(element => {
-        //             const works_with = element.works_with.split(';').map(function(item){
-        //                 return item.trimStart();
-        //             }); 
-        //             if (!works_with.includes('Есть диагностированное психиатрическое заболевание (ПРЛ, БАР, ПТСР и др)')){
-        //                 result.push(element);
-        //             }                
-        //         })
-        //     }
+        //Фильтрация по пс.заболеваниям2
+        if(filterData !== null && filterData !== undefined && mental_Illness2) { 
+            const result = [] as any;
+            if (mental_Illness === true) {
+                filterData.forEach((element: any) => {
+                    const works_with = element.works_with.split(';').map(function(item: any){
+                        return item.trimStart();
+                    }); 
+                    if (works_with.includes('Есть диагностированное психиатрическое заболевание (ПРЛ, БАР, ПТСР и др)')){
+                        result.push(element);
+                    }                
+                })
+            }
+            else {
+                filterData.forEach((element: any) => {
+                    const works_with = element.works_with.split(';').map(function(item: any){
+                        return item.trimStart();
+                    }); 
+                    if (!works_with.includes('Есть диагностированное психиатрическое заболевание (ПРЛ, БАР, ПТСР и др)')){
+                        result.push(element);
+                    }                
+                })
+            }
             
-        //     filterData = result;
-        // }
+            filterData = result;
+        }
 
         // Фильтрация по запросу
         if(filterData !== null && filterData !== undefined && requests.length > 0) {
@@ -192,9 +186,9 @@ export const Psychologist_cards = () => {
 
         // Фильтрация по дате и  часам 
         if(filterData !== null && filterData !== undefined && dates.length > 0) {
-            const result = []
+            const result = []  as any
             if (filterData != null && filterData != undefined) {
-                dates.forEach(element => {
+                dates.forEach((element: any )=> {
                     const persons = hour_dates.filter((item: any) => item.pretty_date === element.text)
                     result.push(persons);
                 }); 
@@ -202,20 +196,18 @@ export const Psychologist_cards = () => {
     
             const names = new Set();
     
-            result.forEach((item) => {
-                item.forEach(element => {
+            result.forEach((item: any) => {
+                item.forEach((element: any ) => {
                     names.add(element.element1)
                 });
             })
 
-            let data = filterData;
-
-            let newData = [] as any
+            const newData = [] as any
 
             names.forEach((res) => {
                 let findItem = data;
                 console.log(res)
-                findItem = data.find(item => item.name !== res);
+                findItem = data.find((item : any) => item.name !== res);
                 if (findItem != undefined && findItem != null) {
                     newData.push(findItem);
                 }
@@ -226,9 +218,9 @@ export const Psychologist_cards = () => {
 
         // Фильтрация по дате и  часам 
         if(filterData !== null && filterData !== undefined && times.length > 0) {
-            const result = []
+            const result = [] as any
             if (filterData != null && filterData != undefined) {
-                times.forEach(element => {
+                times.forEach((element : any ) => {
                     console.log(hour_dates)
                     const persons = hour_dates.filter((item: any) => item.hour === element.text)
                     result.push(persons);
@@ -237,19 +229,17 @@ export const Psychologist_cards = () => {
     
             const names = new Set();
     
-            result.forEach((item) => {
-                item.forEach(element => {
+            result.forEach((item: any ) => {
+                item.forEach((element : any) => {
                     names.add(element.element1)
                 });
             })
 
-            let data = filterData;
-
-            let newData = [] as any
+            const newData = [] as any
 
             names.forEach((res) => {
                 let findItem = data;
-                findItem = data.find(item => item.name !== res);
+                findItem = data.find((item : any ) => item.name !== res);
                 if (findItem != undefined && findItem != null) {
                     newData.push(findItem);
                 }

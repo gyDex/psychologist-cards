@@ -1,5 +1,9 @@
 import Image from "next/image";
 
+// type Props = {
+//     imageUrl: string,
+// }
+
 export const ProfileCard = () => {
     return (
         <>

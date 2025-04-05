@@ -25,10 +25,8 @@ export const Filter = () => {
     const [filterData, setFilterDate] = useState<string[]>([]) as any;
     const [filterPrice, setFilterPrice] = useState<string[]>([]);
     const [filterRequest, setFilterRequest] = useState<string[]>([]);
-    const [filterTime, setFilterTime] = useState<string[]>([]);
+    // const [filterTime, setFilterTime] = useState<string[]>([]);
     const [filterGender, setFilterGender] = useState<string[]>([]);
-
-    const [isVideoFilter, setVideoFilter] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -166,7 +164,7 @@ export const Filter = () => {
                             dispatch(close());
                         }}
                         onSubmit={(data:string[]) => {
-                            setFilterTime(data)
+                            // setFilterTime(data)
                             dispatch(findByTimes(data))
                         }}
                         />        
