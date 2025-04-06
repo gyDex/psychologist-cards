@@ -15,6 +15,7 @@ import { ModalState } from "@/redux/store";
 import { IPsychologist } from "@/entities/IPsychologist";
 
 import axios from "axios";
+import { IEducation } from "@/entities/IEducation";
 
 type Props =  {
     data: IPsychologist
@@ -23,7 +24,14 @@ type Props =  {
 export const Card:React.FC<Props> = ({data}) => {
     const [isShow, setShow ] = useState(false);
     const [isShowInfo, setShowInfo ] = useState(false);
-    const [education, setEducation] = useState('');
+
+    const [education, setEducation] = useState<IEducation>(
+        {
+            educationItemProgramTitle:'',
+            educationItemType:'',
+            educationItemYear:0,
+        }
+    );
 
     const isOpenType = useSelector<ModalState>(state => state.modal.isOpenType)
 
@@ -162,7 +170,6 @@ export const Card:React.FC<Props> = ({data}) => {
                             Диагностированные заболевания:
                         </span>   
                         <ul className="gap-[10px] flex flex-col  mt-[5px]">
-
                             {
                                 works_with.map((item, i) => <span key={i} className="text-[#151515] max-lg:text-[14px] w-full justify-between font-normal text-[18px] leading-[25px] flex gap-[10px] mt-[5px]">
                                     {
@@ -194,8 +201,7 @@ export const Card:React.FC<Props> = ({data}) => {
                             <button onClick={() => setShowInfo(prev => !prev)} className="text-[#116466] w-full flex justify-start cursor-pointer">
                                 {
                                     isShowInfo ? 'Свернуть' : "Читать ещё"
-                                }
-                                
+                                }     
                             </button>       
                         </div>
 
