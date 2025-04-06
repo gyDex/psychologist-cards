@@ -21,7 +21,7 @@ export const ProfileCard = () => {
     const handleUploadingData = () => {
         // setLoading(true);
         if (videoElement.current) {
-            videoElement.current.src = "http://localhost:3000/videos/video2.mp4";
+            videoElement.current.src = "/videos/video2.mp4";
             videoElement.current.load();
             videoElement.current.play();
             // setLoading(false);
