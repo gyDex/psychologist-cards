@@ -186,7 +186,7 @@ export const Filter = () => {
 
                     <div className="flex items-center gap-[15px] mt-[15px]">
                         <Checkbox className="w-[30px] h-[30px]" id="mental_illnesses " 
-                            checked={true}
+                            defaultChecked={true}
                             onClickCapture={() => {
                                 dispatch(findByMental_Illness())
                             }}
@@ -201,7 +201,7 @@ export const Filter = () => {
 
                     <div className="flex items-center gap-[15px] mt-[15px]">
                         <Checkbox className="w-[30px] h-[30px]" id="mental_illnesses2"
-                            checked={true}
+                            defaultChecked={true}
                             onClickCapture={() => {
                                 dispatch(findByMental_Illness2())
                             }}
