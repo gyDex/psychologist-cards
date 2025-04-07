@@ -18,7 +18,7 @@ import { toNextStage } from "@/redux/slices/application_form"
 import { fill_diseases } from "@/redux/slices/application_form_data"
 
 const FormSchema = z.object({
-    diseases: z.enum(["diseases1", "diseases2", 'nothing'], {
+    diseases: z.enum(["diseases2", 'nothing'], {
     required_error: "Вы не заполнили обязательное поле",
   }),
 })
@@ -27,9 +27,8 @@ export const DiseasesStage = () => {
     const dispatch = useDispatch();
 
     const diseases = {
-        ['diseases1'] : ['Есть диагностированное психическое заболевание'],
         ['diseases2'] : ['Есть диагностированное психиатрическое заболевание'],
-        ['nothing'] : ['Не имеет значения']
+        ['nothing'] : ['Нет']
     } as const
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -40,7 +39,7 @@ export const DiseasesStage = () => {
     function handleSubmit(data: z.infer<typeof FormSchema>) {
         dispatch(toNextStage('promocode'))  
         console.log(data)
-        dispatch(fill_diseases(diseases[data.diseases]))
+        dispatch(fill_diseases(diseases[data?.diseases]))
     }
 
   return (
@@ -66,14 +65,6 @@ export const DiseasesStage = () => {
                         className="flex flex-col"
                         >
                             <FormItem className="flex items-center gap-[15px]">
-                                <FormControl>
-                                <RadioGroupItem className="h-[30px] w-[30px]" value="diseases1" />
-                                </FormControl>
-                                <FormLabel className="font-normal text-[18px]">
-                                    Есть диагностированное психическое заболевание
-                                </FormLabel>
-                            </FormItem>
-                            <FormItem className="flex items-center gap-[15px]">
                                 <FormControl> 
                                 <RadioGroupItem className="h-[30px] w-[30px]" value="diseases2" />
                                 </FormControl>
@@ -86,7 +77,7 @@ export const DiseasesStage = () => {
                                 <RadioGroupItem className="h-[30px] w-[30px]" value="nothing" />
                                 </FormControl>
                                 <FormLabel className="font-normal text-[18px]">
-                                    Не имеет значения
+                                   Нет
                                 </FormLabel>
                             </FormItem>
                         </RadioGroup>

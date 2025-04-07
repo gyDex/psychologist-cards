@@ -1,11 +1,13 @@
 'use client'
 
+import { generateTicketId } from "@/redux/slices/application_form_data";
 import { ModalState } from "@/redux/store";
 import ActionStage from "@/widgets/ApplicationStages/ActionStage";
 import AgeStageApplication from "@/widgets/ApplicationStages/AgeStage";
 import ConditionStage from "@/widgets/ApplicationStages/ConditionStage";
 import { DiseasesPsychologistStage } from "@/widgets/ApplicationStages/DiseasesPsychologistStage";
 import { DiseasesStage } from "@/widgets/ApplicationStages/DiseasesStage";
+import { FailStage } from "@/widgets/ApplicationStages/FailStage";
 import { FinalStage } from "@/widgets/ApplicationStages/FinalStage";
 import { GenderStageApplication } from "@/widgets/ApplicationStages/GenderStage";
 import { GenderStagePsychologist } from "@/widgets/ApplicationStages/GenderStagePsychologist";
@@ -16,10 +18,20 @@ import { PsychologistStage } from "@/widgets/ApplicationStages/PsychologistStage
 import { PsychologistStageTop } from "@/widgets/ApplicationStages/PsychologistStageTop";
 import RequestStage from "@/widgets/ApplicationStages/RequestStage";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export const ApplicationForm = () => {
-    const application_stage = useSelector<ModalState>( state => state.applicationForm.application_stage) as string
+    const application_stage = useSelector<ModalState>( state => state.applicationForm.application_stage) as string;
+
+    const dispatch = useDispatch();
+    const ticketID = useSelector<ModalState>(state => state.applicationFormData.ticketID);
+
+    useEffect(() => {
+        if (ticketID === '' || ticketID === undefined || ticketID === null) {
+            dispatch(generateTicketId());
+        }
+    },[])
 
     return (
         <>  
@@ -27,9 +39,12 @@ export const ApplicationForm = () => {
                 {
                     application_stage === 'gratitude' && <FinalStage /> 
                 }
+                {
+                    application_stage === 'error' && <FailStage /> 
+                }
                 
                 {
-                    application_stage !== 'gratitude' && 
+                    application_stage !== 'gratitude' && application_stage !== 'gratitude' && 
                     <div className="w-full min-lg:rounded-[30px]  pt-[50px] shrink-0">
                         <div className="w-full flex justify-between min-lg:px-[50px] pb-[20px] max-lg:px-[20px]">
                             <div className="flex flex-col gap-[10px] ">

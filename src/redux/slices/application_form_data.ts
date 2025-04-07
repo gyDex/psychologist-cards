@@ -30,7 +30,11 @@ const applicationFormDataSlice = createSlice({
         slots:[],
         custom_preferences: '',
 
-        ticketID: ''
+        ticketID: '',
+
+        maxIndex: 0,
+
+        index_phyc: 1,
     },
     
     reducers: {
@@ -76,6 +80,19 @@ const applicationFormDataSlice = createSlice({
         },
         fill_custom_preferences(state,action) {
             state.custom_preferences = action.payload;
+        },
+        fill_maxIndex(state,action) {
+            state.maxIndex = action.payload;
+        },
+        increment_index_psyc(state) {
+            if (state.index_phyc < state.maxIndex - 1) {
+                state.index_phyc += 1;
+            }
+        },
+        decrement_index_psyc(state) {
+            if (state.index_phyc > 0) {
+                state.index_phyc -= 1;
+            }
         }
     },
 });
@@ -94,7 +111,10 @@ export const  {
                 fill_requests, 
                 fill_slots,  
                 fill_custom_preferences,
-
+                generateTicketId,
+                increment_index_psyc,
+                decrement_index_psyc,
+                fill_maxIndex
             } = applicationFormDataSlice.actions;
 
 export default applicationFormDataSlice.reducer;

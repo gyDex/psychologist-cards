@@ -1,27 +1,7 @@
 "use client"
 import Image from "next/image"
 
-// const FormSchema = z.object({
-//     gender: z.enum(["male", "female", 'nothing'], {
-//     required_error: "Вы не заполнили обязательное поле",
-//   }),
-// })
-
 export const FinalStage = () => {
-    // const form = useForm<z.infer<typeof FormSchema>>({
-    //     resolver: zodResolver(FormSchema),
-    // })
-
-
-    // function handleSubmit(data: z.infer<typeof FormSchema>) {
-    //     dispatch(toNextStage('promocode')) 
-    //     // dispatch(fill_gender(data.gender))
-    // }
-
-    // function handleSubmit() {
-    //     dispatch(toNextStage('promocode')) 
-    //     // dispatch(fill_gender(data.gender))
-    // }
   return (
     <div className='relative min-lg:p-[50px] p-[20px] max-lg:px-[20px] flex-col min-h-full h-[100svh] justify-between  flex w-full grow'>
         <div className="w-full flex justify-end ">

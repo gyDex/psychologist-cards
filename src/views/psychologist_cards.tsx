@@ -156,9 +156,6 @@ export const Psychologist_cards = () => {
                     return item.trimStart();
                 });
 
-                
-                console.log(filterData[index].queries.split(';')[0])
-                    console.log('queries',queries)
                 let isInclude = true;
                 for (let index = 0; index < requests.length; index++) {
                     if(!queries.includes(requests[index])) {

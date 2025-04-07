@@ -104,9 +104,9 @@ export const FilterDate:React.FC<Props> = ({ type, onSubmit }) => {
 
         datePsychologists?.forEach(element => {
             console.log(element.slots)
-            if(!notDublicate.includes(element.pretty_date)) {
+            // if(!notDublicate.includes(element.pretty_date)) {
                 notDublicate.push(element.pretty_date);         
-            }
+            // }
         }); 
 
         setDateFilter(notDublicate?.map((item: any) => {

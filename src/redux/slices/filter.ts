@@ -22,6 +22,8 @@ const filterSlice = createSlice({
 
         IsMental_Illness: false,
         IsMental_Illness2: false,
+
+        filtered_by_automatch_psy: []
     },
     
     reducers: {
@@ -57,7 +59,10 @@ const filterSlice = createSlice({
         findByVideo(state) {
             state.isVideo = !state.isVideo;
         },
-        
+
+        fill_filtered_by_automatch_psy(state, action) {
+            state.filtered_by_automatch_psy = action.payload;
+        },
         findByMental_Illness(state) {
             state.IsMental_Illness = !state.IsMental_Illness;
         },
@@ -75,6 +80,7 @@ export const  { findByGender,findByMental_Illness,
     fillDatesPsychologists,
     fillHourAndDate,
     findByVideo,
+    fill_filtered_by_automatch_psy
 } = filterSlice.actions;
 
 export const price = ( state: ModalState ) => state.filter.price;

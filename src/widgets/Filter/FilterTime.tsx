@@ -114,9 +114,9 @@ export const FilterTime:React.FC<Props> = ({ type, onSubmit }) => {
                     [item.slots[hour]].forEach((element: any) => {
                         if (element[0]?.psychologist === element1)
                         {
-                            if(!notDublicate.includes(hour)) {
+                            // if(!notDublicate.includes(hour)) {
                                 notDublicate.push(hour);         
-                            }                
+                            // }                
                             result.push({
                                 element1,
                                 hour,
