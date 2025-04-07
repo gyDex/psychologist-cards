@@ -20,8 +20,8 @@ const filterSlice = createSlice({
 
         hour_dates: [],
 
-        IsMental_Illness: false,
-        IsMental_Illness2: false,
+        IsMental_Illness: true,
+        IsMental_Illness2: true,
 
         filtered_by_automatch_psy: []
     },
@@ -55,7 +55,6 @@ const filterSlice = createSlice({
         fillHourAndDate(state,action) {
             state.hour_dates = action.payload;
         },
-
         findByVideo(state) {
             state.isVideo = !state.isVideo;
         },
@@ -73,9 +72,13 @@ const filterSlice = createSlice({
 });
 
 
-export const  { findByGender,findByMental_Illness,
+export const  { 
+    findByGender,findByMental_Illness,
     findByMental_Illness2,
-    findByBasicApproach,findByTimes, findByDates, findByPrice, findByRequests,
+    findByBasicApproach,findByTimes, 
+    findByDates, 
+    findByPrice, 
+    findByRequests,
     fillDataNamePsycho,
     fillDatesPsychologists,
     fillHourAndDate,

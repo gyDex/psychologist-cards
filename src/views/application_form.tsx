@@ -44,7 +44,7 @@ export const ApplicationForm = () => {
                 }
                 
                 {
-                    application_stage !== 'gratitude' && application_stage !== 'gratitude' && 
+                    application_stage !== 'gratitude' && application_stage !== 'error' && 
                     <div className="w-full min-lg:rounded-[30px]  pt-[50px] shrink-0">
                         <div className="w-full flex justify-between min-lg:px-[50px] pb-[20px] max-lg:px-[20px]">
                             <div className="flex flex-col gap-[10px] ">

@@ -11,7 +11,7 @@ import PsychologistStageItem from "./PsychologistStageItem";
 export const PsychologistStage = () => {
     const dispatch = useDispatch();
 
-    const filtered_persons = useSelector<ModalState>(state => state.filter.filtered_by_automatch_psy);
+    const filtered_persons = useSelector<ModalState>(state => state.filter.filtered_by_automatch_psy) as any;
 
     const application_form_data = useSelector<ModalState>(state => state) as ModalState;
 
@@ -258,7 +258,7 @@ export const PsychologistStage = () => {
 
             question_to_psychologist: application_form_data.applicationFormData.requests,
 
-            filtered_by_automatch_psy_names: filtered_persons.map((item:any) => {
+            filtered_by_automatch_psy_names: filtered_persons?.map((item:any) => {
                 return item.name
             }),
 
@@ -318,7 +318,7 @@ export const PsychologistStage = () => {
         axios.post(apiUrl, data).then(() => {
             console.log('success');
 
-            () => delayBeforeSuccess;
+            return () => delayBeforeSuccess;
         }).catch(() => {
 
         });
