@@ -98,15 +98,7 @@ export const FilterTime:React.FC<Props> = ({ type, onSubmit }) => {
         console.log(datePsychologists)
 
         const notDublicate = [] as any;
-
-        // datePsychologists?.forEach(element => {
-        //     console.log(element?.slots);
-        //     [element?.slots].forEach(item => {
-        //         if(!notDublicate.includes(item)) {
-        //             notDublicate.push(item);         
-        //         }
-        //     })
-        // }); 
+        
         const result = [] as any;
         psychologists?.forEach((element1 : any ) => {
             datePsychologists?.map((item) => {
@@ -114,9 +106,9 @@ export const FilterTime:React.FC<Props> = ({ type, onSubmit }) => {
                     [item.slots[hour]].forEach((element: any) => {
                         if (element[0]?.psychologist === element1)
                         {
-                            // if(!notDublicate.includes(hour)) {
+                            if(!notDublicate.includes(hour)) {
                                 notDublicate.push(hour);         
-                            // }                
+                            }                
                             result.push({
                                 element1,
                                 hour,

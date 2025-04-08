@@ -12,15 +12,18 @@ type Props ={
     closeButton?: boolean;
     maxWidth?: string,
     className?: string,
+    onOpenChange?: () => void,
 }
-export const ModalWindow:React.FC<Props> = ({className, maxWidth, closeButton = true, children, type}) => {
+export const ModalWindow:React.FC<Props> = ({onOpenChange, className, maxWidth, closeButton = true, children, type}) => {
     const isOpenType = useSelector<ModalState>(state => state.modal.isOpenType) as string;
     const isOpen = useSelector<ModalState>(state => state.modal.isOpen) as boolean;
     const dispatch = useDispatch();
 
     return (
         <>
-            <Dialog  onOpenChange={() => dispatch(close())} open={isOpen && isOpenType === type} >
+            <Dialog  onOpenChange={() => 
+                    dispatch(close())
+                } open={isOpen && isOpenType === type} >
 
                 <DialogContent maxWidth={maxWidth} className={`${className} w-[95%] max-w-[640px] p-[30px] rounded-[30px]`}>
                 {

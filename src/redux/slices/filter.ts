@@ -50,6 +50,8 @@ const filterSlice = createSlice({
         },
         fillDatesPsychologists(state,action) {
             state.dates_psychologists = action.payload;
+
+            console.log(action.payload)
         },
 
         fillHourAndDate(state,action) {

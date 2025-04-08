@@ -204,7 +204,7 @@ export const Psychologist_cards = () => {
             names.forEach((res) => {
                 let findItem = data;
                 console.log(res)
-                findItem = data.find((item : any) => item.name !== res);
+                findItem = data.find((item : any) => item.name === res);
                 if (findItem != undefined && findItem != null) {
                     newData.push(findItem);
                 }
@@ -236,7 +236,7 @@ export const Psychologist_cards = () => {
 
             names.forEach((res) => {
                 let findItem = data;
-                findItem = data.find((item : any ) => item.name !== res);
+                findItem = data.find((item : any ) => item.name === res);
                 if (findItem != undefined && findItem != null) {
                     newData.push(findItem);
                 }

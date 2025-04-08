@@ -10,7 +10,7 @@ import { ContactStage } from "../SessionStages/ContactStage/ContactStage";
 import { Button } from "@/components/ui/button";
 import { useDispatch, useSelector } from "react-redux";
 
-import { open,close,openNext } from '../../redux/slices/modal'
+import { open,close,openNext, selectPsychologist } from '../../redux/slices/modal'
 import { ModalState } from "@/redux/store";
 import { IPsychologist } from "@/entities/IPsychologist";
 
@@ -59,7 +59,6 @@ export const Card:React.FC<Props> = ({data}) => {
 
         axios.get(apiUrl).then((resp) => {
             const data = resp.data;
-            console.log(data)
             setEducation(data[0]);
         });
     },[data])
@@ -286,11 +285,20 @@ export const Card:React.FC<Props> = ({data}) => {
                                 
                                 <span className="flex text-[#151515] gap-[10px] mt-[10px] max-lg:text-[14px]">
                                     {
-                                        (data.is_married && data.has_children) ? 'Замужем, дети' : 'Замужем'
+                                            data.sex === 'Мужчина' &&
+                                            (data.is_married && data.has_children) && 'Женат, дети' 
                                     }
-
                                     {
-                                        (!data.is_married) && 'Не замужем'
+                                            data.sex === 'Женщина' &&
+                                            (data.is_married && data.has_children) && 'Замужем, дети' 
+                                    }
+                                    {
+                                            data.sex === 'Мужчина' &&
+                                            (data.is_married === false) && 'Не женат' 
+                                    }
+                                    {
+                                            data.sex === 'Женщина' &&
+                                            (data.is_married === false) && 'Не женат' 
                                     }
                                 </span>
                             </li>
@@ -313,12 +321,12 @@ export const Card:React.FC<Props> = ({data}) => {
                     <button onClick={() => setShow(prev => !prev)} type="button" className="cursor-pointer shrink-0 text-[#116466] font-normal text-[18px] leading-[25px] border-[1px] rounded-[50px] border-[#116466] p-[12px]">
                         {
                             isShow ?  "Свернуть"  : 'Подробнее о хранителе'
-                        }
-                        
+                        }            
                     </button>
 
                     <Button onClick={() => {
                         dispatch(openNext('Time'));
+                        dispatch(selectPsychologist(data.name))
                         dispatch(open())}} className="flex hover:bg-[#116466]  cursor-pointer grow h-full text-[#FFFFFF] font-normal text-[18px]  leading-[25px] border-[1px] rounded-[50px] bg-[#116466] p-[12px]">
                         Оставить заявку
                     </Button>
