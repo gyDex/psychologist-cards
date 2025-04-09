@@ -37,7 +37,6 @@ const clickSlice = createSlice({
     },
 });
 
-
 export const  { open, close, openNext,selectPsychologist,selectSlotsObjects, selectSlots } = clickSlice.actions;
 
 export const isOpenType = ( state: ModalState ) => state.modal.isOpenType;

@@ -61,68 +61,69 @@ export const TimeStage:React.FC<Props> = ({callback}) => {
     ]
 
     useEffect(() => {
-        if (isOpen === false) {
+        if (isOpen === true) {
             getData();
         }
     },[isOpen, selectedPsychologist])
 
-    function getData () 
-    {
-        const timeDifference = getTimeDifference()
-
-        const apiUrl = `https://n8n-v2.hrani.live/webhook/get-aggregated-schedule-by-psychologist-test-contur?utm_psy=${selectedPsychologist}&userTimeOffsetMsk=${timeDifference}`;
-            
-        const Today = {
-            day: String(new Date().getDate() + 2).padStart(2, '0'),
-            month: String(new Date().getMonth() + 1).padStart(2, '0'),
-        }
-        const Tomorrow = {
-            day: String(new Date().getDate() + 3).padStart(2, '0'),
-            month: String(new Date().getMonth() + 1).padStart(2, '0'),
-        }
-
-        console.log(Today)
-        console.log(Tomorrow)
-
-        axios.get(apiUrl).then((resp) => {
-            const allData = resp.data;
-
-            console.log(allData)
-            
-            const dates = [] as  any;
-
-            allData[0].items.map((item: any) => {
-                const dayDate = item.pretty_date;
-
-                const slots = [] as any;
-
-                [item.slots].map((element: any) => {                 
-                    for (let index = 0; index < Object.keys(element).length; index++) {
-                        const slot = element[hours[index]]
-
-                        if (slot !== undefined && slot !== null && slot.length > 0)
-                        {
-                            slots.push(slot);
-                            return element;
+    const getData = useCallback(() => {
+        
+            const timeDifference = getTimeDifference()
+    
+            const apiUrl = `https://n8n-v2.hrani.live/webhook/get-aggregated-schedule-by-psychologist-test-contur?utm_psy=${selectedPsychologist}&userTimeOffsetMsk=${timeDifference}`;
+                
+            const Today = {
+                day: String(new Date().getDate() + 2).padStart(2, '0'),
+                month: String(new Date().getMonth() + 1).padStart(2, '0'),
+            }
+            const Tomorrow = {
+                day: String(new Date().getDate() + 3).padStart(2, '0'),
+                month: String(new Date().getMonth() + 1).padStart(2, '0'),
+            }
+    
+            console.log(Today)
+            console.log(Tomorrow)
+    
+            axios.get(apiUrl).then((resp) => {
+                const allData = resp.data;
+    
+                console.log(allData)
+                
+                const dates = [] as  any;
+    
+                allData[0].items.map((item: any) => {
+                    const dayDate = item.pretty_date;
+    
+                    const slots = [] as any;
+    
+                    [item.slots].map((element: any) => {                 
+                        for (let index = 0; index < Object.keys(element).length; index++) {
+                            const slot = element[hours[index]]
+    
+                            if (slot !== undefined && slot !== null && slot.length > 0)
+                            {
+                                slots.push(slot);
+                                return element;
+                            }
                         }
-                    }
+                    })
+    
+                    dates.push({
+                        dayDate: dayDate,
+                        slots: {
+                            ...slots[0]
+                        }
+                    })
                 })
-
-                dates.push({
-                    dayDate: dayDate,
-                    slots: {
-                        ...slots[0]
-                    }
-                })
-            })
-            console.log(dates)
-            const todayData = dates.find((item : any) => item.dayDate === `${Today.day}.${Today.month}`);
-            const tomorrowData = dates.find((item : any) => item.dayDate === `${Tomorrow.day}.${Tomorrow.month}`);
-
-            setTomorrow(tomorrowData)
-            setToday(todayData)
-        });
-    }
+                console.log(dates)
+                const todayData = dates.find((item : any) => item.dayDate === `${Today.day}.${Today.month}`);
+                const tomorrowData = dates.find((item : any) => item.dayDate === `${Tomorrow.day}.${Tomorrow.month}`);
+    
+                setTomorrow(tomorrowData)
+                setToday(todayData)
+            });
+    },[selectedPsychologist, isOpen]) 
+   
 
     useEffect(() => {
         if (today != undefined) {
