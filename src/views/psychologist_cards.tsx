@@ -8,7 +8,11 @@ import Error from "next/error";
 import { IPsychologist } from "@/entities/IPsychologist";
 import { fillDataNamePsycho } from "@/redux/slices/filter";
 
-export const Psychologist_cards = () => { 
+type Props = {
+    data: any;
+}
+
+export const Psychologist_cards = ({data} : Props) => { 
     const filter = useSelector<ModalState>(state => state.filter) as any;
     
     const [ dataCard, setDataCard] = useState<IPsychologist[]>([]);
@@ -17,40 +21,40 @@ export const Psychologist_cards = () => {
 
     const dispatch = useDispatch();
 
+    // useEffect(() => {
+    //     try
+    //     {
+    //         setLoading(true);
+    //         const apiUrl = 'https://n8n-v2.hrani.live/webhook/get-filtered-psychologists-test-contur';
+
+    //         axios.get(apiUrl).then((resp) => {
+    //             const allPsychologist = resp.data;
+
+    //         });
+    //     }
+    //     catch {
+    //         setLoading(false)
+    //         throw new Error('Something went wrong.' as any)
+    //     }
+    //     finally {
+    //         setLoading(false)
+    //     }
+    // },[]);
+
+    useEffect(() => {
+        console.log('data',data)
+
+        dispatch(fillDataNamePsycho(data.map((item: IPsychologist) => {
+            return item.name
+        })))
+        setDataCard(data);
+    },[data])
+
     useEffect(() => {
         try
         {
             setLoading(true);
-            const apiUrl = 'https://n8n-v2.hrani.live/webhook/get-filtered-psychologists-test-contur';
-
-            axios.get(apiUrl).then((resp) => {
-                const allPsychologist = resp.data;
-                dispatch(fillDataNamePsycho(allPsychologist.map((item: IPsychologist) => {
-                    return item.name
-                })))
-                setDataCard(allPsychologist);
-            });
-        }
-        catch {
-            setLoading(false)
-            throw new Error('Something went wrong.' as any)
-        }
-        finally {
-            setLoading(false)
-        }
-    },[]);
-
-    useEffect(() => {
-        try
-        {
-            setLoading(true);
-            const apiUrl = 'https://n8n-v2.hrani.live/webhook/get-filtered-psychologists-test-contur';
-
-            console.log(filter)
-            axios.get(apiUrl).then((resp) => {
-                const allPsychologist = resp.data;
-                FilterData(allPsychologist)
-            });
+            FilterData(data)
         }
         catch {
             setLoading(false)
@@ -60,6 +64,28 @@ export const Psychologist_cards = () => {
             setLoading(false)
         }
     },[filter]);
+
+
+    // useEffect(() => {
+    //     try
+    //     {
+    //         setLoading(true);
+    //         const apiUrl = 'https://n8n-v2.hrani.live/webhook/get-filtered-psychologists-test-contur';
+
+    //         console.log(filter)
+    //         axios.get(apiUrl).then((resp) => {
+    //             const allPsychologist = resp.data;
+    //             FilterData(allPsychologist)
+    //         });
+    //     }
+    //     catch {
+    //         setLoading(false)
+    //         throw new Error('Something went wrong.' as any)
+    //     }
+    //     finally {
+    //         setLoading(false)
+    //     }
+    // },[filter]);
     
 
     //Метод фильтрации данных 
