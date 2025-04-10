@@ -61,7 +61,7 @@ export const Card:React.FC<Props> = ({data}) => {
             const data = resp.data;
             setEducation(data[0]);
         });
-    },[data])
+    },[])
 
     return (
         <>
